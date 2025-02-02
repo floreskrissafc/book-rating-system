@@ -1,3 +1,11 @@
-# nodejs-sqlite
+Run the below command to start the server.
+```sh
+npm install && npm start
+```
 
-Node.js and SQLite example code for a blog post: https://geshan.com.np/blog/2021/10/nodejs-sqlite/
+
+load 
+```
+book-rating-system-api.postman_collection.json
+```
+into postman for examples of the APIs.
