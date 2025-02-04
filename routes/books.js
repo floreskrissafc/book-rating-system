@@ -12,6 +12,32 @@ router.get('/', function(req, res, next) {
   }
 });
 
+router.get('/search', function(req, res, next) {
+  try {
+    console.log("req.query", req.query);
+    author = req.query.authorquery;
+    title = req.query.titlequery;
+    console.log('authorQuery: ', author);
+    console.log('titleQuery: ', title);
+    if ((!author && !title) || (author && title)) {
+      let error = new Error('Either Search by Author or Title');
+      error.statusCode = 400;
+      throw(error)
+    }
+    if (author && author.length) {
+      return res.json(books.searchByAuthors(author));
+    }
+    if (title && title.length) {
+      return res.json(books.searchByTitle(title));
+    }
+    let error = new Error('Invalid search query')
+    throw error;
+  } catch (error) {
+    console.error(`Error while searching book`, error.message);
+    next(error);
+  }
+});
+
 /* POST books */
 router.post('/', function(req, res, next) {
   try {

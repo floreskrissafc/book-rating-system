@@ -1,5 +1,6 @@
 const db = require('./db');
 const config = require('../config');
+const { search } = require('../routes/books');
 
 function getMultiple(page = 1) {
   const offset = (page - 1) * config.listPerPage;
@@ -9,6 +10,20 @@ function getMultiple(page = 1) {
   return {
     data,
     meta
+  }
+}
+
+function searchByAuthors(authorQuery) {
+  const data = db.queryAll(`SELECT * FROM books WHERE authors LIKE ?`, [`%${authorQuery.toLowerCase()}%`])
+  return {
+    data
+  }
+}
+
+function searchByTitle(titleQuery) {
+  const data = db.queryAll(`SELECT * FROM books WHERE title LIKE ?`, [`%${titleQuery.toLowerCase()}%`])
+  return {
+    data
   }
 }
 
@@ -56,5 +71,7 @@ function create(bookObj) {
 
 module.exports = {
   getMultiple,
-  create
+  create,
+  searchByAuthors,
+  searchByTitle,
 }

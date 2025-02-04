@@ -24,8 +24,10 @@ router.post('/register', async function(req, res, next) {
 
 router.post('/login', async function(req, res, next) {
   try {
-    let loginRes = await users.login(req.body);
-    res.json(loginRes);
+    let user = await users.login(req.body);
+    req.session.isloggedin = true;
+    req.session.user = user;
+    res.json(user);
   } catch (err) {
     console.error(`login error`, err.message);
     next(err);

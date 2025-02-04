@@ -47,7 +47,7 @@ function validateNewUser(user) {
 
     user = getUserByemail(user.email)
     if (user != undefined) {
-        messages.push(`User already exists`);
+        messages.push(`login or recover password.`);
     }
 
     if (messages.length) {
