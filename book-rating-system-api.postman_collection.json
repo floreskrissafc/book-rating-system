@@ -580,6 +580,78 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"error\": \"User not logged-in\"\n}"
+				},
+				{
+					"name": "Post Book",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"title1\",\n    \"authors\": \"author1\",\n    \"isbn\": \"isbn1\",\n\t\t\"module_name\": \"module1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/books?title=title1&author=author1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "title1"
+								},
+								{
+									"key": "author",
+									"value": "author1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "39"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"27-+O07pBqP5Fd2VYVmvRk8bFW9mBg\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 05 Feb 2025 06:55:01 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Book created successfully\"\n}"
 				}
 			]
 		},
@@ -658,6 +730,60 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"email\": \"one@mailinator.com\",\n            \"password_hash\": \"$2b$10$EffEvMnYXIqLzxQtlKzhNuHC.G7ax6dClqVOvQ2dUG20Q33ezMFXq\",\n            \"role\": 0,\n            \"first_name\": \"one\",\n            \"last_name\": \"1\",\n            \"profile_picture\": null\n        },\n        {\n            \"id\": 2,\n            \"email\": \"two@mailinator.com\",\n            \"password_hash\": \"$2b$10$tZ7EqGRSxIqnTqkKuNkuJO/RO05ki800dNiXp.zDazXmNrYqUjzWS\",\n            \"role\": 0,\n            \"first_name\": \"two\",\n            \"last_name\": \"2\",\n            \"profile_picture\": null\n        }\n    ],\n    \"meta\": {\n        \"page\": 1\n    }\n}"
+				},
+				{
+					"name": "Get Users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "401"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"191-Xm7q+3X7i1NaK/ogxDuDnWBIAbk\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 05 Feb 2025 05:47:09 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"email\": \"one@mailinator.com\",\n            \"password_hash\": \"$2b$10$o3BRldsPq5Bm1fMOkkxfPO2v7/WV3J4bFtxl.7ruPVTXdawCpNzWG\",\n            \"role\": 0,\n            \"first_name\": \"one\",\n            \"last_name\": \"1\",\n            \"profile_picture\": null\n        },\n        {\n            \"id\": 2,\n            \"email\": \"admin1@mailinator.com\",\n            \"password_hash\": \"$2b$10$CGfeCZb27uEoL6sJSWIcx.cxUFi0X6e59VSchts2Bu7w59IAy3UVy\",\n            \"role\": 1,\n            \"first_name\": \"admin\",\n            \"last_name\": \"1\",\n            \"profile_picture\": null\n        }\n    ],\n    \"meta\": {\n        \"page\": 1\n    }\n}"
 				}
 			]
 		},
@@ -1059,7 +1185,7 @@ floreskrissafc
 			]
 		},
 		{
-			"name": "Post user login",
+			"name": "user login",
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -1068,7 +1194,7 @@ floreskrissafc
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"one@mailinator.com\",\n    \"password\": \"password1\"\n}",
+					"raw": "{\n    \"email\": \"admin1@mailinator.com\",\n    \"password\": \"admin1\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1594,6 +1720,481 @@ floreskrissafc
 					],
 					"cookie": [],
 					"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"ISBN\": \"isbn2\",\n            \"title\": \"title2\",\n            \"edition\": null,\n            \"authors\": \"author2\",\n            \"link\": null,\n            \"cover_picture\": null,\n            \"rating\": 0\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "modules",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"module_code\": \"mc2\",\n    \"name\": \"module 2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/modules",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"modules"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create module",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"module_code\": \"mc1\",\n    \"name\": \"module 1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"modules"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "41"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"29-YRxZJpr99kayZjKQf0SjTDFMbqE\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 05 Feb 2025 06:05:23 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Module created successfully\"\n}"
+				},
+				{
+					"name": "failures not unique",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"module_code\": \"mc1\",\n    \"name\": \"module 1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"modules"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "57"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"39-0Dzl5xn5mCveEr/rarpcveWclE4\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 05 Feb 2025 06:06:45 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"UNIQUE constraint failed: modules.module_code\"\n}"
+				}
+			]
+		},
+		{
+			"name": "modules",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/modules",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"modules"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "modules",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"modules"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "75"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4b-7N1dAHSycSlKNIemYtuZYwmlnxE\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 05 Feb 2025 06:06:07 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"module_code\": \"mc1\",\n            \"name\": \"module 1\"\n        }\n    ],\n    \"meta\": {\n        \"page\": 1\n    }\n}"
+				},
+				{
+					"name": "empty modules",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"modules"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-LXGGaWv36xfwplD1kqMa7yuQpH8\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 05 Feb 2025 06:03:25 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [],\n    \"meta\": {\n        \"page\": 1\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "logout",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"logout"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Post user login",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin1@mailinator.com\",\n    \"password\": \"admin1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"logout"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "41"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"29-XEmCexpqYTkAbqtggggW/QpDmnY\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 05 Feb 2025 06:19:24 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"user logged out succesfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Home",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"admin1@mailinator.com\",\n    \"password\": \"admin1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/home",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"home"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Home",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin1@mailinator.com\",\n    \"password\": \"admin1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/home",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"home"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "381"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"17d-++MK4SwKgP1QFv3xlYCk3cQaLkk\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 05 Feb 2025 07:31:25 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"module_code\": \"mc1\",\n            \"name\": \"module1\",\n            \"books\": [\n                {\n                    \"id\": 1,\n                    \"ISBN\": \"isbn1\",\n                    \"title\": \"title1\",\n                    \"edition\": null,\n                    \"authors\": \"author1\",\n                    \"link\": null,\n                    \"cover_picture\": null,\n                    \"rating\": 0\n                },\n                {\n                    \"id\": 2,\n                    \"ISBN\": \"isbn2\",\n                    \"title\": \"title2\",\n                    \"edition\": null,\n                    \"authors\": \"author2\",\n                    \"link\": null,\n                    \"cover_picture\": null,\n                    \"rating\": 0\n                }\n            ]\n        },\n        {\n            \"id\": 2,\n            \"module_code\": \"mc2\",\n            \"name\": \"module2\",\n            \"books\": []\n        }\n    ],\n    \"meta\": {\n        \"page\": 1\n    }\n}"
 				}
 			]
 		}

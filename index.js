@@ -3,7 +3,11 @@ const session = require('express-session');
 const app = express();
 const port = process.env.PORT || 3000;
 const booksRouter = require('./routes/books');
+const adminBooksRouter = require('./routes/admin_books');
 const usersRouter = require('./routes/users')
+const modulesRouter = require('./routes/modules');
+const adminModulesRouter = require('./routes/admin_modules')
+const homeRouter = require('./routes/home');
 const db = require('./services/db');
 
 app.use(express.json());
@@ -32,6 +36,16 @@ function validateLogin(req, res, next) {
   next()
 }
 
+function validateAdmin(req, res, next) {
+  console.log("req.session.user", req.session.user, req.session.user.role, !req.session.user.role);
+  if (!req.session.user.role) {
+    let error = new Error("User not Admin");
+    error.statusCode = 400;
+    next(error);
+  }
+  next()
+}
+
 app.get('/', (req, res) => {
   res.json({message: 'alive'});
 });
@@ -39,6 +53,11 @@ app.get('/', (req, res) => {
 app.use('/users', usersRouter);
 app.use(validateLogin);
 app.use('/books', booksRouter);
+app.use('/modules', modulesRouter);
+app.use('/home', homeRouter);
+app.use(validateAdmin);
+app.use('/books', adminBooksRouter);
+app.use('/modules', adminModulesRouter);
 
 app.use(clientErrorHandler)
 app.listen(port, () => {

@@ -1,6 +1,6 @@
 const db = require('./db');
 const config = require('../config');
-const { search } = require('../routes/books');
+const moduleService = require('./modules');
 
 function getMultiple(page = 1) {
   const offset = (page - 1) * config.listPerPage;
@@ -48,24 +48,50 @@ function validateCreate(book) {
     messages.push('Authors is empty');
   }
   
+  if (!book.module_name) {
+    messages.push('module name  is empty');
+  }
+
+  moduleObj = moduleService.getModuleByName(book.module_name);
+  if (moduleObj == undefined) {
+    messages.push(`Module by name: ${book.module_name} not found`);
+  }
+
   if (messages.length) {
     let error = new Error(messages.join());
     error.statusCode = 400;
 
     throw error;
   }
+  return moduleObj;
+}
+
+function getBooksByModule(module_id) {
+  const module_book_ids = db.queryAll(`SELECT * from modules_books WHERE module_id = ?`, module_id);
+  return module_book_ids.map(module_book_id => (db.queryOne(`SELECT * FROM books WHERE id = ?`, module_book_id.book_id)));
 }
 
 function create(bookObj) {
-  validateCreate(bookObj);
+  moduleObj = validateCreate(bookObj);
   const {isbn, title, authors} = bookObj;
-  const result = db.run('INSERT INTO books (isbn, title, authors) VALUES (@isbn, @title, @authors)', {isbn, title, authors});
+  const bookInsertResult = db.run('INSERT INTO books (isbn, title, authors) VALUES (@isbn, @title, @authors)', {isbn, title, authors});
   
-  let message = 'Error in creating book';
-  if (result.changes) {
-    message = 'Book created successfully';
+  if (!bookInsertResult.changes) {
+    let error = new Error('Error in creating book');
+    error.statusCode = 400;
+    throw error;
   }
 
+  book_id = bookInsertResult.lastInsertRowid;
+  module_id = moduleObj.id;
+  const modulesBooksInsertResult = db.run('INSERT INTO modules_books (book_id, module_id) VALUES (@book_id, @module_id)', {book_id, module_id});
+  if (!modulesBooksInsertResult.changes) {
+    let error = new Error('Error in linking module and book');
+    error.statusCode = 400;
+    throw error;
+  }
+
+  let message = 'Book created successfully';
   return {message};
 }
 
@@ -74,4 +100,5 @@ module.exports = {
   create,
   searchByAuthors,
   searchByTitle,
+  getBooksByModule,
 }

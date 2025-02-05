@@ -13,7 +13,7 @@ function getAllUsers(page = 1) {
     }
 }
 
-function getUserByemail(email) {
+function getUserByEmail(email) {
     return db.queryOne(`select * FROM users WHERE email = ?`, email)
 }
 
@@ -45,7 +45,7 @@ function validateNewUser(user) {
         messages.push('password must have more that 5 characters');
     }
 
-    user = getUserByemail(user.email)
+    user = getUserByEmail(user.email)
     if (user != undefined) {
         messages.push(`login or recover password.`);
     }
@@ -57,9 +57,17 @@ function validateNewUser(user) {
     }
 }
 
+function isUserAdmin(email) {
+    admin_email = db.queryOne(`select * FROM admin_emails WHERE email = ?`, email);
+    console.log('admin_email: ', admin_email, admin_email != undefined)
+    is_admin = Number(admin_email != undefined)
+    return is_admin
+}
+
 async function register(userBody) {
     validateNewUser(userBody)
-    const { email, password, role, first_name, last_name, profile_picture } = userBody;
+    const { email, password, first_name, last_name, profile_picture } = userBody;
+    role = isUserAdmin(email)
     let password_hash = await bcrypt.hash(password, config.BCRYPT_SALT);
     const result = db.run('INSERT INTO users (email, password_hash, role, first_name, last_name, profile_picture) VALUES (@email, @password_hash, @role, @first_name, @last_name, @profile_picture)', { email, password_hash, role, first_name, last_name, profile_picture });
     let message = 'Error in creating user';
@@ -78,7 +86,7 @@ async function login(loginBody) {
         throw error;
     }
 
-    user = getUserByemail(email);
+    user = getUserByEmail(email);
     if (user == undefined) {
         let error = new Error("invalid email or password");
         error.statusCode = 400;
