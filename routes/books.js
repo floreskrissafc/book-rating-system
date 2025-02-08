@@ -15,23 +15,23 @@ router.get('/', function(req, res, next) {
 router.get('/search', function(req, res, next) {
   try {
     console.log("req.query", req.query);
-    author = req.query.authorquery;
+    // NOTE: the variable names should match columns in schemas/books.sql
+    authors = req.query.authorquery;
     title = req.query.titlequery;
-    console.log('authorQuery: ', author);
-    console.log('titleQuery: ', title);
-    if ((!author && !title) || (author && title)) {
-      let error = new Error('Either Search by Author or Title');
+    isbn = req.query.isbnquery;
+    queries = [{authors}, {title}, {isbn}].filter((query) => Object.keys(query).length >= 0 && Object.values(query)[0] != undefined);
+    console.log('queries', queries);
+    if (queries.length != 1) {
+      let error = new Error('Either Search by ISBN, Title or Authors');
       error.statusCode = 400;
       throw(error)
     }
-    if (author && author.length) {
-      return res.json(books.searchByAuthors(author));
+    let column = Object.keys(queries[0])[0];
+    let query = Object.values(queries[0])[0];
+    if (!query) {
+      return res.json({data:[]});
     }
-    if (title && title.length) {
-      return res.json(books.searchByTitle(title));
-    }
-    let error = new Error('Invalid search query')
-    throw error;
+    return res.json(books.searchBySingleColumnQuery(column, query));
   } catch (error) {
     console.error(`Error while searching book`, error.message);
     next(error);

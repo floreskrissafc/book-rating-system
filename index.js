@@ -8,6 +8,7 @@ const usersRouter = require('./routes/users')
 const modulesRouter = require('./routes/modules');
 const adminModulesRouter = require('./routes/admin_modules')
 const homeRouter = require('./routes/home');
+const reviewsRouter = require('./routes/reviews');
 const db = require('./services/db');
 
 app.use(express.json());
@@ -55,6 +56,7 @@ app.use(validateLogin);
 app.use('/books', booksRouter);
 app.use('/modules', modulesRouter);
 app.use('/home', homeRouter);
+app.use('/reviews', reviewsRouter);
 app.use(validateAdmin);
 app.use('/books', adminBooksRouter);
 app.use('/modules', adminModulesRouter);

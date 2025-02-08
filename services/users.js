@@ -17,6 +17,10 @@ function getUserByEmail(email) {
     return db.queryOne(`select * FROM users WHERE email = ?`, email)
 }
 
+function getUserInfoByID(id) {
+    return db.queryOne(`select first_name, last_name, role FROM users WHERE id = ?`, id);
+}
+
 /*Validate if req.body have fields reqiured for function
 NOTE: this function doe not validate if all the NOT NULL fields are populated.
 Since that is handled by DB.
@@ -41,13 +45,13 @@ function validateNewUser(user) {
         messages.push('password is empty');
     }
 
-    if (user.password.length < 5) {
-        messages.push('password must have more that 5 characters');
+    if (user.password.length < config.PASSWORD_MIN_LENGTH) {
+        messages.push(`Password must be with length greater than ${config.PASSWORD_MIN_LENGTH} characters`);
     }
 
     user = getUserByEmail(user.email)
     if (user != undefined) {
-        messages.push(`login or recover password.`);
+        messages.push(`login or reset password.`);
     }
 
     if (messages.length) {
@@ -88,13 +92,13 @@ async function login(loginBody) {
 
     user = getUserByEmail(email);
     if (user == undefined) {
-        let error = new Error("invalid email or password");
+        let error = new Error("no user in the system for the given email, create a new account");
         error.statusCode = 400;
         throw error;
     }
     const isPasswordMatched = await bcrypt.compare(password, user.password_hash);
     if (!isPasswordMatched) {
-        let error = new Error("invalid email or password");
+        let error = new Error("wrong password");
         error.statusCode = 400;
         throw error;
     }
@@ -104,8 +108,12 @@ async function login(loginBody) {
 
 async function resetPassword(resetBody) {
     const { email, oldPassword, newPassword } = resetBody;
-    if (newPassword.length < 5) {
-        let error = new Error("password must have more that 5 characters");
+    if (newPassword == oldPassword) {
+        let error = new Error(`Password must be not equal to previous password.`);
+    }
+        
+    if (newPassword.length < config.PASSWORD_MIN_LENGTH) {
+        let error = new Error(`Password must be with length greater than ${config.PASSWORD_MIN_LENGTH} characters`);
         error.statusCode = 400;
         throw error;
     }
@@ -127,4 +135,6 @@ module.exports = {
     register,
     login,
     resetPassword,
+    getUserByEmail,
+    getUserInfoByID,
 }

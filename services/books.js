@@ -13,15 +13,8 @@ function getMultiple(page = 1) {
   }
 }
 
-function searchByAuthors(authorQuery) {
-  const data = db.queryAll(`SELECT * FROM books WHERE authors LIKE ?`, [`%${authorQuery.toLowerCase()}%`])
-  return {
-    data
-  }
-}
-
-function searchByTitle(titleQuery) {
-  const data = db.queryAll(`SELECT * FROM books WHERE title LIKE ?`, [`%${titleQuery.toLowerCase()}%`])
+function searchBySingleColumnQuery(column, query) {
+  const data = db.queryAll(`SELECT * FROM books WHERE ${column} LIKE ?`, [`%${query.toLowerCase()}%`])
   return {
     data
   }
@@ -98,7 +91,6 @@ function create(bookObj) {
 module.exports = {
   getMultiple,
   create,
-  searchByAuthors,
-  searchByTitle,
   getBooksByModule,
+  searchBySingleColumnQuery,
 }

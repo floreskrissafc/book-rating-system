@@ -1,8 +1,9 @@
-CREATE TABLE IF NOT EXISTS books_ratings (
+CREATE TABLE IF NOT EXISTS reviews (
 	book_id INT,
 	user_id INT,
 	comment TEXT,
 	rating INT CHECK(rating BETWEEN 1 AND 5),
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	PRIMARY KEY (book_id, user_id),
 	FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE
 	FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
