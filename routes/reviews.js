@@ -11,11 +11,39 @@ router.post('/', function (req, res, next) {
     }
 });
 
-router.get('/', function(req, res, next) {
+router.get('/bybook', function(req, res, next) {
     try {
         res.json(reviewsService.getReviewsByBookId(req.query.book_id));
     } catch (error) {
-        console.log(`Error while getting review`, error.message);
+        console.log(`Error while getting review by bookId`, error.message);
+        next(error);
+    }
+});
+
+router.get('/byuser', function(req, res, next) {
+    try {
+        res.json(reviewsService.getReviewsByUserId(req.query.user_id));
+    } catch (error) {
+        console.log(`Error while getting review by user_id`, error.message);
+        next(error);
+    }
+});
+
+router.delete('/', function(req, res, next) {
+    try {
+        if (!req.body.book_id) {
+            let error = new Error(`no book_id present in req.body`);
+            error.statusCode = 400;
+            throw error;
+        }
+        if (!req.body.user_id) {
+            let error = new Error(`no user_id present in req.body`);
+            error.statusCode = 400;
+            throw error;
+        }
+        res.json(reviewsService.deleteReview(req.body.book_id, req.body.user_id));
+    } catch (error) {
+        console.log(`Error while deleting review`, error.message);
         next(error);
     }
 });

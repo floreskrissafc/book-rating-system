@@ -59,9 +59,21 @@ function validateCreate(book) {
   return moduleObj;
 }
 
+function getBooksByModulesIds(module_ids) {
+  module_book_map = {}
+  module_ids.forEach(module_id => {
+    module_book_map[module_id] = getBooksByModule(module_id)
+  });
+  return module_book_map;
+}
+
 function getBooksByModule(module_id) {
   const module_book_ids = db.queryAll(`SELECT * from modules_books WHERE module_id = ?`, module_id);
   return module_book_ids.map(module_book_id => (db.queryOne(`SELECT * FROM books WHERE id = ?`, module_book_id.book_id)));
+}
+
+function getBookInfoByID(book_id) {
+  return db.queryOne(`select * FROM books WHERE id = ?`, book_id);
 }
 
 function create(bookObj) {
@@ -91,6 +103,8 @@ function create(bookObj) {
 module.exports = {
   getMultiple,
   create,
+  getBooksByModulesIds,
   getBooksByModule,
   searchBySingleColumnQuery,
+  getBookInfoByID,
 }

@@ -24,7 +24,7 @@ router.get('/search', function(req, res, next) {
     if (queries.length != 1) {
       let error = new Error('Either Search by ISBN, Title or Authors');
       error.statusCode = 400;
-      throw(error)
+      throw error;
     }
     let column = Object.keys(queries[0])[0];
     let query = Object.values(queries[0])[0];

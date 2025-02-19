@@ -2199,7 +2199,7 @@ floreskrissafc
 			]
 		},
 		{
-			"name": "reviews",
+			"name": "reviews by book",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -2219,7 +2219,7 @@ floreskrissafc
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/reviews/",
+					"raw": "http://localhost:3000/reviews/bybook?book_id=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -2227,7 +2227,13 @@ floreskrissafc
 					"port": "3000",
 					"path": [
 						"reviews",
-						""
+						"bybook"
+					],
+					"query": [
+						{
+							"key": "book_id",
+							"value": "1"
+						}
 					]
 				}
 			},
@@ -2238,7 +2244,7 @@ floreskrissafc
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/reviews/",
+							"raw": "http://localhost:3000/reviews/bybook",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2246,7 +2252,7 @@ floreskrissafc
 							"port": "3000",
 							"path": [
 								"reviews",
-								""
+								"bybook"
 							]
 						}
 					},
@@ -2301,7 +2307,7 @@ floreskrissafc
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/reviews/?book_id=1",
+							"raw": "http://localhost:3000/reviews/bybook?book_id=1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2309,7 +2315,7 @@ floreskrissafc
 							"port": "3000",
 							"path": [
 								"reviews",
-								""
+								"bybook"
 							],
 							"query": [
 								{
@@ -2370,7 +2376,7 @@ floreskrissafc
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/reviews/?book_id=1",
+							"raw": "http://localhost:3000/reviews/bybook?book_id=2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2378,12 +2384,12 @@ floreskrissafc
 							"port": "3000",
 							"path": [
 								"reviews",
-								""
+								"bybook"
 							],
 							"query": [
 								{
 									"key": "book_id",
-									"value": "1"
+									"value": "2"
 								}
 							]
 						}
@@ -2402,15 +2408,15 @@ floreskrissafc
 						},
 						{
 							"key": "Content-Length",
-							"value": "281"
+							"value": "158"
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"119-fZrThFgAhC9mHieSwgRyfwyHNJI\""
+							"value": "W/\"9e-zu1qUlVDdpnbhy199Qdd4SXaafU\""
 						},
 						{
 							"key": "Date",
-							"value": "Sat, 08 Feb 2025 06:14:52 GMT"
+							"value": "Wed, 19 Feb 2025 06:23:19 GMT"
 						},
 						{
 							"key": "Connection",
@@ -2422,7 +2428,7 @@ floreskrissafc
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"data\": [\n        {\n            \"book_id\": 1,\n            \"user_id\": 1,\n            \"comment\": \"comment 1\",\n            \"rating\": 5,\n            \"created_at\": \"2025-02-08 06:01:52\",\n            \"first_name\": \"admin\",\n            \"last_name\": \"1\",\n            \"role\": 1\n        },\n        {\n            \"book_id\": 1,\n            \"user_id\": 2,\n            \"comment\": null,\n            \"rating\": 5,\n            \"created_at\": \"2025-02-08 06:02:41\",\n            \"first_name\": \"one\",\n            \"last_name\": \"1\",\n            \"role\": 0\n        }\n    ]\n}"
+					"body": "{\n    \"data\": [\n        {\n            \"book_id\": 2,\n            \"user_id\": 2,\n            \"comment\": \"permanent comment 1\",\n            \"rating\": 5,\n            \"created_at\": \"2025-02-19 05:56:50\",\n            \"first_name\": \"one\",\n            \"last_name\": \"1\",\n            \"role\": 0\n        }\n    ]\n}"
 				}
 			]
 		},
@@ -2436,7 +2442,7 @@ floreskrissafc
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"book_id\": 1, \n    \"user_id\": 2,\n    \"rating\": 5\n}",
+					"raw": "{\n    \"book_id\": 1, \n    \"user_id\": 1, \n    \"comment\": \"comment 3\",\n    \"rating\": 2\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -2885,6 +2891,196 @@ floreskrissafc
 						{
 							"key": "Date",
 							"value": "Sat, 08 Feb 2025 05:43:46 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Your review has been processed successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Modules Filter",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ids\": [1, 2]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/modules/filter",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"modules",
+						"filter"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Modules Filter",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ids\": [1, 2]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/modules/filter",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"modules",
+								"filter"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "254"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"fe-JO0uV0rsEO+T185CgF3y/97rkYA\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 05:13:21 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"1\": [\n        {\n            \"id\": 1,\n            \"ISBN\": \"isbn1\",\n            \"title\": \"title1\",\n            \"edition\": null,\n            \"authors\": \"author1\",\n            \"link\": null,\n            \"cover_picture\": null,\n            \"rating\": 0\n        },\n        {\n            \"id\": 2,\n            \"ISBN\": \"isbn2\",\n            \"title\": \"title2\",\n            \"edition\": null,\n            \"authors\": \"author2\",\n            \"link\": null,\n            \"cover_picture\": null,\n            \"rating\": 0\n        }\n    ],\n    \"2\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete review",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"book_id\": 2, \n    \"user_id\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/reviews/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"reviews",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete review",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"book_id\": 2, \n    \"user_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/reviews/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reviews",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "57"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"39-26wmD/9RrJB9edtuEWlfc41Hf3E\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 06:02:49 GMT"
 						},
 						{
 							"key": "Connection",

@@ -1,6 +1,7 @@
 const db = require('./db');
 const config = require('../config');
 const usersService = require('../services/users');
+const booksService = require('../services/books');
 
 const {
 	RegExpMatcher,
@@ -48,13 +49,13 @@ function getReviewsByBookId(book_id) {
     if (!book_id) {
         let error = new Error(`no book_id present`);
         error.statusCode = 400;
-        throw(error);
+        throw error;
     }
     let data = db.queryAll(`SELECT * FROM reviews WHERE book_id = ?`, [book_id]);
     if (!data || !data.length) {
         let error = new Error(`There are no reviews for this book yet. Be the first to write a review and share your thoughts with other students`);
         error.statusCode = 400;
-        throw(error);
+        throw error;
     }
 
     data = data.map((review) => {
@@ -68,12 +69,36 @@ function getReviewsByBookId(book_id) {
     }
 }
 
+function getReviewsByUserId(user_id) {
+    if (!user_id) {
+        let error = new Error(`no user_id present`);
+        error.statusCode = 400;
+        throw error;
+    }
+    let data = db.queryAll(`SELECT * FROM reviews WHERE user_id = ?`, [user_id]);
+    if (!data || !data.length) {
+        let error = new Error(`You have not created any reviews yet`);
+        error.statusCode = 400;
+        throw error;
+    }
+
+    data = data.map((review) => {
+        book = booksService.getBookInfoByID(review.book_id);
+        return { ...review, ...book};
+    });
+    
+
+    return {
+        data
+    }
+}
+
 function create(reviewBody) {
     validateReview(reviewBody)
     const { book_id, user_id, comment, rating } = reviewBody;
     console.log(book_id, user_id, comment, rating);
     const result = db.run('INSERT OR REPLACE INTO reviews (book_id, user_id, comment, rating) VALUES (@book_id, @user_id, @comment, @rating)', {book_id, user_id, comment, rating});
-    let message = 'Error in creating user';
+    let message = 'Error in creating review';
     if (result.changes) {
       message = "Your review has been processed successfully";
     }
@@ -81,7 +106,18 @@ function create(reviewBody) {
     return { message };
 }
 
+function deleteReview(book_id, user_id) {
+    let message = "Error in deleting review";
+    const result = db.run('DELETE FROM reviews WHERE book_id = @book_id AND user_id = @user_id', {book_id, user_id});
+    if (result.changes) {
+        message = "Your review has been processed successfully";
+    }
+    return { message }
+}
+
 module.exports = {
     create,
+    deleteReview,
     getReviewsByBookId,
+    getReviewsByUserId,
 };
