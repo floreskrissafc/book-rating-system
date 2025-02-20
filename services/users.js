@@ -55,7 +55,8 @@ function validateNewUser(user) {
     }
 
     if (messages.length) {
-        let error = new Error(messages.join('\n'));
+        let errorset = new Set(messages);
+        let error = new Error([...errorset].join());
         error.statusCode = 400;
         throw error;
     }

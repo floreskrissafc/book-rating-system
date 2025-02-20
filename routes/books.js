@@ -12,6 +12,15 @@ router.get('/', function(req, res, next) {
   }
 });
 
+router.post('/propose', function(req, res, next) {
+  try {
+    res.json(books.propose(req.body));
+  } catch (error) {
+    console.error(`Error proposing books `, error.message);
+    next(error);
+  }
+});
+
 router.get('/search', function(req, res, next) {
   try {
     console.log("req.query", req.query);
@@ -22,9 +31,7 @@ router.get('/search', function(req, res, next) {
     queries = [{authors}, {title}, {isbn}].filter((query) => Object.keys(query).length >= 0 && Object.values(query)[0] != undefined);
     console.log('queries', queries);
     if (queries.length != 1) {
-      let error = new Error('Either Search by ISBN, Title or Authors');
-      error.statusCode = 400;
-      throw error;
+      throw new Err('Either Search by ISBN, Title or Authors', 400);
     }
     let column = Object.keys(queries[0])[0];
     let query = Object.values(queries[0])[0];

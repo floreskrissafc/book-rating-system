@@ -1,6 +1,8 @@
 const db = require('./db');
 const config = require('../config');
 const moduleService = require('./modules');
+const ISBNValidator = require('isbn3')
+const Err = require('./customError');
 
 function getMultiple(page = 1) {
   const offset = (page - 1) * config.listPerPage;
@@ -21,42 +23,39 @@ function searchBySingleColumnQuery(column, query) {
 }
 
 function validateCreate(book) {
-  let messages = [];
-
-  console.log(book);
-
   if (!book) {
-    messages.push('No object is provided');
+    throw new Err('No object is provided', 400);
+  }
+
+  if (!book.module_name) {
+    throw new Err('Module name is not selected', 400);
   }
 
   if (!book.isbn) {
-    messages.push('No ISBN is provided');
+    throw new Err('Some fields are empty: isbn', 400);
   }
 
+  let isbnValidationRes = ISBNValidator.parse(book.isbn);
+
+  if (!isbnValidationRes || !isbnValidationRes.isValid || !isbnValidationRes.isbn13h) {
+    throw new Err('ISBN does not match any known format', 400);
+  }
+  let isbn13h = isbnValidationRes.isbn13h
+
   if (!book.title) {
-    messages.push('Title is empty');
+    throw new Err('Some fields are empty: title', 400);
   }
 
   if (!book.authors) {
-    messages.push('Authors is empty');
-  }
-  
-  if (!book.module_name) {
-    messages.push('module name  is empty');
+    throw new Err('Some fields are empty: authors', 400);
   }
 
-  moduleObj = moduleService.getModuleByName(book.module_name);
+  let moduleObj = moduleService.getModuleByName(book.module_name);
   if (moduleObj == undefined) {
-    messages.push(`Module by name: ${book.module_name} not found`);
+    throw new Err(`Module by name: ${book.module_name} not found`, 400);
   }
 
-  if (messages.length) {
-    let error = new Error(messages.join());
-    error.statusCode = 400;
-
-    throw error;
-  }
-  return moduleObj;
+  return { ...moduleObj, isbn: isbn13h};
 }
 
 function getBooksByModulesIds(module_ids) {
@@ -77,27 +76,120 @@ function getBookInfoByID(book_id) {
 }
 
 function create(bookObj) {
-  moduleObj = validateCreate(bookObj);
-  const {isbn, title, authors} = bookObj;
-  const bookInsertResult = db.run('INSERT INTO books (isbn, title, authors) VALUES (@isbn, @title, @authors)', {isbn, title, authors});
-  
-  if (!bookInsertResult.changes) {
-    let error = new Error('Error in creating book');
-    error.statusCode = 400;
-    throw error;
-  }
+  // Below is module fields + isbn with isbn13 normalized formatting.
+  let { id, name, module_code, isbn } = validateCreate(bookObj);
+  const { title, authors} = bookObj;
 
-  book_id = bookInsertResult.lastInsertRowid;
-  module_id = moduleObj.id;
-  const modulesBooksInsertResult = db.run('INSERT INTO modules_books (book_id, module_id) VALUES (@book_id, @module_id)', {book_id, module_id});
+  const { data } = searchBySingleColumnQuery("isbn", isbn);
+  let book_id;
+  if (data && data.length == 1) {
+    book_id = data[0].id;
+  } else {
+    const bookInsertResult = db.run('INSERT INTO books (isbn, title, authors) VALUES (@isbn, @title, @authors)', {isbn, title, authors});
+    if (!bookInsertResult.changes) {
+      throw new Err('Error in creating book', 400);
+    }
+    book_id = bookInsertResult.lastInsertRowid;
+  }
+  const modulesBooksInsertResult = db.run('INSERT INTO modules_books (book_id, module_id) VALUES (@book_id, @id)', {book_id, id});
   if (!modulesBooksInsertResult.changes) {
-    let error = new Error('Error in linking module and book');
-    error.statusCode = 400;
-    throw error;
+    throw new Err('Error in linking module and book', 400);
   }
 
-  let message = 'Book created successfully';
+  let message = `The book ${title} is going to be added to module ${name} ${module_code}`;
   return {message};
+}
+
+function update(bookObj) {
+  // Below is module fields + isbn with isbn13 normalized formatting.
+  let { isbn } = validateCreate(bookObj);
+  const { title, authors} = bookObj;
+  const { data } = searchBySingleColumnQuery("isbn", isbn);
+  if (!data || data.length != 1) {
+    throw new Err(`Book for ISBH: ${isbn} not found`, 404);
+  }
+  let book_id = data[0].id;
+  let current_title = data[0].title;
+  let current_authors = data[0].authors;
+  if (current_title == title && current_authors == authors) {
+    throw new Err("These book details are already stored in the system", 400);
+  }
+
+  const result = db.run('UPDATE books SET title=@title, authors=@authors WHERE id=@book_id', {title, authors, book_id});
+  if (!result.changes) {
+   throw new Err('Error updating book', 400);
+  }
+
+  let message = `The book ${current_title} has been updated with title: ${title} authors: ${authors}`;
+  return {message};
+}
+
+function propose(proposedBookObj) {
+  if (!proposedBookObj.title) {
+    throw new Err('The book title field is empty', 400);
+  }
+  title = proposedBookObj.title;
+
+  if (!proposedBookObj.isbn) {
+    throw new Err('The ISBN is not correct', 400);
+  }
+
+  isbnValidationRes = ISBNValidator.parse(proposedBookObj.isbn);
+  console.log("isbnParseRes: \n", isbnValidationRes);
+
+  if (!isbnValidationRes || !isbnValidationRes.isValid || !isbnValidationRes.isbn13h) {
+    throw new Err('ISBN does not match any known format', 400);
+  }
+  isbn13h = isbnValidationRes.isbn13h
+
+  if (!proposedBookObj.module_name) {
+    throw new Err('The module name is not selected', 400);
+  }
+
+  moduleObj = moduleService.getModuleByName(proposedBookObj.module_name);
+  if (moduleObj == undefined) {
+    throw new Err(`Module by name: ${proposedBookObj.module_name} not found`, 400);
+  }
+
+  module_id = moduleObj.id;
+
+  const proposedBookInsertResult = db.run('INSERT INTO proposed_books (module_id, isbn, title) VALUES (@module_id, @isbn13h, @title)', {module_id, isbn13h, title});
+  
+  if (!proposedBookInsertResult.changes) {
+    throw new Err('Error in creating proposed book', 400);
+  }
+
+  proposed_book_id = proposedBookInsertResult.lastInsertRowid;
+  let message = 'proposal has been submitted';
+  return {message};
+}
+
+function getProposedMultiple(page = 1) {
+  const offset = (page - 1) * config.listPerPage;
+  const data = db.queryAll(`SELECT * FROM proposed_books LIMIT ?,?`, [offset, config.listPerPage]);
+  const meta = {page};
+
+  return {
+    data,
+    meta
+  }
+}
+
+function deleteBook(bookObj) {
+  let { book_id } = bookObj;
+  const book = getBookInfoByID(book_id);
+  if (!book) {
+    throw new Err(`No book for book_id: ${book_id} found`, 400);
+  }
+  
+  let { id } = book;
+  const result = db.run('DELETE FROM books WHERE id = @id', {id});
+  if (!result.changes) {
+    throw new Err("Error deleting module", 400);
+  }
+
+  let message = "Your review has been deleted successfully";
+  return { message };
 }
 
 module.exports = {
@@ -107,4 +199,8 @@ module.exports = {
   getBooksByModule,
   searchBySingleColumnQuery,
   getBookInfoByID,
+  propose,
+  getProposedMultiple,
+  update,
+  deleteBook,
 }

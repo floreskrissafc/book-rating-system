@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const modules = require('../services/modules');
 const books = require('../services/books');
+const Err = require('../services/customError');
 
 /* GET modules listing. */
 router.get('/', function(req, res, next) {
@@ -18,9 +19,7 @@ router.get('/', function(req, res, next) {
 router.post('/filter', function(req, res, next) {
   try {
     if (!req.body || !req.body.ids || req.body.ids.length <= 0) {
-      let error = new Error("Please select at least one module");
-      error.statusCode = 400;
-      throw error;
+      throw new Err("Please select at least one module", 400);
     }
     res.json(books.getBooksByModulesIds(req.body.ids));
   } catch (error) {

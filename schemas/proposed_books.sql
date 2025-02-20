@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS proposed_books
+(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    module_id INT,
+	ISBN VARCHAR(20) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    UNIQUE(ISBN, module_id),
+    FOREIGN KEY (module_id) REFERENCES modules(id) ON DELETE CASCADE
+)

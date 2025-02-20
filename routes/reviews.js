@@ -29,6 +29,7 @@ router.get('/byuser', function(req, res, next) {
     }
 });
 
+// This is used for both "remove a review by user" and "Remove a review for a  book by admin."
 router.delete('/', function(req, res, next) {
     try {
         if (!req.body.book_id) {
