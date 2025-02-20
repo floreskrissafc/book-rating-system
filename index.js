@@ -6,7 +6,8 @@ const booksRouter = require('./routes/books');
 const adminBooksRouter = require('./routes/admin_books');
 const usersRouter = require('./routes/users')
 const modulesRouter = require('./routes/modules');
-const adminModulesRouter = require('./routes/admin_modules')
+const adminModulesRouter = require('./routes/admin_modules');
+const adminUsersRouter = require('./routes/admin_users');
 const homeRouter = require('./routes/home');
 const reviewsRouter = require('./routes/reviews');
 const db = require('./services/db');
@@ -60,6 +61,7 @@ app.use('/reviews', reviewsRouter);
 app.use(validateAdmin);
 app.use('/books', adminBooksRouter);
 app.use('/modules', adminModulesRouter);
+app.use('/users', adminUsersRouter);
 
 app.use(clientErrorHandler)
 app.listen(port, () => {

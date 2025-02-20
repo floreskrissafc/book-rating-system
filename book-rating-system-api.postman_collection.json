@@ -313,349 +313,6 @@
 			]
 		},
 		{
-			"name": "Post Book",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Successful POST request\", function () {",
-							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"title\": \"title2\",\n    \"authors\": \"author2\",\n    \"isbn\": \"isbn2\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/books?title=title1&author=author1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"books"
-					],
-					"query": [
-						{
-							"key": "title",
-							"value": "title1"
-						},
-						{
-							"key": "author",
-							"value": "author1"
-						}
-					]
-				},
-				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
-			},
-			"response": [
-				{
-					"name": "Post Book",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"title\": \"title1\",\n    \"authors\": \"author1\",\n    \"isbn\": \"isbn1\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/books?title=title1&author=author1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"books"
-							],
-							"query": [
-								{
-									"key": "title",
-									"value": "title1"
-								},
-								{
-									"key": "author",
-									"value": "author1"
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "39"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"27-+O07pBqP5Fd2VYVmvRk8bFW9mBg\""
-						},
-						{
-							"key": "Date",
-							"value": "Sun, 02 Feb 2025 03:28:29 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"message\": \"Book created successfully\"\n}"
-				},
-				{
-					"name": "Post Book",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"title\": \"title2\",\n    \"authors\": \"author2\",\n    \"isbn\": \"isbn2\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/books?title=title1&author=author1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"books"
-							],
-							"query": [
-								{
-									"key": "title",
-									"value": "title1"
-								},
-								{
-									"key": "author",
-									"value": "author1"
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "39"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"27-+O07pBqP5Fd2VYVmvRk8bFW9mBg\""
-						},
-						{
-							"key": "Date",
-							"value": "Sun, 02 Feb 2025 03:28:39 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"message\": \"Book created successfully\"\n}"
-				},
-				{
-					"name": "Post Book not logged in",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"title\": \"title2\",\n    \"authors\": \"author2\",\n    \"isbn\": \"isbn2\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/books?title=title1&author=author1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"books"
-							],
-							"query": [
-								{
-									"key": "title",
-									"value": "title1"
-								},
-								{
-									"key": "author",
-									"value": "author1"
-								}
-							]
-						}
-					},
-					"status": "Bad Request",
-					"code": 400,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "30"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"1e-aEgPRQM+FwegdraFL2Q6KWieo88\""
-						},
-						{
-							"key": "Date",
-							"value": "Tue, 04 Feb 2025 05:17:23 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"error\": \"User not logged-in\"\n}"
-				},
-				{
-					"name": "Post Book",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"title\": \"title1\",\n    \"authors\": \"author1\",\n    \"isbn\": \"isbn1\",\n\t\t\"module_name\": \"module1\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/books?title=title1&author=author1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"books"
-							],
-							"query": [
-								{
-									"key": "title",
-									"value": "title1"
-								},
-								{
-									"key": "author",
-									"value": "author1"
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "39"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"27-+O07pBqP5Fd2VYVmvRk8bFW9mBg\""
-						},
-						{
-							"key": "Date",
-							"value": "Wed, 05 Feb 2025 06:55:01 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"message\": \"Book created successfully\"\n}"
-				}
-			]
-		},
-		{
 			"name": "Get Users",
 			"request": {
 				"auth": {
@@ -664,15 +321,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/users/register",
+					"raw": "http://localhost:3000/users",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"users",
-						"register"
+						"users"
 					]
 				}
 			},
@@ -683,15 +339,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/users/register",
+							"raw": "http://localhost:3000/users",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"users",
-								"register"
+								"users"
 							]
 						}
 					},
@@ -709,15 +364,15 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "396"
+							"value": "218"
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"18c-y4QIZDYQAET83Eu/1DypMZIf2A0\""
+							"value": "W/\"da-mPnc9VwAWPUlQN5hlgjO2o4B3ww\""
 						},
 						{
 							"key": "Date",
-							"value": "Sun, 02 Feb 2025 03:29:09 GMT"
+							"value": "Thu, 20 Feb 2025 01:55:53 GMT"
 						},
 						{
 							"key": "Connection",
@@ -729,61 +384,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"email\": \"one@mailinator.com\",\n            \"password_hash\": \"$2b$10$EffEvMnYXIqLzxQtlKzhNuHC.G7ax6dClqVOvQ2dUG20Q33ezMFXq\",\n            \"role\": 0,\n            \"first_name\": \"one\",\n            \"last_name\": \"1\",\n            \"profile_picture\": null\n        },\n        {\n            \"id\": 2,\n            \"email\": \"two@mailinator.com\",\n            \"password_hash\": \"$2b$10$tZ7EqGRSxIqnTqkKuNkuJO/RO05ki800dNiXp.zDazXmNrYqUjzWS\",\n            \"role\": 0,\n            \"first_name\": \"two\",\n            \"last_name\": \"2\",\n            \"profile_picture\": null\n        }\n    ],\n    \"meta\": {\n        \"page\": 1\n    }\n}"
-				},
-				{
-					"name": "Get Users",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/users/register",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"users",
-								"register"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "401"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"191-Xm7q+3X7i1NaK/ogxDuDnWBIAbk\""
-						},
-						{
-							"key": "Date",
-							"value": "Wed, 05 Feb 2025 05:47:09 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"email\": \"one@mailinator.com\",\n            \"password_hash\": \"$2b$10$o3BRldsPq5Bm1fMOkkxfPO2v7/WV3J4bFtxl.7ruPVTXdawCpNzWG\",\n            \"role\": 0,\n            \"first_name\": \"one\",\n            \"last_name\": \"1\",\n            \"profile_picture\": null\n        },\n        {\n            \"id\": 2,\n            \"email\": \"admin1@mailinator.com\",\n            \"password_hash\": \"$2b$10$CGfeCZb27uEoL6sJSWIcx.cxUFi0X6e59VSchts2Bu7w59IAy3UVy\",\n            \"role\": 1,\n            \"first_name\": \"admin\",\n            \"last_name\": \"1\",\n            \"profile_picture\": null\n        }\n    ],\n    \"meta\": {\n        \"page\": 1\n    }\n}"
+					"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"email\": \"admin1@mailinator.com\",\n            \"password_hash\": \"$2b$10$mai4CJ6cslayeuAoq5VMzOStyzHr0Y2lOTpom.LzxSpSm0kWvlAia\",\n            \"role\": 1,\n            \"first_name\": \"admin1\",\n            \"last_name\": \"1\",\n            \"profile_picture\": null\n        }\n    ],\n    \"meta\": {\n        \"page\": 1\n    }\n}"
 				}
 			]
 		},
@@ -797,7 +398,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"two@mailinator.com\",\n    \"password\": \"password2\",\n    \"role\": 0,\n    \"first_name\": \"two\",\n    \"last_name\": \"2\"\n}",
+					"raw": "{\n    \"email\": \"admin1@mailinator.com\",\n    \"password\": \"admin1password\",\n    \"role\": 1,\n    \"first_name\": \"admin1\",\n    \"last_name\": \"1\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1194,7 +795,7 @@ floreskrissafc
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"admin1@mailinator.com\",\n    \"password\": \"admin1\"\n}",
+					"raw": "{\n    \"email\": \"admin1@mailinator.com\",\n    \"password\": \"admin1password\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1733,7 +1334,7 @@ floreskrissafc
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"module_code\": \"mc2\",\n    \"name\": \"module 2\"\n}",
+					"raw": "{\n    \"module_code\": \"mc3\",\n    \"name\": \"module3\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -2195,6 +1796,68 @@ floreskrissafc
 					],
 					"cookie": [],
 					"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"module_code\": \"mc1\",\n            \"name\": \"module1\",\n            \"books\": [\n                {\n                    \"id\": 1,\n                    \"ISBN\": \"isbn1\",\n                    \"title\": \"title1\",\n                    \"edition\": null,\n                    \"authors\": \"author1\",\n                    \"link\": null,\n                    \"cover_picture\": null,\n                    \"rating\": 0\n                },\n                {\n                    \"id\": 2,\n                    \"ISBN\": \"isbn2\",\n                    \"title\": \"title2\",\n                    \"edition\": null,\n                    \"authors\": \"author2\",\n                    \"link\": null,\n                    \"cover_picture\": null,\n                    \"rating\": 0\n                }\n            ]\n        },\n        {\n            \"id\": 2,\n            \"module_code\": \"mc2\",\n            \"name\": \"module2\",\n            \"books\": []\n        }\n    ],\n    \"meta\": {\n        \"page\": 1\n    }\n}"
+				},
+				{
+					"name": "Home",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin1@mailinator.com\",\n    \"password\": \"admin1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/home",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"home"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "405"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"195-gCA8BmSN9dmvDSj3mu6UduT/xXk\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 21:36:25 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"module_code\": \"mc1\",\n            \"name\": \"module1\",\n            \"books\": [\n                {\n                    \"id\": 1,\n                    \"ISBN\": \"978-0-439-02348-1\",\n                    \"title\": \"title1\",\n                    \"edition\": null,\n                    \"authors\": \"author1\",\n                    \"link\": null,\n                    \"cover_picture\": null,\n                    \"rating\": 0\n                }\n            ]\n        },\n        {\n            \"id\": 2,\n            \"module_code\": \"mc2\",\n            \"name\": \"module 2\",\n            \"books\": [\n                {\n                    \"id\": 1,\n                    \"ISBN\": \"978-0-439-02348-1\",\n                    \"title\": \"title1\",\n                    \"edition\": null,\n                    \"authors\": \"author1\",\n                    \"link\": null,\n                    \"cover_picture\": null,\n                    \"rating\": 0\n                }\n            ]\n        }\n    ],\n    \"meta\": {\n        \"page\": 1\n    }\n}"
 				}
 			]
 		},
@@ -3093,6 +2756,2389 @@ floreskrissafc
 					],
 					"cookie": [],
 					"body": "{\n    \"message\": \"Your review has been processed successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "reviews by user",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/reviews/byuser?user_id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"reviews",
+						"byuser"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "reviews success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"book_id\": 1, \n    \"user_id\": 1, \n    \"comment\": \"comment 1\",\n    \"rating\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/reviews/byuser?user_id=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reviews",
+								"byuser"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "211"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"d3-XxSGWm3oC2KvLG64CCIXfmpyldQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 06:24:33 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"book_id\": 1,\n            \"user_id\": 1,\n            \"comment\": \"comment 3\",\n            \"rating\": 0,\n            \"created_at\": \"2025-02-19 06:04:31\",\n            \"id\": 1,\n            \"ISBN\": \"isbn1\",\n            \"title\": \"title1\",\n            \"edition\": null,\n            \"authors\": \"author1\",\n            \"link\": null,\n            \"cover_picture\": null\n        }\n    ]\n}"
+				},
+				{
+					"name": "reviews success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/reviews/byuser?user_id=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reviews",
+								"byuser"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "415"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"19f-+0CqkSUXNQ1ZFxk/m5PCa1NXYfc\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 06:25:11 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"book_id\": 1,\n            \"user_id\": 2,\n            \"comment\": null,\n            \"rating\": 0,\n            \"created_at\": \"2025-02-08 06:02:41\",\n            \"id\": 1,\n            \"ISBN\": \"isbn1\",\n            \"title\": \"title1\",\n            \"edition\": null,\n            \"authors\": \"author1\",\n            \"link\": null,\n            \"cover_picture\": null\n        },\n        {\n            \"book_id\": 2,\n            \"user_id\": 2,\n            \"comment\": \"permanent comment 1\",\n            \"rating\": 0,\n            \"created_at\": \"2025-02-19 05:56:50\",\n            \"id\": 2,\n            \"ISBN\": \"isbn2\",\n            \"title\": \"title2\",\n            \"edition\": null,\n            \"authors\": \"author2\",\n            \"link\": null,\n            \"cover_picture\": null\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Proposed Books",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/books/proposed",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books",
+						"proposed"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success empty",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/books/proposed",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"proposed"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-LXGGaWv36xfwplD1kqMa7yuQpH8\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 17:32:19 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [],\n    \"meta\": {\n        \"page\": 1\n    }\n}"
+				},
+				{
+					"name": "Get Proposed Books 1",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/books/proposed",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"proposed"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "88"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"58-ygZldJMztV/e/FYPddLuSekHEIY\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 18:39:50 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"module_id\": 2,\n            \"ISBN\": \"978-0-439-02348-1\",\n            \"title\": \"title1\"\n        }\n    ],\n    \"meta\": {\n        \"page\": 1\n    }\n}"
+				},
+				{
+					"name": "Get Proposed Books 2",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/books/proposed",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"proposed"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "148"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"94-MicbFmaqiV2FMcCaXPnAl5PCLRw\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 18:41:57 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"module_id\": 2,\n            \"ISBN\": \"978-0-439-02348-1\",\n            \"title\": \"title1\"\n        },\n        {\n            \"module_id\": 1,\n            \"ISBN\": \"978-0-439-02348-1\",\n            \"title\": \"title1\"\n        }\n    ],\n    \"meta\": {\n        \"page\": 1\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Propose Book",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"isbn\": \"978-0-439-02348-1\",\n    \"title\": \"title1\",\n    \"module_name\": \"module2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/books/propose",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books",
+						"propose"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "NO ISBN error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isbn\": \"\",\n    \"title\": \"1\",\n    \"module_name\": \"module1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/propose",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"propose"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "35"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"23-PG0VqTECIRervXqiBPcOFaphV1c\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 17:34:33 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"The ISBN is not correct\"\n}"
+				},
+				{
+					"name": "invalid ISBN error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isbn\": \"1234567890\",\n    \"title\": \"title1\",\n    \"module_name\": \"module1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/propose",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"propose"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "35"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"23-PG0VqTECIRervXqiBPcOFaphV1c\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 17:55:31 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"The ISBN is not correct\"\n}"
+				},
+				{
+					"name": "user not logged in",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isbn\": \"978-0-439-02348-1\",\n    \"title\": \"title1\",\n    \"module_name\": \"module1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/propose",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"propose"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1e-aEgPRQM+FwegdraFL2Q6KWieo88\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3A4ma0Jk48BjQr9qW5XAFutuQ8Q20XpswH.Ay9eNpa5%2BVBbUjFQPl58UJEsB1xSK2emENXODa4uFqM; Path=/; HttpOnly"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 18:05:50 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"User not logged-in\"\n}"
+				},
+				{
+					"name": "Success Proposed Book",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isbn\": \"978-0-439-02348-1\",\n    \"title\": \"title1\",\n    \"module_name\": \"module1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/propose",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"propose"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "41"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"29-Y3JymtFzrtwrkhMvb1KTL4Amr+c\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 18:07:24 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"proposal has been submitted\"\n}"
+				},
+				{
+					"name": "no module found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isbn\": \"9780439023481\",\n    \"title\": \"title1\",\n    \"module_name\": \"module2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/propose",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"propose"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "45"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2d-MoLcE8VLiMYrR0coy8mQtTVixsQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 18:28:26 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Module by name: module2 not found\"\n}"
+				},
+				{
+					"name": "same book, module error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isbn\": \"978-0-439-02348-1\",\n    \"title\": \"title1\",\n    \"module_name\": \"module1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/propose",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"propose"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "83"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"53-3udAMCX69+yEXaBSgNgOGJ1UlNY\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 18:35:39 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"UNIQUE constraint failed: proposed_books.ISBN, proposed_books.module_id\"\n}"
+				},
+				{
+					"name": "same book, diff module success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isbn\": \"978-0-439-02348-1\",\n    \"title\": \"title1\",\n    \"module_name\": \"module2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/propose",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"propose"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "41"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"29-Y3JymtFzrtwrkhMvb1KTL4Amr+c\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 18:36:36 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"proposal has been submitted\"\n}"
+				},
+				{
+					"name": "same book, module error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isbn\": \"9780439023481\",\n    \"title\": \"title1\",\n    \"module_name\": \"module2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/propose",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"propose"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "83"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"53-3udAMCX69+yEXaBSgNgOGJ1UlNY\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 18:40:22 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"UNIQUE constraint failed: proposed_books.ISBN, proposed_books.module_id\"\n}"
+				}
+			]
+		},
+		{
+			"name": "delete module",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"module_name\": \"module1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/modules",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"modules"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "not logged in",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"module 4\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"modules"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1e-aEgPRQM+FwegdraFL2Q6KWieo88\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3A58Gv6fU2ZBdaE_KatiC6ImGFkytDS_6s.iW%2Bs53UUr%2FTPGC6zHx%2BtVN1mOsb78wodIeyfbPlfUl4; Path=/; HttpOnly"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 19:50:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"User not logged-in\"\n}"
+				},
+				{
+					"name": "no module",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"modules"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"21-yrUZlXyWWNtsEIkhs1V4i7o4fHg\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 20:20:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"No module is selected\"\n}"
+				},
+				{
+					"name": "module not found",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"module_name\": \"module 4\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"modules"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "46"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2e-7l73rXj/11UMXwor1l47DDlk9pk\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 20:21:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Module by name: module 4 not found\"\n}"
+				},
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"module_name\": \"module3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"modules"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "55"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"37-NiDwpP7GMv1yH3gGAF9e04lZ1qw\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 20:22:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Your review has been deleted successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "update module",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"module_id\": 2,\n    \"module_name\": \"module 2\",\n    \"module_code\": \"mc2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/modules/update",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"modules",
+						"update"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "update success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"module_id\": 2,\n    \"module_name\": \"module 2\",\n    \"module_code\": \"mc2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/modules/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"modules",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "55"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"37-QuuXOpJ+/Zca/lR8y6+5Fi/0IlQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 20:34:01 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Your review has been updated successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add Book",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"module_name\": \"module2\",\n    \"isbn\": \"5904790090\",\n    \"title\": \"title2\",\n    \"authors\": \"author2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/books",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"module_name\": \"module1\",\n    \"isbn\": \"9780439023481\",\n    \"title\": \"title1\",\n    \"authors\": \"author1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "72"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"48-et5kBrU6X0FYVrB9kUBprBrPtlU\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 20:59:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The book title1 is going to be added to module module1 mc1\"\n}"
+				},
+				{
+					"name": "no module name",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isbn\": \"9780439023481\",\n    \"title\": \"title1\",\n    \"authors\": \"author1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "39"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"27-ot5uG3Xwm4ip390IbfUW2P6ziwY\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 21:02:53 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Module name is not selected\"\n}"
+				},
+				{
+					"name": "some missing field",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\t\"module_name\": \"module1\",\n    \"isbn\": \"9780439023481\",\n    \"authors\": \"author1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "40"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"28-4NFhRu897EVCHDhSK/jjF85XXXU\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 21:03:54 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Some fields are empty: title\"\n}"
+				},
+				{
+					"name": "existing same book",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\t\"module_name\": \"module1\",\n\t\t\"title\": \"title1\",\n    \"isbn\": \"9780439023481\",\n    \"authors\": \"author1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "113"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"71-M8o16pE/yVrLxUh86kMgkmFSdRc\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 21:11:08 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"The book title1 already exists in the system for module module1. Do you want to add a different book?\"\n}"
+				},
+				{
+					"name": "same book diff module success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\t\"module_name\": \"module 2\",\n\t\t\"title\": \"title1\",\n    \"isbn\": \"9780439023481\",\n    \"authors\": \"author1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "73"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"49-5NfsFSsuwdKW0a3HR/Xxgomniqw\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 21:36:09 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The book title1 is going to be added to module module 2 mc2\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update book",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"module_name\": \"module1\",\n    \"isbn\": \"978-0-439-02348-1\",\n    \"title\": \"title one\",\n    \"authors\": \"author one\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/books/update",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books",
+						"update"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "not logged in",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"module_name\": \"module1\",\n    \"isbn\": \"978-0-439-02348-1\",\n    \"title\": \"title1\",\n    \"authors\": \"author1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"update"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1e-aEgPRQM+FwegdraFL2Q6KWieo88\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3AY_0NSwrQGQ4A3_5HJDpJdhFb3oJEBeF7.YVef90w4VZwlQuFiSwm4O%2BsP2xCyjuQwRfEAUQQT2GU; Path=/; HttpOnly"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 22:04:06 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"User not logged-in\"\n}"
+				},
+				{
+					"name": "same details as existing",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"module_name\": \"module1\",\n    \"isbn\": \"978-0-439-02348-1\",\n    \"title\": \"title1\",\n    \"authors\": \"author1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"update"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "63"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3f-KSxeHKIq2ziX4Cdqcx6kFME55rw\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 22:04:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"These book details are already stored in the system\"\n}"
+				},
+				{
+					"name": "Update book title",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"module_name\": \"module1\",\n    \"isbn\": \"978-0-439-02348-1\",\n    \"title\": \"title 1\",\n    \"authors\": \"author1, author2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "92"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"5c-99gUk2uyV9aLZq38C2qisK5hz/4\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 22:06:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The book title1 has been updated with title: title 1 authors: author1, author2\"\n}"
+				},
+				{
+					"name": "Update book authors",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"module_name\": \"module1\",\n    \"isbn\": \"978-0-439-02348-1\",\n    \"title\": \"title 1\",\n    \"authors\": \"author1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "84"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"54-HAsIntqq+/B0TG5uVJQUWt/0SSE\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 22:06:56 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The book title 1 has been updated with title: title 1 authors: author1\"\n}"
+				},
+				{
+					"name": "Update book mutiple",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"module_name\": \"module1\",\n    \"isbn\": \"978-0-439-02348-1\",\n    \"title\": \"title one\",\n    \"authors\": \"author one\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "89"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"59-gMq2pSgXdQNAr31aMSZI74MwNms\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 22:07:17 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The book title 1 has been updated with title: title one authors: author one\"\n}"
+				},
+				{
+					"name": "ISBN validation error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"module_name\": \"module1\",\n    \"isbn\": \"978-0-439-02348-2\",\n    \"title\": \"title one\",\n    \"authors\": \"author one\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"update"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "48"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"30-WSZpddf0StbK7Z+193TghLjdHb0\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 22:08:01 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"ISBN does not match any known format\"\n}"
+				},
+				{
+					"name": "no module error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isbn\": \"978-0-439-02348-1\",\n    \"title\": \"title one\",\n    \"authors\": \"author one\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"update"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "39"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"27-ot5uG3Xwm4ip390IbfUW2P6ziwY\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 22:08:19 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Module name is not selected\"\n}"
+				}
+			]
+		},
+		{
+			"name": "remove book and reviews",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"book_id\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/books",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "remove book and reviews",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"book_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "55"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"37-NiDwpP7GMv1yH3gGAF9e04lZ1qw\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 22:59:07 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Your review has been deleted successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "remove user",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"admin2@mailinator.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "error del logged in",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin1@mailinator.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "56"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"38-JAmoudskegp2mGXcknGw19j2TjU\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Feb 2025 02:19:39 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Can't delete currently active logged in user\"\n}"
+				},
+				{
+					"name": "error email not found",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin2@mailinator.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "137"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"89-d6670rKEvpUxeJehhiOii7za/t8\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Feb 2025 02:20:26 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"An user with email admin2@mailinator.com is not present in the system, please search for another email or Add a new user here\"\n}"
+				},
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin2@mailinator.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "81"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"51-PvoKIHEjyfpxOkOq3lcoSWxPmmY\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Feb 2025 02:21:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"You have successfully removed admin2@mailinator.com from the system\"\n}"
 				}
 			]
 		}

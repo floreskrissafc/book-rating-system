@@ -1,7 +1,8 @@
 const db = require('./db');
 const config = require('../config');
 const bcrypt = require('bcrypt');
-var emailValidator = require("email-validator");
+const Err = require('./customError');
+const emailValidator = require("email-validator");
 
 function getAllUsers(page = 1) {
     const offset = (page - 1) * config.USER_LIST_PER_PAGE;
@@ -30,35 +31,28 @@ function validateNewUser(user) {
     let messages = [];
 
     if (!user) {
-        messages.push('No user is provided');
+        throw new Err('No user is provided', 400);
     }
 
     if (!user.email) {
-        messages.push('email is empty');
+        throw new Err('email is empty', 400);
     }
 
     if (!emailValidator.validate(user.email)) {
-        messages.push(`invalid email format`);
+        throw new Err(`invalid email format`, 400);
     }
 
     if (!user.password) {
-        messages.push('password is empty');
+        throw new Err('password is empty', 400);
     }
 
     if (user.password.length < config.PASSWORD_MIN_LENGTH) {
-        messages.push(`Password must be with length greater than ${config.PASSWORD_MIN_LENGTH} characters`);
+       throw new Err(`Password must be with length greater than ${config.PASSWORD_MIN_LENGTH} characters`, 400);
     }
 
     user = getUserByEmail(user.email)
     if (user != undefined) {
-        messages.push(`login or reset password.`);
-    }
-
-    if (messages.length) {
-        let errorset = new Set(messages);
-        let error = new Error([...errorset].join());
-        error.statusCode = 400;
-        throw error;
+        throw new Err(`login or reset password.`, 400);
     }
 }
 
@@ -131,6 +125,30 @@ async function resetPassword(resetBody) {
     return {message};
 }
 
+function deleteUser(userObj, currentUser) {
+    const { email } = userObj;
+    if (!emailValidator.validate(email)) {
+        throw new Err(`Please write an institutional email of the accepted form`, 400);
+    }
+    user = getUserByEmail(email);
+    if (!user) {
+        throw new Err(`An user with email ${email} is not present in the system, please search for another email or Add a new user here`, 400);
+    }
+    
+    if (currentUser.id == user.id) {
+        throw new Err(`Can't delete currently active logged in user`, 400);
+    }
+
+    const id = user.id;
+    const result = db.run('DELETE FROM users WHERE id = @id', {id});
+    if (!result.changes) {
+      throw new Err("Error deleting user", 400);
+    }
+
+    let message = `You have successfully removed ${email} from the system`;
+    return { message };
+}
+
 module.exports = {
     getAllUsers,
     register,
@@ -138,4 +156,5 @@ module.exports = {
     resetPassword,
     getUserByEmail,
     getUserInfoByID,
+    deleteUser,
 }

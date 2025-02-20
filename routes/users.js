@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router();
 const users = require('../services/users');
 
-router.get('/register', function(req, res, next) {
+router.get('/', function(req, res, next) {
   try {
     res.json(users.getAllUsers(req.query.page));
   } catch (err) {
