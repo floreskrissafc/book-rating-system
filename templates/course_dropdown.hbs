@@ -1,0 +1,6 @@
+<select class="form_input" name="course" id="course">
+    <option value="" disabled selected hidden>Course</option>
+    {{#each courses}}
+    <option value="{{courseId}}">{{courseId}} {{courseName}}</option>
+    {{/each}}
+</select>

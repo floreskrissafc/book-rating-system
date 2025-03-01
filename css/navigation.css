@@ -1,0 +1,228 @@
+.nav_container {
+    overflow: hidden;
+    width: 90%; /* this changes to 100% in small screen*/
+    max-width: 1500px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav_right a {
+    color: white;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 900;
+}
+.nav_container a.logo {
+    width: 200px;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.dropdown .dropbtn {
+    border: none;
+    outline: none;
+    color: white;
+    font-family: inherit;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+}
+.dropdown .dropbtn p {
+    margin-right: 7px;
+}
+
+.dropdown .dropbtn i {
+    align-self: flex-end;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+    text-decoration: underline;
+}
+
+@media screen and (min-width: 701px) {
+    .nav_container .icon {
+        display: none;
+    }
+
+    .nav_right {
+        display: flex;
+        align-items: center;
+        width: 60%;
+        justify-content: flex-end;
+    }
+    #logo {
+        padding-top: 1em;
+        padding-bottom: 0.6em;
+    }
+
+    .dropdown {
+        margin-right: 5vw;
+    }
+
+    /* Dropdown content (hidden by default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 200px;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        margin-top: 1px;
+    }
+
+    .dropdown-content a {
+        float: none;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
+
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    #close_icon_link {
+        display: none;
+    }
+
+    #close_icon_container {
+        display: none;
+    }
+
+    #profile_name,
+    #caret_down_3 {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #logo {
+        padding-left: 1em;
+        padding-top: 0.5em;
+        padding-bottom: 0.3em;
+    }
+
+    #burger_icon {
+        display: flex;
+        align-self: center;
+        padding-right: 1em;
+    }
+
+    .nav_container a.icon {
+        color: white;
+    }
+
+    .nav_container {
+        width: 100%;
+    }
+
+    .nav_right {
+        position: fixed;
+        right: 0;
+        top: 0;
+        width: 0;
+        min-height: 100vh;
+        height: 100%;
+        transition: 0.5s;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        background-color: lightgray;
+        overflow: hidden;
+        align-items: center;
+        padding-top: 1em;
+        z-index: 2;
+    }
+
+    .nav_right a {
+        color: #1b153e;
+    }
+
+    .dropdown {
+        width: 100%;
+        margin-bottom: 2vh;
+        align-self: center;
+    }
+
+    #profile_pic {
+        display: none;
+    }
+
+    #close_icon_link {
+        padding: 0;
+        display: flex;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        justify-content: center;
+    }
+
+    #close_icon_link:hover {
+        background-color: #1b153e;
+        color: white;
+    }
+
+    #close_icon_link p {
+        align-self: center;
+        text-align: center;
+        font-size: 1.5em;
+        width: 100%;
+    }
+
+    #close_icon_container {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 1em;
+    }
+
+    .dropdown .dropbtn {
+        border: none;
+        outline: none;
+        color: black;
+        margin: 0;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .dropdown:hover:not(:first-child) {
+        background-color: #1b153e;
+    }
+
+    .dropbtn:hover {
+        color: white;
+    }
+
+    .dropdown-content {
+        height: 0;
+        display: flex;
+        background-color: #f9f9f9;
+        flex-direction: column;
+        overflow: hidden;
+        justify-content: center;
+        justify-items: center;
+        align-items: center;
+        align-content: center;
+    }
+
+    .dropdown-content a {
+        width: 100%;
+        margin-bottom: 0.5em;
+        text-align: center;
+        color: black;
+    }
+
+    .avatar {
+        display: none;
+    }
+}

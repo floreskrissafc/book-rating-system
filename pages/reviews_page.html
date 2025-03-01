@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Reviews Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+        <link rel="stylesheet" href="../css/general.css" />
+        <link rel="stylesheet" href="../css/add_course_or_book.css" />
+        <link rel="stylesheet" href="../css/navigation.css" />
+        <link rel="stylesheet" href="../css/courses_and_books.css" />
+        <link rel="stylesheet" href="../css/confirmation_modal.css" />
+        <link rel="stylesheet" href="../css/review_page.css" />
+        <script src="https://cdn.jsdelivr.net/npm/handlebars/dist/handlebars.min.js"></script>
+        <script src="../scripts/load_nav_template.js"></script>
+        <style>
+            @media screen and (min-width: 701px) {
+            }
+
+            @media screen and (max-width: 700px) {
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <nav class="nav_container" id="myTopnav">
+                <!--The navigation section will load here -->
+            </nav>
+        </div>
+
+        <main class="container main_container">
+            <div id="main_content" class="content_90">
+                <div id="upper_container">
+                    <div>
+                        <h2 id="book_title_h2"></h2>
+                    </div>
+                    <div id="add_review_container">
+                        <button id="add_review_btn" type="button" class="button button_green">Add review</button>
+                    </div>
+                </div>
+
+                <div id="add_review_modal" class="modal">
+                    <div class="modal-content">
+                        <p id="modal_title">
+                            <!--Title gets inserted here-->
+                        </p>
+                        <form id="new_review_form">
+                            <div class="new_review_container">
+                                <p>Overall Rating</p>
+                                <div id="new_review_star_rating">
+                                    <i class="nr_star fa-solid fa-star" data-value="1"></i>
+                                    <i class="nr_star fa-solid fa-star" data-value="2"></i>
+                                    <i class="nr_star fa-solid fa-star" data-value="3"></i>
+                                    <i class="nr_star fa-solid fa-star" data-value="4"></i>
+                                    <i class="nr_star fa-solid fa-star" data-value="5"></i>
+                                </div>
+                                <p id="selected_rating" style="display: none">1</p>
+                            </div>
+                            <div class="new_review_container">
+                                <label id="review_label" for="new_review_textarea" class="" style="">Review Text</label>
+                                <textarea
+                                    id="new_review_textarea"
+                                    name="new_review"
+                                    placeholder="What do you think about this book?"></textarea>
+                            </div>
+                            <div class="modal_btn_container">
+                                <button id="submit_review" class="button button_green" type="submit">Submit</button>
+                                <button id="cancel_review" class="button button_gray" type="button">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="review_list_container" class="filtered_list">
+                    <!--Reviews template will load here -->
+                </div>
+            </div>
+        </main>
+
+        <script src="../scripts/confirmation_modal.js"></script>
+        <script type="module" src="../scripts/list_reviews_for_book.js"></script>
+        <script type="module" src="../scripts/add_review.js"></script>
+        <script type="module" src="../scripts/add_review_modal.js"></script>
+        <script src="../scripts/nav_bar_logged_in.js"></script>
+    </body>
+</html>

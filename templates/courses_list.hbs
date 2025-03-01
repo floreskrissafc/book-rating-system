@@ -1,0 +1,10 @@
+<ul id="course_list">
+    {{#each courses}}
+    <li data-name="{{courseName}}" data-code="{{courseCode}}">
+        <div class="course_container">
+            <p>{{courseCode}} - {{courseName}}</p>
+            <button class="button button_green" onClick="getBooksForCourse('{{courseCode}}')">See course</button>
+        </div>
+    </li>
+    {{/each}}
+</ul>

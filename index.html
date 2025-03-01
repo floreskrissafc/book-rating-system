@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Title</title>
+        <link rel="stylesheet" href="/css/index.css" />
+        <script type="module" src="/scripts/index.js"></script>
+    </head>
+    <body>
+        <nav class="container nav_container">
+            <div id="nav_90_container" class="container_90">
+                <div id="logo_container">
+                    <a href="#">
+                        <img id="logo" src="imgs/logos/uol_logo.svg" alt="University of London logo" />
+                    </a>
+                </div>
+                <div id="login_container_nav">
+                    <!--this section is not shown on smaller screens, the log in form looks different-->
+                    <form id="form_inline">
+                        <div class="margin_right_1">
+                            <label for="email_form1" class="hidden">Email</label>
+                            <input
+                                id="email_form1"
+                                type="email"
+                                class="form_input"
+                                placeholder="Enter email"
+                                required />
+                        </div>
+                        <div class="margin_right_1" style="">
+                            <label for="password_form1" class="hidden">Password</label>
+                            <input
+                                id="password_form1"
+                                type="password"
+                                class="form_input"
+                                placeholder="Password"
+                                required />
+                            <p class="forgot_pass">
+                                <a href="#" alt="forgot password">Forgot password?</a>
+                            </p>
+                        </div>
+                        <div>
+                            <button type="submit" onclick="" class="button_green button">Log in</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+        <div id="main_large" class="container">
+            <div class="container_90">
+                <div class="content_section system_info_container">
+                    <h2 id="system_title">BOOK RATING SYSTEM</h2>
+                    <p id="system_text">
+                        Find the most helpful book reviews for your courses and get help with your studies today!
+                    </p>
+                </div>
+
+                <div id="form_box" class="content_section" style="">
+                    <!--this section will only show one form at a time, either sign up or log in
+                        this will happen on small screens, on big screens only sign up form is shown -->
+                    <div id="sign_up_form_container" class="form_container">
+                        <form class="signUp_form">
+                            <div class="margin_bottom_1">
+                                <label for="inputName2" class="hidden">First Name</label>
+                                <input
+                                    type="text"
+                                    required
+                                    class="form_input form_input2"
+                                    id="inputName2"
+                                    placeholder="First name" />
+                            </div>
+                            <div class="margin_bottom_1">
+                                <label for="inputLastName2" class="hidden">Last Name</label>
+                                <input
+                                    type="text"
+                                    required
+                                    class="form_input form_input2"
+                                    id="inputLastName2"
+                                    placeholder="Last name" />
+                            </div>
+                            <div class="margin_bottom_1">
+                                <label for="email_form2" class="hidden">Email</label>
+                                <input
+                                    id="email_form2"
+                                    type="email"
+                                    required
+                                    class="form_input form_input2"
+                                    placeholder="Institutional email" />
+                            </div>
+                            <div class="margin_bottom_1">
+                                <label for="password_form2" class="hidden">Password</label>
+                                <input
+                                    id="password_form2"
+                                    type="password"
+                                    required
+                                    class="form_input form_input2"
+                                    placeholder="Password" />
+                            </div>
+                            <div class="form_submit">
+                                <button onclick="" type="submit" class="button_blue button sign_up_button">
+                                    Sign Up
+                                </button>
+                            </div>
+                        </form>
+
+                        <div class="margin_bottom_1">
+                            <p class="toggle_forms_paragraph">
+                                Already a member?
+                                <button id="toggle_to_logIn" class="toggle_btn">Log In</button>
+                                now.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="log_in_form_container" class="form_container hidden">
+                        <form id="log_in_small" class="signUp_form">
+                            <div class="margin_bottom_1">
+                                <label for="email_form_login" class="hidden">Email</label>
+                                <input
+                                    id="email_form_login"
+                                    type="email"
+                                    class="form_input form_input2"
+                                    placeholder="Enter email"
+                                    required />
+                            </div>
+                            <div class="margin_bottom_1">
+                                <label for="password_form_login" class="hidden">Password</label>
+                                <input
+                                    id="password_form_login"
+                                    type="password"
+                                    class="form_input form_input2"
+                                    placeholder="Password"
+                                    required />
+                            </div>
+                            <div class="form_submit margin_bottom_1">
+                                <button type="submit" onclick="" class="button_green button sign_up_button">
+                                    Log in
+                                </button>
+                            </div>
+                        </form>
+                        <p class="forgot_pass">
+                            <a href="#" alt="forgot password">Forgot password?</a>
+                        </p>
+                        <div class="margin_bottom_1">
+                            <p class="toggle_forms_paragraph">
+                                Not a member?
+                                <button id="toggle_to_signUp" class="toggle_btn">Sign up</button>
+                                now.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

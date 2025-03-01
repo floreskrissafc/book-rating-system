@@ -29,12 +29,13 @@ function clientErrorHandler (err, req, res, next) {
 }
 
 function validateLogin(req, res, next) {
-  console.log("req.session.isloggedin: ", req.session.isloggedin)
+  console.log("req.session.isloggedin: ", req.session.isloggedin);
   if (!req.session.isloggedin) {
     let error = new Error("User not logged-in");
     error.statusCode = 400;
     next(error);
   }
+  res.setHeader('X-IS-ADMIN', req.session.user.role);
   next()
 }
 

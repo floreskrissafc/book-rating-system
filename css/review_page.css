@@ -1,0 +1,341 @@
+.main_container {
+    padding-bottom: 2em;
+}
+
+.user_img_container {
+    width: 60px;
+    height: 60px;
+    margin-right: 0.5em;
+    border-radius: 50%;
+}
+
+.user_img_container img {
+    width: 100%;
+    height: 100%;
+}
+
+.review_container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+    border: 1px solid #e9e9e9;
+    border-radius: 0.5em;
+    margin-bottom: 1em;
+}
+
+.review_top_box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 0.5em;
+}
+
+.review_bottom_box {
+    display: flex;
+    flex-direction: row;
+}
+
+.stars_container {
+    margin-left: 0.5em;
+    font-size: 0.5em;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.review_text_container {
+    min-width: 100%;
+    cursor: pointer;
+    width: 90%;
+    font-size: calc(12px + 1vw);
+    transition: max-height 0.3s ease-out;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    margin-top: 0.9em;
+}
+
+.review_arrow {
+    color: gray;
+    align-self: flex-end;
+}
+
+/* Default: to show only 3 lines in the review with ellipsis */
+.review_text_container p {
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 10;
+}
+
+/* Expand to show full text when user clicks */
+.expanded p {
+    -webkit-line-clamp: unset;
+    text-overflow: clip;
+    overflow: visible;
+}
+
+#new_review_form,
+#edit_review_form {
+    display: flex;
+    flex-direction: column;
+}
+
+.new_review_container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1em;
+}
+
+#new_review_textarea,
+#edit_review_textarea {
+    margin-top: 0.5em;
+    width: 100%;
+    font-family: "Montserrat", sans-serif;
+    height: 150px;
+    padding: 0.5em;
+}
+
+.modal {
+    z-index: 2000;
+}
+
+#star_rating {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.nr_star {
+    color: lightgray;
+    transition: color 0.2s;
+}
+
+.nr_star.filled {
+    color: gold;
+}
+
+.new_review_container p {
+    margin-bottom: 0.3em;
+}
+
+.modal_btn_container {
+    margin-top: 1em;
+}
+
+#review_label,
+#edit_review_label {
+    font-size: calc(12px + 1vw);
+}
+
+@media screen and (min-width: 701px) {
+    #review_list_container {
+        width: 90%;
+        align-self: center;
+    }
+
+    .review_container {
+        padding: 1.5em;
+        max-width: 800px;
+    }
+
+    .review_info_container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .review_left_box {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .review_right_box {
+        align-content: center;
+    }
+
+    .review_top_box {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 0.5em;
+    }
+
+    .review_text_container {
+        font-size: 18px;
+    }
+
+    .user_name {
+        font-weight: 800;
+        font-size: 20px;
+    }
+
+    .review_bottom_box p {
+        font-size: 0.7em;
+    }
+
+    .stars_container {
+        margin-left: 0.5em;
+        font-size: 0.5em;
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .review_text_container:hover {
+        background-color: #f7f7f7;
+    }
+
+    .review_date {
+        font-size: 12px;
+        margin-top: 0.5em;
+        color: darkgrey;
+    }
+
+    #upper_container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 90%;
+        max-width: 800px;
+        margin-bottom: 2em;
+        margin-top: 2em;
+        justify-content: space-between;
+    }
+
+    .content_90 {
+        align-items: center;
+    }
+
+    .modal-content {
+        padding: 2em;
+        width: 600px;
+    }
+
+    #submit_review,
+    #submit_edit_review {
+        margin-right: 1em;
+    }
+
+    #modal_title,
+    #edit_review_title {
+        text-align: left;
+        font-size: 1.2em;
+        font-weight: 700;
+        line-height: normal;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #upper_container {
+        position: sticky;
+        top: 0;
+        padding-top: 1em;
+        background-color: #f7f7f7;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #book_title_h2 {
+        font-size: calc(14px + 2vw);
+        margin-bottom: 1em;
+        text-align: center;
+    }
+
+    #add_review_container {
+        align-self: center;
+        margin-bottom: 1em;
+    }
+
+    .review_info_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 0.5em;
+    }
+
+    .user_name {
+        font-weight: 800;
+        font-size: calc(13px + 2vw);
+        margin-top: 0.5em;
+    }
+
+    .review_date {
+        font-size: calc(11px + 2vw);
+        margin-top: 0.5em;
+        color: darkgrey;
+    }
+
+    .user_img_container {
+        min-width: 60px;
+        min-height: 60px;
+    }
+
+    .review_bottom_box p {
+        font-size: calc(12px + 1vw);
+    }
+
+    .review_left_box {
+        margin-bottom: 0.5em;
+        padding: 0.5em;
+    }
+
+    .review_text_container {
+        padding: 1em;
+        font-size: calc(12px + 1vw);
+    }
+
+    .review_right_box {
+        width: 80%;
+        max-width: 200px;
+    }
+
+    #delete_btn {
+        min-width: 0;
+        font-size: calc(12px + 1vw);
+        font-weight: 800;
+        width: 100%;
+    }
+
+    #add_review_btn {
+        font-size: calc(12px + 1vw);
+        font-weight: 800;
+    }
+
+    #modal_title,
+    #edit_review_title {
+        font-size: calc(15px + 1vw);
+        font-weight: 700;
+        line-height: normal;
+    }
+
+    .new_review_container p,
+    #review_label,
+    #edit_review_label {
+        font-size: calc(14px + 1vw);
+    }
+
+    .modal_btn_container {
+        margin-top: 0;
+    }
+
+    #submit_review,
+    #cancel_review,
+    #submit_edit_review,
+    #cancel_edit_review {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 0.5em;
+        font-size: calc(12px + 1vw);
+    }
+
+    #new_review_textarea,
+    #edit_review_text_area {
+        font-size: calc(12px + 1vw);
+    }
+}

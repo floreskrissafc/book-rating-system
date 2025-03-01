@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Add a book page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="../css/general.css" />
+        <link rel="stylesheet" href="../css/add_course_or_book.css" />
+        <link rel="stylesheet" href="../css/navigation.css" />
+        <script src="https://cdn.jsdelivr.net/npm/handlebars/dist/handlebars.min.js"></script>
+        <script src="../scripts/load_nav_template.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <nav class="nav_container" id="myTopnav">
+                <!--The navigation section will load here -->
+            </nav>
+        </div>
+
+        <main class="container main_container">
+            <div class="content_90">
+                <h2 class="page_activity margin_bottom_1">Add a new book</h2>
+                <div class="main_form_container">
+                    <form class="form_box" action="#" method="POST" enctype="multipart/form-data">
+                        <div class="form_row">
+                            <label class="form_label" for="course"
+                                >Choose a course
+                                <span class="tooltip">
+                                    <i class="fa fa-info-circle tooltip_i"></i>
+                                    <span class="tooltip-text"> You can select a course to add this book to.</span>
+                                </span>
+                            </label>
+                            <div id="courses_container" name="course">
+                                <!-- Select component will load here-->
+                            </div>
+                        </div>
+                        <div class="form_row">
+                            <label for="book_title_input" class="form_label">Book title</label>
+                            <input
+                                type="text"
+                                required
+                                class="form_input"
+                                id="book_title_input"
+                                placeholder="Intro to algorithms" />
+                        </div>
+
+                        <div class="form_row">
+                            <label for="ISBN_input" class="form_label"
+                                >ISBN
+                                <span class="tooltip">
+                                    <i class="fa fa-info-circle tooltip_i"></i>
+                                    <span class="tooltip-text">
+                                        Enter the the 10 or 13-digit book's ISBN (e.g., 978-3-16-148410-0). You can find
+                                        it on the barcode or inside the cover.</span
+                                    >
+                                </span>
+                            </label>
+                            <input
+                                type="text"
+                                required
+                                class="form_input"
+                                id="ISBN_input"
+                                placeholder="978-3-16-148410-0" />
+                        </div>
+
+                        <div class="form_row">
+                            <label for="author_input" class="form_label"
+                                >Author(s)
+                                <span class="tooltip">
+                                    <i class="fa fa-info-circle tooltip_i"></i>
+                                    <span class="tooltip-text">
+                                        List the author(s) of the book. If more than one, separate their names with
+                                        commas (e.g. John Doe, Jane Smith)</span
+                                    >
+                                </span>
+                            </label>
+                            <input
+                                type="text"
+                                required
+                                class="form_input"
+                                id="author_input"
+                                placeholder="John Doe, Jane Doe" />
+                        </div>
+
+                        <div class="form_row">
+                            <label for="edition_input" class="form_label">Edition</label>
+                            <input type="text" class="form_input" id="edition_input" placeholder="1st Edition" />
+                        </div>
+
+                        <div class="form_row">
+                            <label for="online_library_link_input" class="form_label"
+                                >Link to online library
+                                <span class="tooltip">
+                                    <i class="fa fa-info-circle tooltip_i"></i>
+                                    <span class="tooltip-text">
+                                        Insert the link to the UoL library url for this book (e.g.
+                                        https://summon.solutions.com/search?bookMark=eNol)
+                                    </span>
+                                </span></label
+                            >
+                            <input
+                                type="url"
+                                class="form_input"
+                                id="online_library_link_input"
+                                placeholder="https://www.online_library_UoL.edu" />
+                        </div>
+
+                        <div class="form_row">
+                            <label for="book_pic_input" class="form_label"
+                                >Book cover picture
+                                <span class="tooltip">
+                                    <i class="fa fa-info-circle tooltip_i"></i>
+                                    <span class="tooltip-text">
+                                        Upload a picture of the cover of this book. Only .jpg, .jpeg, and .png files are
+                                        allowed. Max size is 5MB
+                                    </span>
+                                </span></label
+                            >
+                            <input class="form_input" type="file" id="book_pic_input" name="book_pic_input" />
+                        </div>
+
+                        <div class="form_submit">
+                            <button id="submit_btn" onclick="" type="submit" class="button_green button">Submit</button>
+                            <button id="cancel_btn" onclick="" type="submit" class="button button_red">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                document.getElementById("book_pic_input").addEventListener("change", function () {
+                    const file = this.files[0];
+                    if (file && file.size > 5 * 1024 * 1024) {
+                        alert("File size must be under 5MB!");
+                        this.value = ""; // Clearing the file input
+                    }
+                });
+            });
+        </script>
+
+        <script src="../scripts/nav_bar_logged_in.js"></script>
+        <script src="../scripts/load_courses.js"></script>
+    </body>
+</html>

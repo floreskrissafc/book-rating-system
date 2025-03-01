@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Courses page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="../css/general.css" />
+        <link rel="stylesheet" href="../css/add_course_or_book.css" />
+        <link rel="stylesheet" href="../css/navigation.css" />
+        <link rel="stylesheet" href="../css/courses_and_books.css" />
+        <script src="https://cdn.jsdelivr.net/npm/handlebars/dist/handlebars.min.js"></script>
+        <script src="../scripts/load_nav_template.js"></script>
+        <style></style>
+    </head>
+    <body>
+        <div class="container">
+            <nav class="nav_container" id="myTopnav">
+                <!--The navigation section will load here -->
+            </nav>
+        </div>
+
+        <main class="container main_container">
+            <div class="content_90">
+                <div>
+                    <div class="centered_container title_container">
+                        <h2>Course List</h2>
+                    </div>
+                </div>
+                <div style="width: 100%">
+                    <div class="centered_container" id="search_bar_container">
+                        <div class="search_box">
+                            <input type="text" id="search_input" class="search_bar" placeholder="Search course..." />
+                            <div class="search_btn_container">
+                                <i class="fa fa-search" style="color: #727274"></i>
+                            </div>
+                        </div>
+
+                        <button class="button button_gray" onClick="resetFilter()">Reset filter</button>
+                    </div>
+                </div>
+                <div id="courses_list" class="filtered_list">
+                    <!--Template will be included here to add all courses-->
+                </div>
+            </div>
+        </main>
+
+        <script src="../scripts/courses_page_script.js"></script>
+        <script src="../scripts/nav_bar_logged_in.js"></script>
+        <script src="../scripts/query_courses.js"></script>
+    </body>
+</html>

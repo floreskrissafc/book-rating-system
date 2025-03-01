@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Add a course page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="../css/general.css" />
+        <link rel="stylesheet" href="../css/add_course_or_book.css" />
+        <link rel="stylesheet" href="../css/navigation.css" />
+        <link rel="stylesheet" href="../css/confirmation_modal.css" />
+        <script src="https://cdn.jsdelivr.net/npm/handlebars/dist/handlebars.min.js"></script>
+        <script src="../scripts/load_nav_template.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <nav class="nav_container" id="myTopnav">
+                <!--The navigation section will load here -->
+            </nav>
+        </div>
+
+        <main class="container main_container">
+            <div class="content_90">
+                <h2 class="page_activity margin_bottom_1">Edit course</h2>
+                <div class="main_form_container">
+                    <form class="form_box">
+                        <div class="form_row">
+                            <label for="course_code_input" class="form_label"
+                                >Course code
+                                <span class="tooltip">
+                                    <i class="fa fa-info-circle tooltip_i"></i>
+                                    <span class="tooltip-text"> Enter the alphanumeric code for the course.</span>
+                                </span>
+                            </label>
+                            <input
+                                type="text"
+                                required
+                                class="form_input"
+                                id="course_code_input"
+                                placeholder="CM2020" />
+                        </div>
+
+                        <div class="form_row">
+                            <label for="course_name_input" class="form_label">Course name </label>
+                            <input
+                                type="text"
+                                required
+                                class="form_input"
+                                id="course_name_input"
+                                placeholder="Algorithms 1" />
+                        </div>
+
+                        <!-- Delete Confirmation Modal -->
+                        <div id="delete-modal" class="modal">
+                            <div class="modal-content">
+                                <p class="modal-content-text">
+                                    Are you sure you want to delete this course? This will delete all the data related
+                                    to the course, including its associates book ratings. This action cannot be undone.
+                                </p>
+                                <div class="modal_btn_container">
+                                    <button id="confirm-delete" class="button button_red" type="submit">
+                                        Yes, Delete
+                                    </button>
+                                    <button id="cancel-delete" class="button button_gray" type="submit">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form_submit">
+                            <button id="submit_btn" onclick="" type="submit" class="button_green button">Save</button>
+                            <button id="cancel_btn" onclick="" type="submit" class="button button_gray">Cancel</button>
+                            <button id="delete_btn" onclick="" type="submit" class="button button_red">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+        <script src="../scripts/confirmation_modal.js"></script>
+        <script src="../scripts/edit_course.js"></script>
+        <script src="../scripts/nav_bar_logged_in.js"></script>
+    </body>
+</html>

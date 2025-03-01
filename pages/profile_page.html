@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Profile page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="../css/general.css" />
+        <link rel="stylesheet" href="../css/add_course_or_book.css" />
+        <link rel="stylesheet" href="../css/navigation.css" />
+        <link rel="stylesheet" href="../css/confirmation_modal.css" />
+        <script src="https://cdn.jsdelivr.net/npm/handlebars/dist/handlebars.min.js"></script>
+        <script src="../scripts/load_nav_template.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <nav class="nav_container" id="myTopnav">
+                <!--The navigation section will load here -->
+            </nav>
+        </div>
+
+        <main class="container main_container">
+            <div class="content_90">
+                <h2 class="page_activity margin_bottom_1">Profile Page</h2>
+                <div class="main_form_container">
+                    <form class="form_box">
+                        <div class="form_row">
+                            <label for="name_input" class="form_label">Name</label>
+                            <input type="text" class="form_input" id="name_input" placeholder="Name" />
+                        </div>
+
+                        <div class="form_row">
+                            <label for="last_name_input" class="form_label">Last Name </label>
+                            <input type="text" class="form_input" id="last_name_input" placeholder="Last name" />
+                        </div>
+
+                        <div class="form_row">
+                            <label for="profile_pic_input" class="form_label">Profile picture </label>
+
+                            <input class="form_input" type="file" id="profile_pic_input" name="profile_pic_input" />
+                        </div>
+
+                        <div class="current_img_container">
+                            <img
+                                id="current_profile_img"
+                                src="#"
+                                alt="Current profile picture"
+                                width="100"
+                                height="auto" />
+                        </div>
+
+                        <div class="form_submit">
+                            <button id="submit_btn1" onclick="" type="submit" class="button_green button submit_btn">
+                                Update
+                            </button>
+                            <button id="cancel_btn" onclick="" type="submit" class="button button_gray">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="main_form_container">
+                    <form class="form_box" id="change_password_form">
+                        <div id="form_title" class="form_row">
+                            <h4>Change Password</h4>
+                        </div>
+
+                        <div class="form_row">
+                            <label for="current_password" class="form_label">Current Password</label>
+                            <input
+                                type="password"
+                                class="form_input"
+                                id="current_password"
+                                name="current_password"
+                                required
+                                placeholder="current password" />
+                        </div>
+
+                        <div class="form_row">
+                            <label for="new_password" class="form_label"
+                                >New Password
+                                <span class="tooltip">
+                                    <i class="fa fa-info-circle tooltip_i"></i>
+                                    <span class="tooltip-text">
+                                        Password must be at least 8 characters, include a number and a special
+                                        character.
+                                    </span>
+                                </span></label
+                            >
+                            <input
+                                type="password"
+                                class="form_input"
+                                id="new_password"
+                                name="new_password"
+                                required
+                                placeholder="new password" />
+                        </div>
+
+                        <div class="form_row">
+                            <label for="new_password_repeat" class="form_label">Confirm new password</label>
+                            <input
+                                type="password"
+                                class="form_input"
+                                id="new_password_repeat"
+                                name="new_password_repeat"
+                                required
+                                placeholder="repeat new password" />
+                        </div>
+
+                        <p id="error_message" style=""></p>
+                        <p id="success_message" style="color: green; display: none"></p>
+
+                        <div class="form_submit">
+                            <button id="submit_btn2" onclick="" type="submit" class="button_green button submit_btn">
+                                Update password
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+        <script src="../scripts/change_password.js"></script>
+        <script src="../scripts/nav_bar_logged_in.js"></script>
+        <script src="../scripts/edit_profile.js"></script>
+    </body>
+</html>
