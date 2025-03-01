@@ -35,7 +35,7 @@ function validateLogin(req, res, next) {
     error.statusCode = 400;
     next(error);
   }
-  res.setHeader('X-IS-ADMIN', req.session.user.role);
+  res.set('IS-ADMIN', req.session.user.role);
   next()
 }
 
