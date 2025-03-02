@@ -1,21 +1,22 @@
-const db = require('./db');
-const config = require('../config');
-const bcrypt = require('bcrypt');
-const Err = require('./customError');
-const emailValidator = require("email-validator");
+import * as db from './db.js';
+import config from '../config.js';
+import bcrypt from 'bcrypt';
+import Err from './customError.js';
+import emailValidator from "email-validator";
+import logger from '../services/logging.js';
 
 function getAllUsers(page = 1) {
     const offset = (page - 1) * config.USER_LIST_PER_PAGE;
-    const data = db.queryAll(`select * FROM users LIMIT ?,?`, [offset, config.USER_LIST_PER_PAGE])
-    const meta = {page}
+    const data = db.queryAll(`select * FROM users LIMIT ?,?`, [offset, config.USER_LIST_PER_PAGE]);
+    const meta = {page};
     return {
         data,
         meta
-    }
+    };
 }
 
 function getUserByEmail(email) {
-    return db.queryOne(`select * FROM users WHERE email = ?`, email)
+    return db.queryOne(`select * FROM users WHERE email = ?`, email);
 }
 
 function getUserInfoByID(id) {
@@ -27,8 +28,7 @@ NOTE: this function doe not validate if all the NOT NULL fields are populated.
 Since that is handled by DB.
 */
 function validateNewUser(user) {
-    console.log('user:\n', user);
-    let messages = [];
+    logger.info('user:\n', user);
 
     if (!user) {
         throw new Err('No user is provided', 400);
@@ -42,6 +42,13 @@ function validateNewUser(user) {
         throw new Err(`invalid email format`, 400);
     }
 
+    const emailDomain = user.email.substring(user.email.lastIndexOf('@') + 1);
+    logger.info('emailDomain: ', emailDomain);
+    if (!config.VALID_EMAIL_DOMAINS.includes(emailDomain)) {
+        throw new Err(`Only ${config.VALID_EMAIL_DOMAINS.join(',')} emails are allowed`, 401);
+    }
+
+
     if (!user.password) {
         throw new Err('password is empty', 400);
     }
@@ -50,23 +57,23 @@ function validateNewUser(user) {
        throw new Err(`Password must be with length greater than ${config.PASSWORD_MIN_LENGTH} characters`, 400);
     }
 
-    user = getUserByEmail(user.email)
+    user = getUserByEmail(user.email);
     if (user != undefined) {
         throw new Err(`login or reset password.`, 400);
     }
 }
 
 function isUserAdmin(email) {
-    admin_email = db.queryOne(`select * FROM admin_emails WHERE email = ?`, email);
-    console.log('admin_email: ', admin_email, admin_email != undefined)
-    is_admin = Number(admin_email != undefined)
-    return is_admin
+    const admin_email = db.queryOne(`select * FROM admin_emails WHERE email = ?`, email);
+    logger.info('admin_email: ', admin_email, admin_email != undefined);
+    const is_admin = Number(admin_email != undefined);
+    return is_admin;
 }
 
 async function register(userBody) {
-    validateNewUser(userBody)
+    validateNewUser(userBody);
     const { email, password, first_name, last_name, profile_picture } = userBody;
-    role = isUserAdmin(email)
+    let role = isUserAdmin(email);
     let password_hash = await bcrypt.hash(password, config.BCRYPT_SALT);
     const result = db.run('INSERT INTO users (email, password_hash, role, first_name, last_name, profile_picture) VALUES (@email, @password_hash, @role, @first_name, @last_name, @profile_picture)', { email, password_hash, role, first_name, last_name, profile_picture });
     let message = 'Error in creating user';
@@ -80,12 +87,12 @@ async function register(userBody) {
 async function login(loginBody) {
     const { email, password } = loginBody;
     if (!email || !password) {
-        let error = new Error("invalid email or password")
+        let error = new Error("invalid email or password");
         error.statusCode = 400;
         throw error;
     }
 
-    user = getUserByEmail(email);
+    let user = getUserByEmail(email);
     if (user == undefined) {
         let error = new Error("no user in the system for the given email, create a new account");
         error.statusCode = 400;
@@ -105,6 +112,7 @@ async function resetPassword(resetBody) {
     const { email, oldPassword, newPassword } = resetBody;
     if (newPassword == oldPassword) {
         let error = new Error(`Password must be not equal to previous password.`);
+        throw error;
     }
         
     if (newPassword.length < config.PASSWORD_MIN_LENGTH) {
@@ -113,11 +121,11 @@ async function resetPassword(resetBody) {
         throw error;
     }
 
-    const { user } = await login({email, password: oldPassword})
-    console.log('resetting password for user: ', user);
+    const { user } = await login({email, password: oldPassword});
+    logger.info('resetting password for user: ', user);
     
     let newPasswordhash = await bcrypt.hash(newPassword, config.BCRYPT_SALT);
-    const results = db.run(`UPDATE users SET password_hash = (@newPasswordhash) WHERE email = (@email)`, {newPasswordhash, email})
+    const results = db.run(`UPDATE users SET password_hash = (@newPasswordhash) WHERE email = (@email)`, {newPasswordhash, email});
     let message = 'Error in creating user';
     if (results.changes) {
       message = 'password reset successfully';
@@ -130,7 +138,7 @@ function deleteUser(userObj, currentUser) {
     if (!emailValidator.validate(email)) {
         throw new Err(`Please write an institutional email of the accepted form`, 400);
     }
-    user = getUserByEmail(email);
+    let user = getUserByEmail(email);
     if (!user) {
         throw new Err(`An user with email ${email} is not present in the system, please search for another email or Add a new user here`, 400);
     }
@@ -149,7 +157,7 @@ function deleteUser(userObj, currentUser) {
     return { message };
 }
 
-module.exports = {
+export {
     getAllUsers,
     register,
     login,
@@ -157,4 +165,4 @@ module.exports = {
     getUserByEmail,
     getUserInfoByID,
     deleteUser,
-}
+};

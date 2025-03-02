@@ -1,12 +1,14 @@
-const express = require('express')
+import express from 'express';
+import * as users from '../services/users.js';
+import logger from '../services/logging.js';
+
 const router = express.Router();
-const users = require('../services/users');
 
 router.get('/', function(req, res, next) {
   try {
     res.json(users.getAllUsers(req.query.page));
   } catch (err) {
-    console.error(`Error while getting users`, err.message);
+    logger.error(`Error while getting users`, err.message);
     next(err);
   }
 });
@@ -14,10 +16,10 @@ router.get('/', function(req, res, next) {
 router.post('/register', async function(req, res, next) {
   try {
     let registerRes = await users.register(req.body);
-    console.log("registerRes: ", registerRes);
-    res.json(registerRes)
+    logger.info("registerRes: ", registerRes);
+    res.json(registerRes);
   } catch (err) {
-    console.error(`Error while registering user`, err.message);
+    logger.error(`Error while registering user`, err.message);
     next(err);
   }
 });
@@ -29,12 +31,12 @@ router.post('/login', async function(req, res, next) {
     req.session.user = respObj.user;
     res.json(respObj);
   } catch (err) {
-    console.error(`login error`, err.message);
+    logger.error(`login error`, err.message);
     next(err);
   }
 });
 
-router.get('/logout', async function (req, res, next) {
+router.get('/logout', async function(req, res) {
   req.session.destroy();
   res.json({message: "user logged out succesfully"});
 });
@@ -44,9 +46,9 @@ router.post('/resetpassword', async function(req, res, next) {
     let resetRes = await users.resetPassword(req.body);
     res.json(resetRes);
   } catch (error) {
-    console.error(`login error`, error.message);
+    logger.error(`login error`, error.message);
     next(error);
   }
 });
 
-module.exports = router
+export default router;

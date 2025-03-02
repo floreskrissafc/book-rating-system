@@ -1,15 +1,16 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const users = require('../services/users');
+import * as users from '../services/users.js';
+import logger from '../services/logging.js';
 
 router.delete('/', function(req, res, next) {
     try {
         // NOTE: this will also delete other foreign key referred child table rows like reviews etc.
         res.json(users.deleteUser(req.body, req.session.user));
     } catch (error) {
-        console.error(`Error deleting user`, error.message);
+        logger.error(`Error deleting user`, error.message);
         next(error);
     }
 });
 
-module.exports = router;
+export default router;

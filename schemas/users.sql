@@ -7,3 +7,7 @@ CREATE TABLE IF NOT EXISTS users (
 	last_name VARCHAR(255) NOT NULL,
 	profile_picture VARCHAR(255)
 );
+
+INSERT OR IGNORE INTO admin_emails (email) VALUES
+						('user1@student.london.ac.uk'),
+						('user2@student.london.ac.uk')

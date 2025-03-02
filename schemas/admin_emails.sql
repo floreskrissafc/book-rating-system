@@ -3,5 +3,5 @@ CREATE TABLE IF NOT EXISTS admin_emails (
 );
 
 INSERT OR IGNORE INTO admin_emails (email) VALUES
-						('admin1@mailinator.com'),
-						('admin2@mailinator.com')
+						('admin1@london.ac.uk'),
+						('admin2@london.ac.uk')

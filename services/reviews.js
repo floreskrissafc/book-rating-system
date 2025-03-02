@@ -1,14 +1,14 @@
-const db = require('./db');
-const config = require('../config');
-const usersService = require('../services/users');
-const booksService = require('../services/books');
+import * as db from './db.js';
+import config from '../config.js';
+import * as usersService from '../services/users.js';
+import * as booksService from '../services/books.js';
+import logger from '../services/logging.js';
 
-const {
+import {
 	RegExpMatcher,
-	TextCensor,
 	englishDataset,
 	englishRecommendedTransformers,
-} = require('obscenity');
+} from 'obscenity';
 
 const profanity = new RegExpMatcher({
 	...englishDataset.build(),
@@ -60,14 +60,14 @@ function getReviewsByBookId(book_id) {
     }
 
     data = data.map((review) => {
-        user = usersService.getUserInfoByID(review.user_id);
+        let user = usersService.getUserInfoByID(review.user_id);
         return { ...review, ...user};
     });
     
 
     return {
         data
-    }
+    };
 }
 
 function getReviewsByUserId(user_id) {
@@ -84,20 +84,20 @@ function getReviewsByUserId(user_id) {
     }
 
     data = data.map((review) => {
-        book = booksService.getBookInfoByID(review.book_id);
+        let book = booksService.getBookInfoByID(review.book_id);
         return { ...review, ...book};
     });
     
 
     return {
         data
-    }
+    };
 }
 
 function create(reviewBody) {
-    validateReview(reviewBody)
+    validateReview(reviewBody);
     const { book_id, user_id, comment, rating } = reviewBody;
-    console.log(book_id, user_id, comment, rating);
+    logger.info(book_id, user_id, comment, rating);
     const result = db.run('INSERT OR REPLACE INTO reviews (book_id, user_id, comment, rating) VALUES (@book_id, @user_id, @comment, @rating)', {book_id, user_id, comment, rating});
     let message = 'Error in creating review';
     if (result.changes) {
@@ -113,10 +113,10 @@ function deleteReview(book_id, user_id) {
     if (result.changes) {
         message = "Your review has been processed successfully";
     }
-    return { message }
+    return { message };
 }
 
-module.exports = {
+export {
     create,
     deleteReview,
     getReviewsByBookId,

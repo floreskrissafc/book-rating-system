@@ -1,7 +1,8 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const modules = require('../services/modules');
-const books = require('../services/books');
+import * as modules from '../services/modules.js';
+import * as books from '../services/books.js';
+import logger from '../services/logging.js';
 
 router.get('/', function (req, res, next) {
     try {
@@ -12,15 +13,15 @@ router.get('/', function (req, res, next) {
                 ...module,
                 books: books.getBooksByModule(module.id)
             });
-            console.log('module: \n', data);
+            logger.info('module: \n', data);
         });
-        meta = modulesRes.meta;
+        const meta = modulesRes.meta;
         return res.json({data, meta}); 
     } catch (error) {
-        console.error(`Error while getting homepage `, error.message);
+        logger.error(`Error while getting homepage `, error.message);
         next(error);
     }
 
 });
 
-module.exports = router;
+export default router;

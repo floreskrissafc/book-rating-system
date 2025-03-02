@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 const env = process.env;
 
 const config = {
@@ -7,6 +8,10 @@ const config = {
   BCRYPT_SALT: 10,
   PASSWORD_MIN_LENGTH: 10,
   COMMENT_CHAR_MAX_LENGTH: 256,
-}
+  VALID_EMAIL_DOMAINS: [
+    "london.ac.uk",
+    "student.london.ac.uk"
+  ],
+};
 
-module.exports = config;
+export default config;

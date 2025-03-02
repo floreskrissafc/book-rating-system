@@ -1,8 +1,8 @@
 class Err extends Error {
     constructor(message, statusCode) {
-        super(message)
-        this.statusCode = statusCode
+        super(message);
+        this.statusCode = statusCode;
     }
 }
 
-module.exports = Err;
+export default Err;

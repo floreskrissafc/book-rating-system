@@ -1,8 +1,9 @@
-const db = require('./db');
-const config = require('../config');
-const moduleService = require('./modules');
-const ISBNValidator = require('isbn3')
-const Err = require('./customError');
+import * as db from './db.js';
+import * as config from '../config.js';
+import * as moduleService from './modules.js';
+import * as ISBNValidator from 'isbn3';
+import Err from './customError.js';
+import logger from '../services/logging.js';
 
 function getMultiple(page = 1) {
   const offset = (page - 1) * config.listPerPage;
@@ -12,14 +13,14 @@ function getMultiple(page = 1) {
   return {
     data,
     meta
-  }
+  };
 }
 
 function searchBySingleColumnQuery(column, query) {
-  const data = db.queryAll(`SELECT * FROM books WHERE ${column} LIKE ?`, [`%${query.toLowerCase()}%`])
+  const data = db.queryAll(`SELECT * FROM books WHERE ${column} LIKE ?`, [`%${query.toLowerCase()}%`]);
   return {
     data
-  }
+  };
 }
 
 function validateCreate(book) {
@@ -40,7 +41,7 @@ function validateCreate(book) {
   if (!isbnValidationRes || !isbnValidationRes.isValid || !isbnValidationRes.isbn13h) {
     throw new Err('ISBN does not match any known format', 400);
   }
-  let isbn13h = isbnValidationRes.isbn13h
+  let isbn13h = isbnValidationRes.isbn13h;
 
   if (!book.title) {
     throw new Err('Some fields are empty: title', 400);
@@ -59,9 +60,9 @@ function validateCreate(book) {
 }
 
 function getBooksByModulesIds(module_ids) {
-  module_book_map = {}
+  let module_book_map = {};
   module_ids.forEach(module_id => {
-    module_book_map[module_id] = getBooksByModule(module_id)
+    module_book_map[module_id] = getBooksByModule(module_id);
   });
   return module_book_map;
 }
@@ -128,30 +129,30 @@ function propose(proposedBookObj) {
   if (!proposedBookObj.title) {
     throw new Err('The book title field is empty', 400);
   }
-  title = proposedBookObj.title;
+  const title = proposedBookObj.title;
 
   if (!proposedBookObj.isbn) {
     throw new Err('The ISBN is not correct', 400);
   }
 
-  isbnValidationRes = ISBNValidator.parse(proposedBookObj.isbn);
-  console.log("isbnParseRes: \n", isbnValidationRes);
+  const isbnValidationRes = ISBNValidator.parse(proposedBookObj.isbn);
+  logger.info("isbnParseRes: \n", isbnValidationRes);
 
   if (!isbnValidationRes || !isbnValidationRes.isValid || !isbnValidationRes.isbn13h) {
     throw new Err('ISBN does not match any known format', 400);
   }
-  isbn13h = isbnValidationRes.isbn13h
+  const isbn13h = isbnValidationRes.isbn13h;
 
   if (!proposedBookObj.module_name) {
     throw new Err('The module name is not selected', 400);
   }
 
-  moduleObj = moduleService.getModuleByName(proposedBookObj.module_name);
+  const moduleObj = moduleService.getModuleByName(proposedBookObj.module_name);
   if (moduleObj == undefined) {
     throw new Err(`Module by name: ${proposedBookObj.module_name} not found`, 400);
   }
 
-  module_id = moduleObj.id;
+  const module_id = moduleObj.id;
 
   const proposedBookInsertResult = db.run('INSERT INTO proposed_books (module_id, isbn, title) VALUES (@module_id, @isbn13h, @title)', {module_id, isbn13h, title});
   
@@ -159,7 +160,7 @@ function propose(proposedBookObj) {
     throw new Err('Error in creating proposed book', 400);
   }
 
-  proposed_book_id = proposedBookInsertResult.lastInsertRowid;
+  // const proposed_book_id = proposedBookInsertResult.lastInsertRowid;
   let message = 'proposal has been submitted';
   return {message};
 }
@@ -172,7 +173,7 @@ function getProposedMultiple(page = 1) {
   return {
     data,
     meta
-  }
+  };
 }
 
 function deleteBook(bookObj) {
@@ -192,7 +193,7 @@ function deleteBook(bookObj) {
   return { message };
 }
 
-module.exports = {
+export {
   getMultiple,
   create,
   getBooksByModulesIds,
@@ -203,4 +204,4 @@ module.exports = {
   getProposedMultiple,
   update,
   deleteBook,
-}
+};

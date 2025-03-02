@@ -1,16 +1,22 @@
-const express = require('express');
-const session = require('express-session');
+import express from 'express';
+import { join } from 'path';
+import path from 'path';
+import session from 'express-session';
+import booksRouter from './routes/books.js';
+import adminBooksRouter from './routes/admin_books.js';
+import usersRouter from './routes/users.js';
+import modulesRouter from './routes/modules.js';
+import adminModulesRouter from './routes/admin_modules.js';
+import adminUsersRouter from './routes/admin_users.js';
+import homeRouter from './routes/home.js';
+import reviewsRouter from './routes/reviews.js';
+import { initTables } from './services/db.js';
+import logger from './services/logging.js';
+
+const __dirname = path.resolve();
 const app = express();
+// eslint-disable-next-line no-undef
 const port = process.env.PORT || 3000;
-const booksRouter = require('./routes/books');
-const adminBooksRouter = require('./routes/admin_books');
-const usersRouter = require('./routes/users')
-const modulesRouter = require('./routes/modules');
-const adminModulesRouter = require('./routes/admin_modules');
-const adminUsersRouter = require('./routes/admin_users');
-const homeRouter = require('./routes/home');
-const reviewsRouter = require('./routes/reviews');
-const db = require('./services/db');
 
 app.use(express.json());
 app.use(session({
@@ -19,7 +25,9 @@ app.use(session({
 	saveUninitialized: true
 }));
 
-db.initTables();
+app.use(express.static(join(__dirname)));
+
+initTables();
 
 function clientErrorHandler (err, req, res, next) {
   if (!err.statusCode)
@@ -29,28 +37,29 @@ function clientErrorHandler (err, req, res, next) {
 }
 
 function validateLogin(req, res, next) {
-  console.log("req.session.isloggedin: ", req.session.isloggedin);
+  logger.info("req.session.isloggedin: ", req.session.isloggedin);
   if (!req.session.isloggedin) {
     let error = new Error("User not logged-in");
     error.statusCode = 400;
-    next(error);
+    return next(error);
+  } else {
+    res.set('IS-ADMIN', req.session.user.role);
   }
-  res.set('IS-ADMIN', req.session.user.role);
-  next()
+  next();
 }
 
 function validateAdmin(req, res, next) {
-  console.log("req.session.user", req.session.user, req.session.user.role, !req.session.user.role);
+  logger.info("req.session.user", req.session.user, req.session.user.role, !req.session.user.role);
   if (!req.session.user.role) {
     let error = new Error("User not Admin");
     error.statusCode = 400;
     next(error);
   }
-  next()
+  next();
 }
 
 app.get('/', (req, res) => {
-  res.json({message: 'alive'});
+  res.render('index.html');
 });
 
 app.use('/users', usersRouter);
@@ -64,7 +73,7 @@ app.use('/books', adminBooksRouter);
 app.use('/modules', adminModulesRouter);
 app.use('/users', adminUsersRouter);
 
-app.use(clientErrorHandler)
+app.use(clientErrorHandler);
 app.listen(port, () => {
-  console.log(`Book Rating System Server listening at http://localhost:${port}`);
+  logger.info(`Book Rating System Server listening at http://localhost:${port}`);
 });

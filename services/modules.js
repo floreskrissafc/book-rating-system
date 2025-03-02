@@ -1,6 +1,6 @@
-const db = require('./db');
-const config = require('../config');
-const Err = require('./customError');
+import * as db from './db.js';
+import config from '../config.js';
+import Err from './customError.js';
 
 function getMultiple(page = 1) {
   const offset = (page - 1) * config.listPerPage;
@@ -10,7 +10,7 @@ function getMultiple(page = 1) {
   return {
     data,
     meta
-  }
+  };
 }
 
 function getModuleByName(module_name) {
@@ -85,10 +85,10 @@ function deleteModule(moduleObj) {
   return { message };
 }
 
-module.exports = {
+export {
   getMultiple,
   create,
   getModuleByName,
   update,
   deleteModule,
-}
+};

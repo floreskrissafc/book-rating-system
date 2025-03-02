@@ -1,12 +1,13 @@
-const express = require('express')
+import express from 'express';
 const router = express.Router();
-const reviewsService = require('../services/reviews');
+import * as reviewsService from '../services/reviews.js';
+import logger from '../services/logging.js';
 
 router.post('/', function (req, res, next) {
     try {
         res.json(reviewsService.create(req.body));
     } catch (error) {
-        console.log(`Error while posting review`, error.message);
+        logger.error(`Error while posting review`, error.message);
         next(error);
     }
 });
@@ -15,7 +16,7 @@ router.get('/bybook', function(req, res, next) {
     try {
         res.json(reviewsService.getReviewsByBookId(req.query.book_id));
     } catch (error) {
-        console.log(`Error while getting review by bookId`, error.message);
+        logger.error(`Error while getting review by bookId`, error.message);
         next(error);
     }
 });
@@ -24,7 +25,7 @@ router.get('/byuser', function(req, res, next) {
     try {
         res.json(reviewsService.getReviewsByUserId(req.query.user_id));
     } catch (error) {
-        console.log(`Error while getting review by user_id`, error.message);
+        logger.error(`Error while getting review by user_id`, error.message);
         next(error);
     }
 });
@@ -44,9 +45,9 @@ router.delete('/', function(req, res, next) {
         }
         res.json(reviewsService.deleteReview(req.body.book_id, req.body.user_id));
     } catch (error) {
-        console.log(`Error while deleting review`, error.message);
+        logger.error(`Error while deleting review`, error.message);
         next(error);
     }
 });
 
-module.exports = router;
+export default router;
