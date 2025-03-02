@@ -125,7 +125,11 @@ async function update(userBody) {
 
     if (profile_picture) {
         if (user.profile_picture != config.DEFAULT_PROFILE_PICTURE && user.profile_picture != profile_picture) {
-            await fs.unlink(user.profile_picture);
+            try {
+                await fs.unlink(user.profile_picture);                
+            } catch (error) {
+                logger.error(`deleting previous file at :${user.profile_picture} failed with error: ${error.message}`);
+            }
         }
         updates.push(await updateUserField(id, 'profile_picture', profile_picture));
     }

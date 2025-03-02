@@ -17,13 +17,14 @@ async function updateProfile(){
     try { 
         const first_name = document.getElementById("name_input").value;
         const last_name = document.getElementById("last_name_input").value;
-        const profile_picture = document.getElementById("profile_pic_input").value;
+        const profile_picture = document.getElementById("profile_pic_input").files[0];
+        let formData = new FormData();
+        formData.append('first_name', first_name);
+        formData.append('last_name', last_name);
+        formData.append('profile_pic_input', profile_picture);
         const response = await fetch("http://localhost:3000/users/update", { 
             method: "POST", // Making a POST request to create the user
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ first_name, last_name, profile_picture }) 
+            body: formData,
         });
         if (response.ok) {
             updateMessage.textContent = "Profile information was updated!";
