@@ -24,7 +24,7 @@ logger.info(`storage: ${JSON.stringify(storage, null, 4)}`);
 router.post('/update', upload.single(config.PROFILE_UPLOAD_NAME), async function(req, res, next) {
     try {
       if (req.file) {
-        req.body.profile_picture = path.resolve(req.file.path);
+        req.body.profile_picture = `../${req.file.path}`;
       }
       req.body.email = req.session.user.email;
       let updateRes = await users.update(req.body);
