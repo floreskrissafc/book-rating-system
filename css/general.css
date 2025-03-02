@@ -30,7 +30,7 @@ figure {
 }
 
 .button_green:hover {
-    background-color: #207347;
+    background-color: #207347 !important;
     cursor: pointer;
 }
 
@@ -40,7 +40,7 @@ figure {
 }
 
 .button_blue:hover {
-    background-color: #0056b3;
+    background-color: #0056b3 !important;
     cursor: pointer;
 }
 
@@ -49,7 +49,7 @@ figure {
 }
 
 .button_red:hover {
-    background-color: darkred;
+    background-color: darkred !important;
     cursor: pointer;
 }
 
@@ -58,7 +58,7 @@ figure {
 }
 
 .button_gray:hover {
-    background-color: darkslategrey;
+    background-color: darkslategrey !important;
 }
 
 .button {
@@ -83,12 +83,6 @@ figure {
     all: unset;
     display: inline-block;
 }
-
-/*
-.margin_right_1 {
-    margin-right: 0.5em;
-}
-*/
 
 .margin_bottom_1 {
     margin-bottom: 0.5em;

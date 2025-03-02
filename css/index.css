@@ -166,6 +166,7 @@ figure {
 
     #login_container_nav {
         display: flex;
+        flex-direction: column;
     }
 
     #form_inline {

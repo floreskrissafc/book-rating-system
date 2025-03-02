@@ -12,6 +12,19 @@
         <link rel="stylesheet" href="../css/confirmation_modal.css" />
         <script src="https://cdn.jsdelivr.net/npm/handlebars/dist/handlebars.min.js"></script>
         <script src="../scripts/load_nav_template.js"></script>
+        <style>
+            .message_container{
+                margin-top: 1em;
+                display: none;
+                justify-content: center;
+            }
+            .message {
+                text-align: center;
+                color: red;
+                font-weight: 700;
+                font-size: 20px;
+            }
+        </style>
     </head>
     <body>
         <div class="container">
@@ -24,7 +37,7 @@
             <div class="content_90">
                 <h2 class="page_activity margin_bottom_1">Profile Page</h2>
                 <div class="main_form_container">
-                    <form class="form_box">
+                    <form id="update_profile_form" class="form_box" enctype="multipart/form-data">
                         <div class="form_row">
                             <label for="name_input" class="form_label">Name</label>
                             <input type="text" class="form_input" id="name_input" placeholder="Name" />
@@ -51,10 +64,14 @@
                         </div>
 
                         <div class="form_submit">
-                            <button id="submit_btn1" onclick="" type="submit" class="button_green button submit_btn">
-                                Update
+                            <button id="submit_btn1" type="submit" class="button_green button submit_btn">
+                                Update Profile
                             </button>
-                            <button id="cancel_btn" onclick="" type="submit" class="button button_gray">Cancel</button>
+                            <button id="cancel_btn" type="button" class="button button_gray">Cancel</button>
+                        </div>
+
+                        <div id="update_message_container" class="form_row message_container">
+                            <p id="update_message" class="message"></p>
                         </div>
                     </form>
                 </div>
@@ -107,8 +124,9 @@
                                 placeholder="repeat new password" />
                         </div>
 
-                        <p id="error_message" style=""></p>
-                        <p id="success_message" style="color: green; display: none"></p>
+                        <div id="update_password_message_container" class="form_row message_container">
+                            <p id="update_password_message" class="message"></p>
+                        </div>
 
                         <div class="form_submit">
                             <button id="submit_btn2" onclick="" type="submit" class="button_green button submit_btn">
@@ -119,8 +137,8 @@
                 </div>
             </div>
         </main>
-        <script src="../scripts/change_password.js"></script>
         <script src="../scripts/nav_bar_logged_in.js"></script>
-        <script src="../scripts/edit_profile.js"></script>
+        <script type="module" src="../scripts/edit_profile.js"></script>
+        <!-- <script src="../scripts/change_password.js"></script> -->
     </body>
 </html>

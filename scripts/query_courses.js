@@ -1,29 +1,30 @@
-async function loadCourses() {
+async function loadTemplate(courses) {
     try {
         // Fetching the courses template
         const templateResponse = await fetch("/templates/courses_list.hbs");
         const templateText = await templateResponse.text();
         const template = Handlebars.compile(templateText);
-
-        // Fetching the courses data from the server
-        //const response = await fetch("/api/courses");
-
-        //const courses = await response.json();
-
-        const courses = [
-            { id: 1, courseCode: "CM2020", courseName: "Algorithms" },
-            { id: 2, courseCode: "CM2021", courseName: "Discrete Mathematics" },
-            { id: 3, courseCode: "CM2022", courseName: "Web Development" },
-            { id: 4, courseCode: "CM2023", courseName: "Agile Software Dev" }
-        ];
-
-        // Generating the actual HTML
-        const html = template({ courses });
-
-        // Inserting the html into the page that required it
-        document.getElementById("courses_list").innerHTML = html;
+        const html = template({ courses }); // Generating the actual HTML
+        document.getElementById("courses_list").innerHTML = html; // Inserting the html into the page that required it
     } catch (error) {
-        console.error("Error loading courses' list:", error);
+        console.error("Error loading template for courses' list:", error);
+    }
+}
+
+async function loadCourses() {
+    try {
+        const response = await fetch("http://localhost:3000/modules", { 
+            method: "GET", // Get the list of courses already in the database
+        });
+        if ( !response.ok){
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json(); // Converting the response of type ReadableStream into a JSON
+        const courses = data.data;
+        loadTemplate(courses);
+        
+    } catch (error) {
+        console.error("Error fetching course list:", error);
     }
 }
 

@@ -1,9 +1,9 @@
 <ul id="course_list">
     {{#each courses}}
-    <li data-name="{{courseName}}" data-code="{{courseCode}}">
+    <li data-name="{{name}}" data-code="{{module_code}}">
         <div class="course_container">
-            <p>{{courseCode}} - {{courseName}}</p>
-            <button class="button button_green" onClick="getBooksForCourse('{{courseCode}}')">See course</button>
+            <p>{{module_code}} - {{name}}</p>
+            <button class="button button_green" onClick="getBooksForCourse('{{id}}')">See course</button>
         </div>
     </li>
     {{/each}}

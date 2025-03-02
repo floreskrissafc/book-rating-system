@@ -43,4 +43,5 @@ function handleResize() {
         openDropdownMenuItemObjs.clear(); // delete all elements
     }
 }
+
 window.addEventListener("resize", handleResize);

@@ -46,7 +46,7 @@ function validateNewUser(user) {
     const emailDomain = user.email.substring(user.email.lastIndexOf('@') + 1);
     logger.info(`emailDomain: ${emailDomain}`);
     if (!config.VALID_EMAIL_DOMAINS.includes(emailDomain)) {
-        throw new Err(`Only ${config.VALID_EMAIL_DOMAINS.join(',')} emails are allowed`, 401);
+        throw new Err("Only @london.ac.uk or @student.london.ac.uk emails are allowed", 401);
     }
 
 
@@ -142,7 +142,9 @@ async function login(loginBody) {
 
     let user = getUserByEmail(email);
     if (user == undefined) {
-        throw new Err("no user in the system for the given email, create a new account", 404);
+        let error = new Error("User does not exist.");
+        error.statusCode = 400;
+        throw error;
     }
     const isPasswordMatched = await bcrypt.compare(password, user.password_hash);
     if (!isPasswordMatched) {

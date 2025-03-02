@@ -13,7 +13,6 @@ export function fillEditForm(rating) {
     const editRatingDisplay = document.getElementById("edit_review_selected_rating");
     const editReviewForm = document.getElementById("edit_review_form");
     let selectedRating = rating;
-
     function updateEditedStars(new_rating) {
         // Function that updates the stars visually by changing their class
         editStars.forEach((star) => {

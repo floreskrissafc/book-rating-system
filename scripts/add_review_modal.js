@@ -27,13 +27,11 @@ document.addEventListener("DOMContentLoaded", function () {
     let selectedRating = 1; // Default rating is 1 star
 
     addReviewBtn.addEventListener("click", (event) => {
-        console.log("add review button was clicked");
         event.preventDefault(); // Preventing the button from submitting the form
         addReviewModal.style.display = "flex";
     });
 
     submitReviewBtn.addEventListener("click", () => {
-        console.log("submit review was clicked");
         event.preventDefault(); // Preventing the button from submitting the form
         submitReview();
         addReviewModal.style.display = "none";
