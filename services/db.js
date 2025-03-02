@@ -14,17 +14,17 @@ function initTables() {
 }
 
 function queryAll(sql, params) {
-  logger.info("db query:", sql, params);
+  logger.info(`db query ${sql} ${JSON.stringify(params, null, 4)}`);
   return db.prepare(sql).all(params);
 }
 
 function run(sql, params) {
-  logger.info("db run:", sql, params);
+  logger.info(`db run: ${sql} ${JSON.stringify(params, null, 4)}`);
   return db.prepare(sql).run(params);
 }
 
 function queryOne(sql, params) {
-  logger.info("queryOne: ", sql, params);
+  logger.info(`queryOne: ${sql} ${JSON.stringify(params, null, 4)}`);
   return db.prepare(sql).get(params);
 }
 

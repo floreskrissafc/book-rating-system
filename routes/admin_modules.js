@@ -28,6 +28,7 @@ router.post('/update', function(req, res, next) {
   }
 });
 
+/** admin only route to delete a module. */
 router.delete('/', function(req, res, next) {
   try {
     res.json(modules.deleteModule(req.body));

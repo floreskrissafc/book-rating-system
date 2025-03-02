@@ -64,7 +64,7 @@ function clientErrorHandler (err, req, res, next) {
  * @returns the call to next function.
  */
 function validateLogin(req, res, next) {
-  logger.info("req.session.isloggedin: ", req.session.isloggedin);
+  logger.info(`req.session.isloggedin: ${req.session.isloggedin}`);
   if (!req.session.isloggedin) {
     let error = new Error("User not logged-in");
     error.statusCode = 401;
@@ -88,7 +88,6 @@ function validateLogin(req, res, next) {
  * @param {function} next - The next middleware function in the stack.
  */
 function validateAdmin(req, res, next) {
-  logger.info("req.session.user", req.session.user, req.session.user.role, !req.session.user.role);
   if (!req.session.user.role) {
     let error = new Error("User not Admin");
     error.statusCode = 401;

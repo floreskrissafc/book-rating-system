@@ -13,6 +13,7 @@ const config = {
     "london.ac.uk",
     "student.london.ac.uk"
   ],
+  DEFAULT_PROFILE_PICTURE: "../imgs/user_profiles/default_profile.png", 
 };
 
 export default config;

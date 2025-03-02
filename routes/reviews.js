@@ -3,6 +3,7 @@ const router = express.Router();
 import * as reviewsService from '../services/reviews.js';
 import logger from '../services/logging.js';
 
+/** create a new review */
 router.post('/', function (req, res, next) {
     try {
         res.json(reviewsService.create(req.body));
@@ -12,6 +13,7 @@ router.post('/', function (req, res, next) {
     }
 });
 
+/** get all reviews given a particular book id. */
 router.get('/bybook', function(req, res, next) {
     try {
         res.json(reviewsService.getReviewsByBookId(req.query.book_id));
@@ -21,6 +23,7 @@ router.get('/bybook', function(req, res, next) {
     }
 });
 
+/** get all reviews given a particular users id. */
 router.get('/byuser', function(req, res, next) {
     try {
         res.json(reviewsService.getReviewsByUserId(req.query.user_id));

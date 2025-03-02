@@ -72,7 +72,10 @@ function isUserAdmin(email) {
 
 async function register(userBody) {
     validateNewUser(userBody);
-    const { email, password, first_name, last_name, profile_picture } = userBody;
+    let { email, password, first_name, last_name, profile_picture } = userBody;
+    if (!profile_picture || length(profile_picture) <= 0) {
+        profile_picture = config.DEFAULT_PROFILE_PICTURE;
+    }
     let role = isUserAdmin(email);
     let password_hash = await bcrypt.hash(password, config.BCRYPT_SALT);
     const result = db.run('INSERT INTO users (email, password_hash, role, first_name, last_name, profile_picture) VALUES (@email, @password_hash, @role, @first_name, @last_name, @profile_picture)', { email, password_hash, role, first_name, last_name, profile_picture });

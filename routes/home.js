@@ -31,12 +31,6 @@ import logger from '../services/logging.js';
             "name": "module3",
             "books": []
         },
-        {
-            "id": 4,
-            "module_code": "mc4",
-            "name": "module4",
-            "books": []
-        }
     ],
     "meta": {
         "page": 1
