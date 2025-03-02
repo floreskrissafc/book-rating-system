@@ -9,7 +9,7 @@ router.delete('/', function(req, res, next) {
         // NOTE: this will also delete other foreign key referred child table rows like reviews etc.
         res.json(users.deleteUser(req.body, req.session.user));
     } catch (error) {
-        logger.error(`Error deleting user`, error.message);
+        logger.error(`Error deleting user ${error.message}`);
         next(error);
     }
 });

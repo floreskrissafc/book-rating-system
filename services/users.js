@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt';
 import Err from './customError.js';
 import emailValidator from "email-validator";
 import logger from '../services/logging.js';
+import fs from 'fs/promises';
 
 function getAllUsers(page = 1) {
     const offset = (page - 1) * config.USER_LIST_PER_PAGE;
@@ -28,7 +29,7 @@ NOTE: this function doe not validate if all the NOT NULL fields are populated.
 Since that is handled by DB.
 */
 function validateNewUser(user) {
-    logger.info('user:\n', user);
+    logger.info(`user: ${user}`);
 
     if (!user) {
         throw new Err('No user is provided', 400);
@@ -43,7 +44,7 @@ function validateNewUser(user) {
     }
 
     const emailDomain = user.email.substring(user.email.lastIndexOf('@') + 1);
-    logger.info('emailDomain: ', emailDomain);
+    logger.info(`emailDomain: ${emailDomain}`);
     if (!config.VALID_EMAIL_DOMAINS.includes(emailDomain)) {
         throw new Err(`Only ${config.VALID_EMAIL_DOMAINS.join(',')} emails are allowed`, 401);
     }
@@ -65,7 +66,7 @@ function validateNewUser(user) {
 
 function isUserAdmin(email) {
     const admin_email = db.queryOne(`select * FROM admin_emails WHERE email = ?`, email);
-    logger.info('admin_email: ', admin_email, admin_email != undefined);
+    logger.info(`admin_email: ${admin_email}, ${admin_email != undefined}`);
     const is_admin = Number(admin_email != undefined);
     return is_admin;
 }
@@ -87,25 +88,65 @@ async function register(userBody) {
     return {message};
 }
 
+async function updateUserField(id, name, value) {
+    if (!id) {
+        throw new Err(`Invalid user Id ${id}`, 500);
+    }
+    if (!name) {
+        throw new Err(`Invalid name ${name}`, 500);
+    }
+    if (!value) {
+        throw new Err(`Invalid value ${value}`, 500);
+    }
+    const result = db.run(`UPDATE users SET ${name}=@value WHERE id=@id`, {value, id});
+    if (!result.changes) {
+     throw new Err(`Error updating user ${name}: ${value}`, 500);
+    }
+    return `update ${name}: ${value}`;
+}
+
+async function update(userBody) {
+    let { email, first_name, last_name, profile_picture } = userBody;
+    let user = getUserByEmail(email);
+    if (user == undefined) {
+        return new Err(`no user in the system for the given email: ${email}`, 404);
+    }
+    let id = user.id;
+
+    let updates = [];
+    
+    if (first_name) {
+        updates.push(await updateUserField(id, 'first_name', first_name));
+    }
+
+    if (last_name) {
+        updates.push(await updateUserField(id, 'last_name', last_name));
+    }
+
+    if (profile_picture) {
+        if (user.profile_picture != config.DEFAULT_PROFILE_PICTURE && user.profile_picture != profile_picture) {
+            await fs.unlink(user.profile_picture);
+        }
+        updates.push(await updateUserField(id, 'profile_picture', profile_picture));
+    }
+
+    return {message: updates.join(', ')};
+
+}
+
 async function login(loginBody) {
     const { email, password } = loginBody;
     if (!email || !password) {
-        let error = new Error("invalid email or password");
-        error.statusCode = 400;
-        throw error;
+        throw new Err("invalid email or password", 401);
     }
 
     let user = getUserByEmail(email);
     if (user == undefined) {
-        let error = new Error("no user in the system for the given email, create a new account");
-        error.statusCode = 400;
-        throw error;
+        throw new Err("no user in the system for the given email, create a new account", 404);
     }
     const isPasswordMatched = await bcrypt.compare(password, user.password_hash);
     if (!isPasswordMatched) {
-        let error = new Error("wrong password");
-        error.statusCode = 400;
-        throw error;
+        throw new Err("wrong password", 401);
     }
 
     return {user};
@@ -114,18 +155,15 @@ async function login(loginBody) {
 async function resetPassword(resetBody) {
     const { email, oldPassword, newPassword } = resetBody;
     if (newPassword == oldPassword) {
-        let error = new Error(`Password must be not equal to previous password.`);
-        throw error;
+        throw new Err(`Password must be not equal to previous password.`, 401);
     }
         
     if (newPassword.length < config.PASSWORD_MIN_LENGTH) {
-        let error = new Error(`Password must be with length greater than ${config.PASSWORD_MIN_LENGTH} characters`);
-        error.statusCode = 400;
-        throw error;
+        throw new Err(`Password must be with length greater than ${config.PASSWORD_MIN_LENGTH} characters`, 404);
     }
 
     const { user } = await login({email, password: oldPassword});
-    logger.info('resetting password for user: ', user);
+    logger.info(`resetting password for user: ${user}`);
     
     let newPasswordhash = await bcrypt.hash(newPassword, config.BCRYPT_SALT);
     const results = db.run(`UPDATE users SET password_hash = (@newPasswordhash) WHERE email = (@email)`, {newPasswordhash, email});
@@ -168,4 +206,5 @@ export {
     getUserByEmail,
     getUserInfoByID,
     deleteUser,
+    update,
 };

@@ -136,7 +136,7 @@ function propose(proposedBookObj) {
   }
 
   const isbnValidationRes = ISBNValidator.parse(proposedBookObj.isbn);
-  logger.info("isbnParseRes: \n", isbnValidationRes);
+  logger.info(`isbnParseRes: ${JSON.stringify(isbnValidationRes, null, 4)}`, );
 
   if (!isbnValidationRes || !isbnValidationRes.isValid || !isbnValidationRes.isbn13h) {
     throw new Err('ISBN does not match any known format', 400);

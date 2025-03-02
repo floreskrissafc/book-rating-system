@@ -2,7 +2,7 @@ import * as db from './db.js';
 import config from '../config.js';
 import * as usersService from '../services/users.js';
 import * as booksService from '../services/books.js';
-import logger from '../services/logging.js';
+import Err from '../services/customError.js';
 
 import {
 	RegExpMatcher,
@@ -16,47 +16,35 @@ const profanity = new RegExpMatcher({
 });
 
 function validateReview(review) {
-    let messages = [];
     const { book_id, user_id, comment, rating } = review;
     if (!book_id) {
-        messages.push(`no book_id present`);
+        throw new Err(`no book_id present`, 400);
     }
 
     if (!user_id) {
-        messages.push(`no user_id present`);
+        throw new Err(`no user_id present`, 400);
     }
 
     if (!rating) {
-        messages.push(`no rating present`);
+        throw new Err(`no rating present`, 400);
     }
 
     if (comment && comment.length > config.COMMENT_CHAR_MAX_LENGTH) {
-        messages.push(`comment length greater than max allowed: ${config.COMMENT_CHAR_MAX_LENGTH}`);
+        throw new Err(`comment length greater than max allowed: ${config.COMMENT_CHAR_MAX_LENGTH}`, 400);
     }
 
     if (profanity.hasMatch(comment)) {
-        messages.push(`please remove offensive words from review`);
-    }
-    
-    if (messages.length) {
-        let errorset = new Set(messages);
-        let error = new Error([...errorset].join());
-        error.statusCode = 400;
-        throw error;
+        throw new Err(`please remove offensive words from review`, 400);
     }
 }
 
 function getReviewsByBookId(book_id) {
     if (!book_id) {
-        let error = new Error(`no book_id present`);
-        error.statusCode = 400;
-        throw error;
+        throw new Err(`no book_id present`, 404);
     }
     let data = db.queryAll(`SELECT * FROM reviews WHERE book_id = ?`, [book_id]);
     if (!data || !data.length) {
-        let error = new Error(`There are no reviews for this book yet. Be the first to write a review and share your thoughts with other students`);
-        error.statusCode = 400;
-        throw error;
+        throw new Err(`There are no reviews for this book yet. Be the first to write a review and share your thoughts with other students`, 404);
     }
 
     data = data.map((review) => {
@@ -72,15 +60,11 @@ function getReviewsByBookId(book_id) {
 
 function getReviewsByUserId(user_id) {
     if (!user_id) {
-        let error = new Error(`no user_id present`);
-        error.statusCode = 400;
-        throw error;
+        throw new Err(`no user_id present`, 404);
     }
     let data = db.queryAll(`SELECT * FROM reviews WHERE user_id = ?`, [user_id]);
     if (!data || !data.length) {
-        let error = new Error(`You have not created any reviews yet`);
-        error.statusCode = 400;
-        throw error;
+        throw new Err(`You have not created any reviews yet`, 404);
     }
 
     data = data.map((review) => {
@@ -97,7 +81,6 @@ function getReviewsByUserId(user_id) {
 function create(reviewBody) {
     validateReview(reviewBody);
     const { book_id, user_id, comment, rating } = reviewBody;
-    logger.info(book_id, user_id, comment, rating);
     const result = db.run('INSERT OR REPLACE INTO reviews (book_id, user_id, comment, rating) VALUES (@book_id, @user_id, @comment, @rating)', {book_id, user_id, comment, rating});
     let message = 'Error in creating review';
     if (result.changes) {

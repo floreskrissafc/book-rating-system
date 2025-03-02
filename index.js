@@ -13,6 +13,8 @@ import reviewsRouter from './routes/reviews.js';
 import { initTables } from './services/db.js';
 import logger from './services/logging.js';
 import config from './config.js';
+import Err from './services/customError.js';
+import setUsersRouter from './routes/set_users.js';
 
 const __dirname = path.resolve();
 const app = express();
@@ -28,6 +30,7 @@ app.use(session({
 }));
 
 app.use(express.static(join(__dirname)));
+
 
 // initialize the sql database with tables and some primitive data.
 initTables();
@@ -66,8 +69,7 @@ function clientErrorHandler (err, req, res, next) {
 function validateLogin(req, res, next) {
   logger.info(`req.session.isloggedin: ${req.session.isloggedin}`);
   if (!req.session.isloggedin) {
-    let error = new Error("User not logged-in");
-    error.statusCode = 401;
+    let error = new Err("User not logged-in", 401);
     return next(error);
   } else {
     res.set('IS-ADMIN', req.session.user.role);
@@ -89,8 +91,7 @@ function validateLogin(req, res, next) {
  */
 function validateAdmin(req, res, next) {
   if (!req.session.user.role) {
-    let error = new Error("User not Admin");
-    error.statusCode = 401;
+    let error = new Err("User not Admin", 401);
     next(error);
   }
   next();
@@ -107,6 +108,7 @@ app.use('/users', usersRouter);
 
 // Access to all the endpoints below should have users already validated via login.
 app.use(validateLogin);
+app.use('/users', setUsersRouter);
 
 app.get('/user', (req, res) => {
   return res.json(req.session.user);

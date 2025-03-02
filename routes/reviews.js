@@ -2,13 +2,14 @@ import express from 'express';
 const router = express.Router();
 import * as reviewsService from '../services/reviews.js';
 import logger from '../services/logging.js';
+import Err from '../services/customError.js';
 
 /** create a new review */
 router.post('/', function (req, res, next) {
     try {
         res.json(reviewsService.create(req.body));
     } catch (error) {
-        logger.error(`Error while posting review`, error.message);
+        logger.error(`Error while posting review ${error.message}`);
         next(error);
     }
 });
@@ -18,7 +19,7 @@ router.get('/bybook', function(req, res, next) {
     try {
         res.json(reviewsService.getReviewsByBookId(req.query.book_id));
     } catch (error) {
-        logger.error(`Error while getting review by bookId`, error.message);
+        logger.error(`Error while getting review by bookId ${error.message}`);
         next(error);
     }
 });
@@ -28,27 +29,25 @@ router.get('/byuser', function(req, res, next) {
     try {
         res.json(reviewsService.getReviewsByUserId(req.query.user_id));
     } catch (error) {
-        logger.error(`Error while getting review by user_id`, error.message);
+        logger.error(`Error while getting review by user_id ${error.message}`);
         next(error);
     }
 });
 
-// This is used for both "remove a review by user" and "Remove a review for a  book by admin."
+/** this is used to delete a review 
+ * NOTE: this same route is used for both "remove a review by user" and "Remove a review for a book by admin.
+*/
 router.delete('/', function(req, res, next) {
     try {
         if (!req.body.book_id) {
-            let error = new Error(`no book_id present in req.body`);
-            error.statusCode = 400;
-            throw error;
+            throw new Err(`no book_id present in req.body`, 404);
         }
         if (!req.body.user_id) {
-            let error = new Error(`no user_id present in req.body`);
-            error.statusCode = 400;
-            throw error;
+            throw new Err(`no user_id present in req.body`, 404);
         }
         res.json(reviewsService.deleteReview(req.body.book_id, req.body.user_id));
     } catch (error) {
-        logger.error(`Error while deleting review`, error.message);
+        logger.error(`Error while deleting review ${error.message}`);
         next(error);
     }
 });

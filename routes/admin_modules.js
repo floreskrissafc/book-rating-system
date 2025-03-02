@@ -12,7 +12,7 @@ router.post('/', function(req, res, next) {
       if (err.message.toLowerCase().includes('unique constraint failed')) {
         next(new Err("Either Module code or module already exists in the system", 400));
       } else {
-        logger.error(`Error while adding modules `, err.message);
+        logger.error(`Error while adding modules ${err.message}`);
         next(err);
       }
     }
@@ -23,7 +23,7 @@ router.post('/update', function(req, res, next) {
   try {
     res.json(modules.update(req.body));
   } catch (error) {
-    logger.error('Error while deleting module', error.message);
+    logger.error('Error while deleting module ${error.message}');
     next(error);
   }
 });
@@ -33,7 +33,7 @@ router.delete('/', function(req, res, next) {
   try {
     res.json(modules.deleteModule(req.body));
   } catch (error) {
-    logger.error('Error while deleting module', error.message);
+    logger.error('Error while deleting module ${error.message}');
     next(error);
   }
 });

@@ -14,6 +14,8 @@ const config = {
     "student.london.ac.uk"
   ],
   DEFAULT_PROFILE_PICTURE: "../imgs/user_profiles/default_profile.png", 
+  PROFILE_UPLOAD_NAME: "profile_pic_input",
+  BOOK_UPLOAD_NAME: "book_pic_input",
 };
 
 export default config;

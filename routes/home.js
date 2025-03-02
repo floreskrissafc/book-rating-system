@@ -47,12 +47,12 @@ router.get('/', function (req, res, next) {
                 ...module,
                 books: books.getBooksByModule(module.id)
             });
-            logger.info('module: \n', data);
+            logger.info(`module: ${JSON.stringify(data, null, 4)}`);
         });
         const meta = modulesRes.meta;
         return res.json({data, meta}); 
     } catch (error) {
-        logger.error(`Error while getting homepage `, error.message);
+        logger.error(`Error while getting homepage ${error.message}`);
         next(error);
     }
 

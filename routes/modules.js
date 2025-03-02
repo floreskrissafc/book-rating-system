@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
   try {
     res.json(modules.getMultiple(req.query.page));
   } catch(err) {
-    logger.error(`Error while getting modules `, err.message);
+    logger.error(`Error while getting modules ${err.message}`);
     next(err);
   }
 });
@@ -24,7 +24,7 @@ router.post('/filter', function(req, res, next) {
     }
     res.json(books.getBooksByModulesIds(req.body.ids));
   } catch (error) {
-    logger.error(`Error while getting books by module id`, error.message);
+    logger.error(`Error while getting books by module id ${error.message}`);
     next(error);
   }
 });

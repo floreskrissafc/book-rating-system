@@ -18,17 +18,8 @@ function getModuleByName(module_name) {
 }
 
 function validateCreate(module) {
-  let messages = [];
-
   if (!module || !module.module_code || !module.name) {
-    messages.push('Either Module code or module name, or both are not entered');
-  }
-  
-  if (messages.length) {
-    let errorset = new Set(messages);
-    let error = new Error([...errorset].join());
-    error.statusCode = 400;
-    throw error;
+    throw new Err(`Either Module code or module name, or both are not entered`, 401);
   }
 }
 
