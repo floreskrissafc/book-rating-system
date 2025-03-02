@@ -6,7 +6,7 @@ function populateForm(data) {
     // Function to populate the form fields in the profile_page
     document.getElementById("name_input").value = data.first_name;
     document.getElementById("last_name_input").value = data.last_name;
-    document.getElementById("current_profile_img").src = data.profile_picture;
+    document.getElementById("current_profile_img").src = "../" + data.profile_picture;
 }
 
 async function updateProfile(){

@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS users (
 	role INT NOT NULL,
 	first_name VARCHAR(255) NOT NULL,
 	last_name VARCHAR(255) NOT NULL,
-	profile_picture VARCHAR(255) DEFAULT "../imgs/user_profiles/default_profile.png" NOT NULL
+	profile_picture VARCHAR(255) DEFAULT "imgs/user_profiles/default_profile.png" NOT NULL
 );
 
 INSERT OR IGNORE INTO admin_emails (email) VALUES

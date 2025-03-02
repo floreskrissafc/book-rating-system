@@ -5,6 +5,7 @@ import Err from './customError.js';
 import emailValidator from "email-validator";
 import logger from '../services/logging.js';
 import fs from 'fs/promises';
+import path from 'path';
 
 function getAllUsers(page = 1) {
     const offset = (page - 1) * config.USER_LIST_PER_PAGE;
@@ -126,7 +127,7 @@ async function update(userBody) {
     if (profile_picture) {
         if (user.profile_picture != config.DEFAULT_PROFILE_PICTURE && user.profile_picture != profile_picture) {
             try {
-                await fs.unlink(user.profile_picture);                
+                await fs.unlink(path.resolve(user.profile_picture));
             } catch (error) {
                 logger.error(`deleting previous file at :${user.profile_picture} failed with error: ${error.message}`);
             }
