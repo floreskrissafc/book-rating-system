@@ -103,7 +103,7 @@ async function updateUserField(id, name, value) {
     if (!result.changes) {
      throw new Err(`Error updating user ${name}: ${value}`, 500);
     }
-    return `update ${name}: ${value}`;
+    return `updated ${name}: ${value}`;
 }
 
 async function update(userBody) {
@@ -135,8 +135,8 @@ async function update(userBody) {
         updates.push(await updateUserField(id, 'profile_picture', profile_picture));
     }
 
-    return {message: updates.join(', ')};
-
+    logger.info(`${updates.join(', ')}`);
+    return getUserByEmail(email);
 }
 
 async function login(loginBody) {

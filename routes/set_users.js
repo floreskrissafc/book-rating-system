@@ -27,8 +27,9 @@ router.post('/update', upload.single(config.PROFILE_UPLOAD_NAME), async function
         req.body.profile_picture = req.file.path;
       }
       req.body.email = req.session.user.email;
-      let updateRes = await users.update(req.body);
-      return res.json(updateRes);
+      let updateUser = await users.update(req.body);
+      req.session.user = updateUser;
+      return res.json(updateUser);
     } catch (error) {
       logger.error(`Error while updating user ${error.message}`);
       next(error);
