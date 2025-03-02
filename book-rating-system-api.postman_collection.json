@@ -384,7 +384,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"email\": \"admin1@mailinator.com\",\n            \"password_hash\": \"$2b$10$mai4CJ6cslayeuAoq5VMzOStyzHr0Y2lOTpom.LzxSpSm0kWvlAia\",\n            \"role\": 1,\n            \"first_name\": \"admin1\",\n            \"last_name\": \"1\",\n            \"profile_picture\": null\n        }\n    ],\n    \"meta\": {\n        \"page\": 1\n    }\n}"
+					"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"email\": \"admin1@london.ac.uk\",\n           ,\n            \"role\": 1,\n            \"first_name\": \"admin1\",\n            \"last_name\": \"1\",\n            \"profile_picture\": null\n        }\n    ],\n    \"meta\": {\n        \"page\": 1\n    }\n}"
 				}
 			]
 		},
@@ -398,7 +398,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"admin1@mailinator.com\",\n    \"password\": \"admin1password\",\n    \"role\": 1,\n    \"first_name\": \"admin1\",\n    \"last_name\": \"1\"\n}",
+					"raw": "{\n    \"email\": \"admin1@london.ac.uk\",\n    \"password\": \"admin1password\",\n    \"role\": 1,\n    \"first_name\": \"admin1\",\n    \"last_name\": \"1\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -426,7 +426,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"one@mailinator.com\",\n    \"password\": \"password1\",\n    \"role\": 1,\n    \"first_name\": \"one\",\n    \"last_name\": \"1\"\n}",
+							"raw": "{\n    \"email\": \"one@london.ac.uk\",\n    \"password\": \"password1\",\n    \"role\": 1,\n    \"first_name\": \"one\",\n    \"last_name\": \"1\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -489,7 +489,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"one@mailinator.com\",\n    \"password\": \"password1\",\n    \"role\": 0,\n    \"first_name\": \"one\",\n    \"last_name\": \"1\"\n}",
+							"raw": "{\n    \"email\": \"one@london.ac.uk\",\n    \"password\": \"password1\",\n    \"role\": 0,\n    \"first_name\": \"one\",\n    \"last_name\": \"1\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -552,7 +552,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"two@mailinator.com\",\n    \"password\": \"password2\",\n    \"role\": 0,\n    \"first_name\": \"two\",\n    \"last_name\": \"2\"\n}",
+							"raw": "{\n    \"email\": \"two@london.ac.uk\",\n    \"password\": \"password2\",\n    \"role\": 0,\n    \"first_name\": \"two\",\n    \"last_name\": \"2\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -620,7 +620,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"one@mailinator.com\",\n    \"password\": \"password1\",\n    \"role\": 1,\n    \"first_name\": \"one\",\n    \"last_name\": \"1\"\n}",
+					"raw": "{\n    \"email\": \"one@london.ac.uk\",\n    \"password\": \"password1\",\n    \"role\": 1,\n    \"first_name\": \"one\",\n    \"last_name\": \"1\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -654,7 +654,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"one@mailinator.com\",\n    \"password\": \"password1\",\n    \"role\": 1,\n    \"first_name\": \"one\",\n    \"last_name\": \"1\"\n}",
+							"raw": "{\n    \"email\": \"one@london.ac.uk\",\n    \"password\": \"password1\",\n    \"role\": 1,\n    \"first_name\": \"one\",\n    \"last_name\": \"1\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -727,7 +727,7 @@ floreskrissafc
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"one@mailinator.com\",\n    \"password\": \"password1\",\n    \"role\": 1,\n    \"first_name\": \"one\",\n    \"last_name\": \"1\"\n}",
+							"raw": "{\n    \"email\": \"one@london.ac.uk\",\n    \"password\": \"password1\",\n    \"role\": 1,\n    \"first_name\": \"one\",\n    \"last_name\": \"1\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -795,7 +795,7 @@ floreskrissafc
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"admin1@mailinator.com\",\n    \"password\": \"admin1password\"\n}",
+					"raw": "{\n    \"email\": \"admin1@london.ac.uk\",\n    \"password\": \"admin1password\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -823,7 +823,7 @@ floreskrissafc
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"one@mailinator.com\",\n    \"password\": \"password1\"\n}",
+							"raw": "{\n    \"email\": \"one@london.ac.uk\",\n    \"password\": \"password1\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -877,7 +877,7 @@ floreskrissafc
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"user\": {\n        \"id\": 1,\n        \"email\": \"one@mailinator.com\",\n        \"password_hash\": \"$2b$10$EffEvMnYXIqLzxQtlKzhNuHC.G7ax6dClqVOvQ2dUG20Q33ezMFXq\",\n        \"role\": 0,\n        \"first_name\": \"one\",\n        \"last_name\": \"1\",\n        \"profile_picture\": null\n    }\n}"
+					"body": "{\n    \"user\": {\n        \"id\": 1,\n        \"email\": \"one@london.ac.uk\",\n        ,\n        \"role\": 0,\n        \"first_name\": \"one\",\n        \"last_name\": \"1\",\n        \"profile_picture\": null\n    }\n}"
 				},
 				{
 					"name": "Post user login",
@@ -886,7 +886,7 @@ floreskrissafc
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"three@mailinator.com\",\n    \"password\": \"password1\"\n}",
+							"raw": "{\n    \"email\": \"three@london.ac.uk\",\n    \"password\": \"password1\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -954,7 +954,7 @@ floreskrissafc
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"two@mailinator.com\",\n    \"oldPassword\": \"password2\",\n    \"newPassword\": \"password1\"\n}",
+					"raw": "{\n    \"email\": \"two@london.ac.uk\",\n    \"oldPassword\": \"password2\",\n    \"newPassword\": \"password1\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -982,7 +982,7 @@ floreskrissafc
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"one@mailinator.com\",\n    \"oldPassword\": \"password1\",\n    \"newPassword\": \"password1\"\n}",
+							"raw": "{\n    \"email\": \"one@london.ac.uk\",\n    \"oldPassword\": \"password1\",\n    \"newPassword\": \"password1\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1045,7 +1045,7 @@ floreskrissafc
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"one@mailinator.com\",\n    \"oldPassword\": \"password1\",\n    \"newPassword\": \"password2\"\n}",
+							"raw": "{\n    \"email\": \"one@london.ac.uk\",\n    \"oldPassword\": \"password1\",\n    \"newPassword\": \"password2\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1644,7 +1644,7 @@ floreskrissafc
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"admin1@mailinator.com\",\n    \"password\": \"admin1\"\n}",
+							"raw": "{\n    \"email\": \"admin1@london.ac.uk\",\n    \"password\": \"admin1\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1715,7 +1715,7 @@ floreskrissafc
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"admin1@mailinator.com\",\n    \"password\": \"admin1\"\n}",
+					"raw": "{\n    \"email\": \"admin1@london.ac.uk\",\n    \"password\": \"admin1\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1742,7 +1742,7 @@ floreskrissafc
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"admin1@mailinator.com\",\n    \"password\": \"admin1\"\n}",
+							"raw": "{\n    \"email\": \"admin1@london.ac.uk\",\n    \"password\": \"admin1\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1804,7 +1804,7 @@ floreskrissafc
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"admin1@mailinator.com\",\n    \"password\": \"admin1\"\n}",
+							"raw": "{\n    \"email\": \"admin1@london.ac.uk\",\n    \"password\": \"admin1\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4934,7 +4934,7 @@ floreskrissafc
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"admin2@mailinator.com\"\n}",
+					"raw": "{\n    \"email\": \"admin2@london.ac.uk\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -4961,7 +4961,7 @@ floreskrissafc
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"admin1@mailinator.com\"\n}",
+							"raw": "{\n    \"email\": \"admin1@london.ac.uk\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5023,7 +5023,7 @@ floreskrissafc
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"admin2@mailinator.com\"\n}",
+							"raw": "{\n    \"email\": \"admin2@london.ac.uk\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5076,7 +5076,7 @@ floreskrissafc
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"error\": \"An user with email admin2@mailinator.com is not present in the system, please search for another email or Add a new user here\"\n}"
+					"body": "{\n    \"error\": \"An user with email admin2@london.ac.uk is not present in the system, please search for another email or Add a new user here\"\n}"
 				},
 				{
 					"name": "success",
@@ -5085,7 +5085,7 @@ floreskrissafc
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"admin2@mailinator.com\"\n}",
+							"raw": "{\n    \"email\": \"admin2@london.ac.uk\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5138,7 +5138,7 @@ floreskrissafc
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"message\": \"You have successfully removed admin2@mailinator.com from the system\"\n}"
+					"body": "{\n    \"message\": \"You have successfully removed admin2@london.ac.uk from the system\"\n}"
 				}
 			]
 		}

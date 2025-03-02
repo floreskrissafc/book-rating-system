@@ -27,6 +27,7 @@ router.post('/register', async function(req, res, next) {
 router.post('/login', async function(req, res, next) {
   try {
     let respObj = await users.login(req.body);
+    delete respObj.user.password_hash;
     req.session.isloggedin = true;
     req.session.user = respObj.user;
     res.json(respObj);
@@ -46,7 +47,7 @@ router.post('/resetpassword', async function(req, res, next) {
     let resetRes = await users.resetPassword(req.body);
     res.json(resetRes);
   } catch (error) {
-    logger.error(`login error`, error.message);
+    logger.error(`reset password error`, error.message);
     next(error);
   }
 });

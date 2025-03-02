@@ -4,7 +4,7 @@ import { getMultiple, propose, searchBySingleColumnQuery } from '../services/boo
 import logger from '../services/logging.js';
 import Err from '../services/customError.js';
 
-/* GET books listing. */
+/* get a paginated list of books. */
 router.get('/', function(req, res, next) {
   try {
     res.json(getMultiple(req.query.page));
@@ -14,6 +14,7 @@ router.get('/', function(req, res, next) {
   }
 });
 
+/** get a list of proposed books. */
 router.post('/propose', function(req, res, next) {
   try {
     res.json(propose(req.body));
@@ -23,6 +24,7 @@ router.post('/propose', function(req, res, next) {
   }
 });
 
+/** search for a book by one of author, title or isbn. */
 router.get('/search', function(req, res, next) {
   try {
     logger.info("req.query", req.query);

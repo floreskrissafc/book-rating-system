@@ -5,6 +5,7 @@ const config = {
   listPerPage: env.LIST_PER_PAGE || 10,
   USER_LIST_PER_PAGE: 10,
   DB_NAME: 'book_rating_system.db',
+  SESSION_SECRET: '7736e77dc3e25e0b7d908865fc3f18fe8fe486ee',
   BCRYPT_SALT: 10,
   PASSWORD_MIN_LENGTH: 10,
   COMMENT_CHAR_MAX_LENGTH: 256,

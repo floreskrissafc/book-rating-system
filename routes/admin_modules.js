@@ -4,7 +4,7 @@ import Err from '../services/customError.js';
 const router = express.Router();
 import logger from '../services/logging.js';
 
-/* POST modules */
+/* admin only route to create a new module. */
 router.post('/', function(req, res, next) {
     try {
       res.json(modules.create(req.body));
@@ -18,6 +18,7 @@ router.post('/', function(req, res, next) {
     }
 });
 
+/** admin only route to update a module. */
 router.post('/update', function(req, res, next) {
   try {
     res.json(modules.update(req.body));

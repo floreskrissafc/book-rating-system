@@ -11,5 +11,11 @@ book-rating-system-api.postman_collection.json
 into postman for examples of the APIs.
 
 TODOs:
-- replace new Error by new Err.
-- remove messages error handling.
+- [x] replace new Error by new Err.
+- [x] remove messages error handling.
+- [x] validate the linting errors like missing ;.
+- [ ] add docsctrings and comments.
+- [ ] upload pics flow validate.
+- [ ] add unit tests
+- [ ] postman backend api publish.
+- [ ] make sure there is never password returned in any of the output response.

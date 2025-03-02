@@ -4,7 +4,8 @@ import Err from '../services/customError.js';
 import logger from '../services/logging.js';
 
 const router = express.Router();
-/* POST books */
+
+/** admin only route to add a new book. */
 router.post('/', function(req, res, next) {
     try {
         res.json(books.create(req.body));
@@ -18,6 +19,7 @@ router.post('/', function(req, res, next) {
     }
 });
 
+/** admin only route to get a paginated list of proposed books. */
 router.get('/proposed', function(req, res, next){
     try {
         res.json(books.getProposedMultiple(req.query.page));
@@ -27,6 +29,7 @@ router.get('/proposed', function(req, res, next){
     }
 });
 
+/** admin only route to update a book's title title, author and other fields. */
 router.post('/update', function(req, res, next) {
     try {
         res.json(books.update(req.body));
@@ -36,6 +39,7 @@ router.post('/update', function(req, res, next) {
     }
 });
 
+/** admin only route to delete a book. */
 router.delete('/', function(req, res, next) {
     try {
         res.json(books.deleteBook(req.body));
