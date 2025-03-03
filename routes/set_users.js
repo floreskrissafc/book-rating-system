@@ -2,10 +2,9 @@ import express from 'express';
 const router = express.Router();
 import * as users from '../services/users.js';
 import logger from '../services/logging.js';
-import multer from 'multer';
 import config from '../config.js';
-import path from 'path';
 
+import multer from 'multer';
 import mime from 'mime-types';
 const storage = multer.diskStorage({
   destination: function(req, file, next) {
@@ -17,8 +16,6 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-
-logger.info(`storage: ${JSON.stringify(storage, null, 4)}`);
 
 /** update a  */
 router.post('/update', upload.single(config.PROFILE_UPLOAD_NAME), async function(req, res, next) {

@@ -2,8 +2,22 @@ import express from 'express';
 import * as books from '../services/books.js';
 import Err from '../services/customError.js';
 import logger from '../services/logging.js';
+import config from '../config.js';
 
 const router = express.Router();
+
+import multer from 'multer';
+import mime from 'mime-types';
+const storage = multer.diskStorage({
+  destination: function(req, file, next) {
+    next(null, 'imgs/books_cover');
+  },
+  filename: function (req, file, next) {
+    next(null, `${req.session.user.id}-${Date.now()}.${mime.extension(file.mimetype)}`);
+  },
+});
+
+const upload = multer({ storage: storage });
 
 /** admin only route to add a new book. */
 router.post('/', function(req, res, next) {
@@ -30,9 +44,12 @@ router.get('/proposed', function(req, res, next){
 });
 
 /** admin only route to update a book's title title, author and other fields. */
-router.post('/update', function(req, res, next) {
+router.post('/update', upload.single(config.BOOK_UPLOAD_NAME),async function(req, res, next) {
     try {
-        res.json(books.update(req.body));
+        if (req.file) {
+            req.body.cover_picture = req.file.path;
+        }
+        res.json(await books.update(req.body));
     } catch (error) {
         logger.error(`Error while updating book ${error.message}`);
         next(error);

@@ -1,9 +1,9 @@
 import * as db from './db.js';
-import * as config from '../config.js';
 import * as moduleService from './modules.js';
 import * as ISBNValidator from 'isbn3';
 import Err from './customError.js';
 import logger from '../services/logging.js';
+import config from '../config.js';
 
 function getMultiple(page = 1) {
   const offset = (page - 1) * config.listPerPage;
@@ -101,27 +101,75 @@ function create(bookObj) {
   return {message};
 }
 
-function update(bookObj) {
+function validateUpdate(book) {
+  if (!book) {
+    throw new Err('No object is provided', 400);
+  }
+
+  if (!book.isbn) {
+    throw new Err('Some fields are empty: isbn', 400);
+  }
+
+  let isbnValidationRes = ISBNValidator.parse(book.isbn);
+
+  if (!isbnValidationRes || !isbnValidationRes.isValid || !isbnValidationRes.isbn13h) {
+    throw new Err('ISBN does not match any known format', 400);
+  }
+  let isbn13h = isbnValidationRes.isbn13h;
+  let moduleObj = moduleService.getModuleByName(book.module_name);
+  if (moduleObj == undefined) {
+    throw new Err(`Module by name: ${book.module_name} not found`, 400);
+  }
+
+  return { isbn: isbn13h};
+}
+
+async function updateBooksField(id, name, value) {
+  if (!id) {
+      throw new Err(`Invalid Id ${id}`, 500);
+  }
+  if (!name) {
+      throw new Err(`Invalid name ${name}`, 500);
+  }
+  if (!value) {
+      throw new Err(`Invalid value ${value}`, 500);
+  }
+  const result = db.run(`UPDATE books SET ${name}=@value WHERE id=@id`, {value, id});
+  if (!result.changes) {
+   throw new Err(`Error updating book ${name}: ${value}`, 500);
+  }
+  return `updated ${name}: ${value}`;
+}
+
+async function update(bookObj) {
   // Below is module fields + isbn with isbn13 normalized formatting.
-  let { isbn } = validateCreate(bookObj);
-  const { title, authors} = bookObj;
+  let { isbn } = validateUpdate(bookObj);
+  const { title, authors, cover_picture } = bookObj;
   const { data } = searchBySingleColumnQuery("isbn", isbn);
   if (!data || data.length != 1) {
     throw new Err(`Book for ISBH: ${isbn} not found`, 404);
   }
   let book_id = data[0].id;
-  let current_title = data[0].title;
-  let current_authors = data[0].authors;
-  if (current_title == title && current_authors == authors) {
+  let updates = [];
+  if (title && data[0].title != title) {
+    updates.push(await updateBooksField(book_id, 'title', title));
+  }
+
+  if (authors && data[0].authors != authors) {
+    updates.push(await updateBooksField(book_id, 'authors', authors));
+  }
+
+  if (cover_picture && data[0].cover_picture != cover_picture) {
+    updates.push(await updateBooksField(book_id, 'cover_picture', cover_picture));
+  }
+
+  if (updates.length <= 0) {
     throw new Err("These book details are already stored in the system", 400);
   }
 
-  const result = db.run('UPDATE books SET title=@title, authors=@authors WHERE id=@book_id', {title, authors, book_id});
-  if (!result.changes) {
-   throw new Err('Error updating book', 400);
-  }
+  logger.info(`${updates.join(',')}`);
 
-  let message = `The book ${current_title} has been updated with title: ${title} authors: ${authors}`;
+  let message = `The book ${data[0].title} has been updated with title: ${title} authors: ${authors} cover_picture: ${cover_picture}`;
   return {message};
 }
 
