@@ -15,9 +15,9 @@ router.post('/', function (req, res, next) {
 });
 
 /** get all reviews given a particular book id. */
-router.get('/bybook', function(req, res, next) {
+router.get('/bybook/:bookId', function(req, res, next) {
     try {
-        res.json(reviewsService.getReviewsByBookId(req.query.book_id));
+        res.json(reviewsService.getReviewsByBookId(req.params.bookId));
     } catch (error) {
         logger.error(`Error while getting review by bookId ${error.message}`);
         next(error);
@@ -25,9 +25,9 @@ router.get('/bybook', function(req, res, next) {
 });
 
 /** get all reviews given a particular users id. */
-router.get('/byuser', function(req, res, next) {
+router.get('/byuser/:userId', function(req, res, next) {
     try {
-        res.json(reviewsService.getReviewsByUserId(req.query.user_id));
+        res.json(reviewsService.getReviewsByUserId(req.params.userId));
     } catch (error) {
         logger.error(`Error while getting review by user_id ${error.message}`);
         next(error);

@@ -1925,12 +1925,21 @@ floreskrissafc
 					"body": "{\n    \"error\": \"no book_id present\"\n}"
 				},
 				{
-					"name": "reviews empty",
+					"name": "empty",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:3000/reviews/bybook?book_id=1",
+							"raw": "http://localhost:3000/reviews/bybook/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1938,23 +1947,22 @@ floreskrissafc
 							"port": "3000",
 							"path": [
 								"reviews",
-								"bybook"
-							],
-							"query": [
-								{
-									"key": "book_id",
-									"value": "1"
-								}
+								"bybook",
+								"1"
 							]
 						}
 					},
-					"status": "Bad Request",
-					"code": 400,
+					"status": "Not Found",
+					"code": 404,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
 							"key": "X-Powered-By",
 							"value": "Express"
+						},
+						{
+							"key": "IS-ADMIN",
+							"value": "1"
 						},
 						{
 							"key": "Content-Type",
@@ -1970,7 +1978,7 @@ floreskrissafc
 						},
 						{
 							"key": "Date",
-							"value": "Sat, 08 Feb 2025 06:01:55 GMT"
+							"value": "Mon, 03 Mar 2025 03:37:47 GMT"
 						},
 						{
 							"key": "Connection",
@@ -1985,12 +1993,21 @@ floreskrissafc
 					"body": "{\n    \"error\": \"There are no reviews for this book yet. Be the first to write a review and share your thoughts with other students\"\n}"
 				},
 				{
-					"name": "reviews success",
+					"name": "success",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:3000/reviews/bybook?book_id=2",
+							"raw": "http://localhost:3000/reviews/bybook/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1998,13 +2015,8 @@ floreskrissafc
 							"port": "3000",
 							"path": [
 								"reviews",
-								"bybook"
-							],
-							"query": [
-								{
-									"key": "book_id",
-									"value": "2"
-								}
+								"bybook",
+								"1"
 							]
 						}
 					},
@@ -2017,20 +2029,24 @@ floreskrissafc
 							"value": "Express"
 						},
 						{
+							"key": "IS-ADMIN",
+							"value": "1"
+						},
+						{
 							"key": "Content-Type",
 							"value": "application/json; charset=utf-8"
 						},
 						{
 							"key": "Content-Length",
-							"value": "158"
+							"value": "159"
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"9e-zu1qUlVDdpnbhy199Qdd4SXaafU\""
+							"value": "W/\"9f-/ddlzLgyfjleUWa01bb773In2YI\""
 						},
 						{
 							"key": "Date",
-							"value": "Wed, 19 Feb 2025 06:23:19 GMT"
+							"value": "Mon, 03 Mar 2025 03:38:31 GMT"
 						},
 						{
 							"key": "Connection",
@@ -2042,7 +2058,7 @@ floreskrissafc
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"data\": [\n        {\n            \"book_id\": 2,\n            \"user_id\": 2,\n            \"comment\": \"permanent comment 1\",\n            \"rating\": 5,\n            \"created_at\": \"2025-02-19 05:56:50\",\n            \"first_name\": \"one\",\n            \"last_name\": \"1\",\n            \"role\": 0\n        }\n    ]\n}"
+					"body": "{\n    \"data\": [\n        {\n            \"book_id\": 1,\n            \"user_id\": 1,\n            \"comment\": \"comment 1\",\n            \"rating\": 1,\n            \"created_at\": \"2025-03-03 03:38:25\",\n            \"first_name\": \"admin_one\",\n            \"last_name\": \"flores\",\n            \"role\": 1\n        }\n    ]\n}"
 				}
 			]
 		},
@@ -2731,7 +2747,7 @@ floreskrissafc
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/reviews/byuser?user_id=1",
+					"raw": "http://localhost:3000/reviews/byuser/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -2739,24 +2755,28 @@ floreskrissafc
 					"port": "3000",
 					"path": [
 						"reviews",
-						"byuser"
-					],
-					"query": [
-						{
-							"key": "user_id",
-							"value": "1"
-						}
+						"byuser",
+						"1"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "reviews success",
+					"name": "reviews by user",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:3000/reviews/byuser?user_id=2",
+							"raw": "http://localhost:3000/reviews/byuser/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2764,13 +2784,8 @@ floreskrissafc
 							"port": "3000",
 							"path": [
 								"reviews",
-								"byuser"
-							],
-							"query": [
-								{
-									"key": "user_id",
-									"value": "2"
-								}
+								"byuser",
+								"1"
 							]
 						}
 					},
@@ -2783,20 +2798,24 @@ floreskrissafc
 							"value": "Express"
 						},
 						{
+							"key": "IS-ADMIN",
+							"value": "1"
+						},
+						{
 							"key": "Content-Type",
 							"value": "application/json; charset=utf-8"
 						},
 						{
 							"key": "Content-Length",
-							"value": "211"
+							"value": "273"
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"d3-XxSGWm3oC2KvLG64CCIXfmpyldQ\""
+							"value": "W/\"111-BwwyYKTBnhRyQukPKB3gfffWycc\""
 						},
 						{
 							"key": "Date",
-							"value": "Wed, 19 Feb 2025 06:24:33 GMT"
+							"value": "Mon, 03 Mar 2025 03:39:06 GMT"
 						},
 						{
 							"key": "Connection",
@@ -2808,67 +2827,7 @@ floreskrissafc
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"data\": [\n        {\n            \"book_id\": 1,\n            \"user_id\": 1,\n            \"comment\": \"comment 3\",\n            \"rating\": 0,\n            \"created_at\": \"2025-02-19 06:04:31\",\n            \"id\": 1,\n            \"ISBN\": \"isbn1\",\n            \"title\": \"title1\",\n            \"edition\": null,\n            \"authors\": \"author1\",\n            \"link\": null,\n            \"cover_picture\": null\n        }\n    ]\n}"
-				},
-				{
-					"name": "reviews success",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/reviews/byuser?user_id=2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"reviews",
-								"byuser"
-							],
-							"query": [
-								{
-									"key": "user_id",
-									"value": "2"
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "415"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"19f-+0CqkSUXNQ1ZFxk/m5PCa1NXYfc\""
-						},
-						{
-							"key": "Date",
-							"value": "Wed, 19 Feb 2025 06:25:11 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"data\": [\n        {\n            \"book_id\": 1,\n            \"user_id\": 2,\n            \"comment\": null,\n            \"rating\": 0,\n            \"created_at\": \"2025-02-08 06:02:41\",\n            \"id\": 1,\n            \"ISBN\": \"isbn1\",\n            \"title\": \"title1\",\n            \"edition\": null,\n            \"authors\": \"author1\",\n            \"link\": null,\n            \"cover_picture\": null\n        },\n        {\n            \"book_id\": 2,\n            \"user_id\": 2,\n            \"comment\": \"permanent comment 1\",\n            \"rating\": 0,\n            \"created_at\": \"2025-02-19 05:56:50\",\n            \"id\": 2,\n            \"ISBN\": \"isbn2\",\n            \"title\": \"title2\",\n            \"edition\": null,\n            \"authors\": \"author2\",\n            \"link\": null,\n            \"cover_picture\": null\n        }\n    ]\n}"
+					"body": "{\n    \"data\": [\n        {\n            \"book_id\": 1,\n            \"user_id\": 1,\n            \"comment\": \"comment 1\",\n            \"rating\": 0,\n            \"created_at\": \"2025-03-03 03:38:25\",\n            \"id\": 1,\n            \"ISBN\": \"978-5-904790-09-7\",\n            \"title\": \"title1\",\n            \"edition\": null,\n            \"authors\": \"author1\",\n            \"link\": null,\n            \"cover_picture\": \"imgs/books_cover/978-5-904790-09-7-1740972575501.svg\"\n        }\n    ]\n}"
 				}
 			]
 		},
