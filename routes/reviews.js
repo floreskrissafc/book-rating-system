@@ -52,4 +52,19 @@ router.delete('/', function(req, res, next) {
     }
 });
 
+router.post('/update', async function(req, res, next) {
+    try {
+        if (!req.body.book_id) {
+            throw new Err(`no book_id present in req.body`, 404);
+        }
+        if (!req.body.user_id) {
+            throw new Err(`no user_id present in req.body`, 404);
+        }
+        return res.json(await reviewsService.update(req.body.book_id, req.body.user_id, req.body));
+    } catch (error) {
+        logger.error(`Error while updating review ${error.message}`);
+        next(error);
+    }
+});
+
 export default router;

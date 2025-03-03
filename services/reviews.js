@@ -3,6 +3,7 @@ import config from '../config.js';
 import * as usersService from '../services/users.js';
 import * as booksService from '../services/books.js';
 import Err from '../services/customError.js';
+import logger from '../services/logging.js';
 
 import {
 	RegExpMatcher,
@@ -28,6 +29,18 @@ function validateReview(review) {
     if (!rating) {
         throw new Err(`no rating present`, 400);
     }
+
+    if (comment && comment.length > config.COMMENT_CHAR_MAX_LENGTH) {
+        throw new Err(`comment length greater than max allowed: ${config.COMMENT_CHAR_MAX_LENGTH}`, 400);
+    }
+
+    if (profanity.hasMatch(comment)) {
+        throw new Err(`please remove offensive words from review`, 400);
+    }
+}
+
+function validateReviewUpdate(review) {
+    const { comment } = review;
 
     if (comment && comment.length > config.COMMENT_CHAR_MAX_LENGTH) {
         throw new Err(`comment length greater than max allowed: ${config.COMMENT_CHAR_MAX_LENGTH}`, 400);
@@ -99,8 +112,58 @@ function deleteReview(book_id, user_id) {
     return { message };
 }
 
+function getReviewByUserForBook(book_id, user_id) {
+    let data = db.queryAll(`SELECT * FROM reviews WHERE book_id = ? AND user_id = ?`, [book_id, user_id]);
+    if (!data || !data.length || data.length != 1) {
+        throw new Err(`Got multiple reivews for book_id: ${book_id}, user_id: ${user_id}`);
+    }
+    return data[0];
+}
+
+async function updateReviewField(book_id, user_id, name, value) {
+    if (!book_id) {
+        throw new Err(`Invalid book_id ${book_id}`, 500);
+    }
+
+    if (!user_id) {
+        throw new Err(`Invalid user_id ${user_id}`, 500);
+    }
+
+    if (!name) {
+        throw new Err(`Invalid name ${name}`, 500);
+    }
+    if (!value) {
+        throw new Err(`Invalid value ${value}`, 500);
+    }
+    const result = db.run(`UPDATE reviews SET ${name}=@value WHERE book_id=@book_id AND user_id=@user_id`, {value, book_id, user_id});
+    if (!result.changes) {
+     throw new Err(`Error updating review ${name}: ${value}`, 500);
+    }
+    return `updated ${name}: ${value}`;
+  }
+
+async function update(book_id, user_id, reviewBody) {
+    validateReviewUpdate(reviewBody);
+    const currentReview = getReviewByUserForBook(book_id, user_id);
+    if (!currentReview) {
+        throw new Err(`No review found for book_id: ${book_id} and user_id: ${user_id}`);
+    }
+    let updates = [];
+    if (reviewBody.comment && reviewBody.comment != currentReview.comment) {
+        updates.push(await updateReviewField(book_id, user_id, 'comment', reviewBody.comment));
+    }
+    if (reviewBody.rating && reviewBody.rating != currentReview.rating) {
+        updates.push(await updateReviewField(book_id, user_id, 'rating', reviewBody.rating));
+    }
+
+    logger.info(`${updates.join(', ')}`);
+    let message = `The review ${book_id} ${user_id} has been updated.`;
+    return {message};
+}
+
 export {
     create,
+    update,
     deleteReview,
     getReviewsByBookId,
     getReviewsByUserId,

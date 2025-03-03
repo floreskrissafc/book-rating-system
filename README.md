@@ -14,13 +14,14 @@ TODOs:
 - [x] replace new Error by new Err.
 - [x] remove messages error handling.
 - [x] validate the linting errors like missing ;.
+- [x] users upload pics flow validate.
+- [x] books images upload.
+- [x] add get params routes for most get requests.
+- [x] make sure there is never password returned in any of the output response.
+- [x] validate the partial update of users, books and reviews.
+
 - [ ] add docsctrings and comments.
 - [ ] add unit tests
 - [ ] postman backend api publish.
-- [ ] make sure there is never password returned in any of the output response.
 - [ ] /resetpassword route is used for forgot password, validate the flow with UI.
 - [ ] make it private live in using digital ocean or github etc.
-- [ ] validate the partial update of users, books and reviews.
-- [ ] users upload pics flow validate.
-- [ ] books images upload.
-- [ ] add get params routes for most get requests.
