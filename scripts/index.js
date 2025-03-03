@@ -30,7 +30,6 @@ async function logIn(event,email,password,screenSize){
                 errorMessageP = document.getElementById("login_error_message_form1");
             } else {
                 errorMessageDiv = document.getElementById("log_in_error");
-                // eslint-disable-next-line no-undef
                 errorMessageP = document.getElementById("log_in_error_message");
             }
             const data = await response.json();

@@ -1,0 +1,23 @@
+.message_container{
+    margin-top: 1em;
+    display: none;
+    justify-content: center;
+}
+.message {
+    text-align: center;
+    color: red;
+}
+@media screen and (max-width: 700px) {
+    .message {
+        font-weight: 600;
+        font-size: calc(10px + 1vw);
+    }
+
+}
+@media screen and (min-width: 701px) {
+    .message {
+        font-weight: 700;
+        font-size: 20px;
+    }
+    
+}

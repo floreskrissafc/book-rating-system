@@ -11,7 +11,6 @@ function populateForm(data) {
 
 async function updateProfile(){
     // If the users clicks update profile button, a request must be sent to update their information on the DB
-    // TODO: Figure out how to actually store the image information that might be sent here
     const updateMessageContainer = document.getElementById("update_message_container");
     const updateMessage = document.getElementById("update_message").textContent;
     try { 
@@ -23,12 +22,17 @@ async function updateProfile(){
         formData.append('last_name', last_name);
         formData.append('profile_pic_input', profile_picture);
         const response = await fetch("http://localhost:3000/users/update", { 
-            method: "POST", // Making a POST request to create the user
+            method: "POST", // Making a POST request to update the user
             body: formData,
         });
         if (response.ok) {
+            alert("User was updated");
             updateMessage.textContent = "Profile information was updated!";
             updateMessageContainer.style.display = "flex";
+            console.log("calling the fetchAndPopulateUser after an update");
+            fetchAndPopulateUser();
+        } else {
+            console.log("Error while updating the user");
         }
     } catch (error) {
         updateMessage.textContent = 'Profile could not be updated';
@@ -39,16 +43,14 @@ async function updateProfile(){
 
 async function fetchAndPopulateUser() {
     try {
+        console.log("Calling the fetchAndPopulateUser function");
         const response = await fetch("http://localhost:3000/user", { method: "GET"}); // get the information for the logged in user
         if (response.ok) {
             const data = await response.json(); // Converting the response of type ReadableStream into a JSON
             userEmail = data.email;
             populateForm(data);
-
-        } // after the form is filled with the current data, if the user clicks the update profile button then a request should be sent
+        } 
     } catch (error) {
-        document.getElementById("update_message").textContent = 'Profile could not be updated';
-        document.getElementById("update_message_container").style.display = "flex";
         console.error("Error fetching user details:", error);
     }
 }
@@ -62,7 +64,5 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
         updatePassword(userEmail);
     });
-    // updatePassword(userEmail);
 });
-// document.addEventListener("DOMContentLoaded",fetchAndPopulateUser);
 

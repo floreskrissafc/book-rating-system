@@ -10,21 +10,9 @@
         <link rel="stylesheet" href="../css/add_course_or_book.css" />
         <link rel="stylesheet" href="../css/navigation.css" />
         <link rel="stylesheet" href="../css/confirmation_modal.css" />
+        <link rel="stylesheet" href="../css/profile_page.css" />
         <script src="https://cdn.jsdelivr.net/npm/handlebars/dist/handlebars.min.js"></script>
         <script src="../scripts/load_nav_template.js"></script>
-        <style>
-            .message_container{
-                margin-top: 1em;
-                display: none;
-                justify-content: center;
-            }
-            .message {
-                text-align: center;
-                color: red;
-                font-weight: 700;
-                font-size: 20px;
-            }
-        </style>
     </head>
     <body>
         <div class="container">
@@ -59,15 +47,13 @@
                                 id="current_profile_img"
                                 src="#"
                                 alt="Current profile picture"
-                                width="100"
-                                height="auto" />
+                                />
                         </div>
 
                         <div class="form_submit">
-                            <button id="submit_btn1" type="submit" class="button_green button submit_btn">
+                            <button type="submit" class="button_green button submit_btn">
                                 Update Profile
                             </button>
-                            <button id="cancel_btn" type="button" class="button button_gray">Cancel</button>
                         </div>
 
                         <div id="update_message_container" class="form_row message_container">
@@ -139,6 +125,5 @@
         </main>
         <script src="../scripts/nav_bar_logged_in.js"></script>
         <script type="module" src="../scripts/edit_profile.js"></script>
-        <!-- <script src="../scripts/change_password.js"></script> -->
     </body>
 </html>
