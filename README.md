@@ -23,3 +23,4 @@ TODOs:
 - [ ] validate the partial update of users, books and reviews.
 - [ ] users upload pics flow validate.
 - [ ] books images upload.
+- [ ] add get params routes for most get requests.

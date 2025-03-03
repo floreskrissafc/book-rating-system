@@ -4,6 +4,8 @@ import * as ISBNValidator from 'isbn3';
 import Err from './customError.js';
 import logger from '../services/logging.js';
 import config from '../config.js';
+import fs from 'fs/promises';
+import path from 'path';
 
 function getMultiple(page = 1) {
   const offset = (page - 1) * config.listPerPage;
@@ -116,11 +118,6 @@ function validateUpdate(book) {
     throw new Err('ISBN does not match any known format', 400);
   }
   let isbn13h = isbnValidationRes.isbn13h;
-  let moduleObj = moduleService.getModuleByName(book.module_name);
-  if (moduleObj == undefined) {
-    throw new Err(`Module by name: ${book.module_name} not found`, 400);
-  }
-
   return { isbn: isbn13h};
 }
 
@@ -160,6 +157,13 @@ async function update(bookObj) {
   }
 
   if (cover_picture && data[0].cover_picture != cover_picture) {
+    if (data[0].cover_picture != config.DEFAULT_BOOK_COVER) {
+      try {
+        await fs.unlink(path.resolve(data[0].cover_picture));
+      } catch (error) {
+        logger.error(`deleting previous book cover at :${data[0].cover_picture} failed with error: ${error.message}`);
+      }
+    }
     updates.push(await updateBooksField(book_id, 'cover_picture', cover_picture));
   }
 

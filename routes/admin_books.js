@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
     next(null, 'imgs/books_cover');
   },
   filename: function (req, file, next) {
-    next(null, `${req.session.user.id}-${Date.now()}.${mime.extension(file.mimetype)}`);
+    next(null, `${req.body.isbn}-${Date.now()}.${mime.extension(file.mimetype)}`);
   },
 });
 
@@ -44,12 +44,12 @@ router.get('/proposed', function(req, res, next){
 });
 
 /** admin only route to update a book's title title, author and other fields. */
-router.post('/update', upload.single(config.BOOK_UPLOAD_NAME),async function(req, res, next) {
+router.post('/update', upload.single(config.BOOK_UPLOAD_NAME), async function(req, res, next) {
     try {
         if (req.file) {
             req.body.cover_picture = req.file.path;
         }
-        res.json(await books.update(req.body));
+        return res.json(await books.update(req.body));
     } catch (error) {
         logger.error(`Error while updating book ${error.message}`);
         next(error);

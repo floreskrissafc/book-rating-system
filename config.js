@@ -13,7 +13,8 @@ const config = {
     "london.ac.uk",
     "student.london.ac.uk"
   ],
-  DEFAULT_PROFILE_PICTURE: "../imgs/user_profiles/default_profile.png", 
+  DEFAULT_PROFILE_PICTURE: "imgs/user_profiles/default_profile.png", 
+  DEFAULT_BOOK_COVER: "imgs/books_cover/default_book_cover.png",
   PROFILE_UPLOAD_NAME: "profile_pic_input",
   BOOK_UPLOAD_NAME: "book_pic_input",
 };
