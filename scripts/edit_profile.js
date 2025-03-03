@@ -12,7 +12,7 @@ function populateForm(data) {
 async function updateProfile(){
     // If the users clicks update profile button, a request must be sent to update their information on the DB
     const updateMessageContainer = document.getElementById("update_message_container");
-    const updateMessage = document.getElementById("update_message").textContent;
+    const updateMessage = document.getElementById("update_message");
     try { 
         const first_name = document.getElementById("name_input").value;
         const last_name = document.getElementById("last_name_input").value;
@@ -26,7 +26,6 @@ async function updateProfile(){
             body: formData,
         });
         if (response.ok) {
-            alert("User was updated");
             updateMessage.textContent = "Profile information was updated!";
             updateMessageContainer.style.display = "flex";
             console.log("calling the fetchAndPopulateUser after an update");
@@ -59,7 +58,10 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchAndPopulateUser();
     document.getElementById("new_password").addEventListener("input", validateNewPassword);
     document.getElementById("new_password_repeat").addEventListener("input", validatePasswordMatch);
-    document.getElementById("update_profile_form").addEventListener("submit", updateProfile);
+    document.getElementById("update_profile_form").addEventListener("submit", function (event) {
+        event.preventDefault();
+        updateProfile();
+    });
     document.getElementById("change_password_form").addEventListener("submit", function (event) {
         event.preventDefault();
         updatePassword(userEmail);

@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
     next(null, 'imgs/user_profiles');
   },
   filename: function (req, file, next) {
-    next(null, `${req.session.user.id}.${mime.extension(file.mimetype)}`);
+    next(null, `${req.session.user.id}-${Date.now()}.${mime.extension(file.mimetype)}`);
   },
 });
 
