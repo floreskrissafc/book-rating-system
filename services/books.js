@@ -7,6 +7,12 @@ import config from '../config.js';
 import fs from 'fs/promises';
 import path from 'path';
 
+/**
+ * Get a paginated list of books from the sqlite db.
+ *
+ * @param {number} The page number to retrieve. Defaults to 1 if not provided.
+ * @returns {object} An object containing the paginated data and metadata.
+ */
 function getMultiple(page = 1) {
   const offset = (page - 1) * config.listPerPage;
   const data = db.queryAll(`SELECT * FROM books LIMIT ?,?`, [offset, config.listPerPage]);
@@ -18,6 +24,13 @@ function getMultiple(page = 1) {
   };
 }
 
+/**
+ * Searches for books in the database based on a single column and a query string.
+ *
+ * @param {string} column The name of the column to search in.
+ * @param {string} query The search string to look for within the specified column.
+ * @returns {object} An object containing the search results.
+ */
 function searchBySingleColumnQuery(column, query) {
   const data = db.queryAll(`SELECT * FROM books WHERE ${column} LIKE ?`, [`%${query.toLowerCase()}%`]);
   return {

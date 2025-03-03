@@ -5,6 +5,5 @@ CREATE TABLE IF NOT EXISTS books (
 	edition VARCHAR(255),
 	authors TEXT NOT NULL,
 	link VARCHAR(300),
-	cover_picture VARCHAR(255) DEFAULT "imgs/books_cover/default_book_cover.png" NOT NULL,
-	rating DECIMAL(3,2) DEFAULT 0
+	cover_picture VARCHAR(255) DEFAULT "imgs/books_cover/default_book_cover.png" NOT NULL
 );

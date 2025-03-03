@@ -3,11 +3,30 @@ const router = Router();
 import { getMultiple, propose, searchBySingleColumnQuery } from '../services/books.js';
 import logger from '../services/logging.js';
 import Err from '../services/customError.js';
+import * as reviews from '../services/reviews.js';
 
 /* get a paginated list of books. */
 router.get('/', function(req, res, next) {
   try {
-    res.json(getMultiple(req.query.page));
+    let allBooks = getMultiple(req.query.page);
+    let booksWithAvgRating = allBooks.data.map(eachBook => {
+      let avgRating = 1;
+      try {
+        let booksForReviews = reviews.getReviewsByBookId(eachBook.id);
+        if (booksForReviews.data.length) {
+          avgRating = booksForReviews.data.reduce(function (sum, eachReview) {
+            return sum + eachReview.rating;
+          }, 0)/booksForReviews.data.length;
+        }
+      } catch (error) {
+        if (!error.message.includes('no reviews for this book yet')) {
+          logger.error(`error getting reviews ${error.message}`);
+        }
+      }
+      return {...eachBook, rating: avgRating};
+    });
+
+    return res.json({data: booksWithAvgRating, meta: allBooks.meta});
   } catch(err) {
     logger.error(`Error while getting books ${err.message}`);
     next(err);

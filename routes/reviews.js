@@ -52,6 +52,7 @@ router.delete('/', function(req, res, next) {
     }
 });
 
+/** update the comment and/or rating for an existing review given a book_id, user_id */
 router.post('/update', async function(req, res, next) {
     try {
         if (!req.body.book_id) {

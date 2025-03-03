@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-/** update a  */
+/** update a user profile to allow changing user's first name, last name and profile photo. */
 router.post('/update', upload.single(config.PROFILE_UPLOAD_NAME), async function(req, res, next) {
     try {
       if (req.file) {

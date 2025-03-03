@@ -43,7 +43,7 @@ router.get('/proposed', function(req, res, next){
     }
 });
 
-/** admin only route to update a book's title title, author and other fields. */
+/** admin only route to update a book's title title, author and cover pictures. */
 router.post('/update', upload.single(config.BOOK_UPLOAD_NAME), async function(req, res, next) {
     try {
         if (req.file) {
