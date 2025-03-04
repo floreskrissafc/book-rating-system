@@ -38,4 +38,18 @@ router.delete('/', function(req, res, next) {
   }
 });
 
+
+router.post('/addbook', function(req, res, next) {
+  try {
+    return res.json(modules.addBook(req.body));
+  } catch (error) {
+    if (error.message.toLowerCase().includes('unique constraint failed')) {
+      next(new Err(`The book ${req.body.book_id} already exists in the system for module id: ${req.body.module_id}. Do you want to add a different book?`, 400));
+    } else {
+        logger.error(`Error while adding books to module ${error.message}`);
+        next(error);
+    }
+  }
+});
+
 export default router;

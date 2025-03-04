@@ -43,10 +43,6 @@ function validateCreate(book) {
     throw new Err('No object is provided', 400);
   }
 
-  if (!book.module_id) {
-    throw new Err('Module Id is not selected', 400);
-  }
-
   if (!book.isbn) {
     throw new Err('Some fields are empty: isbn', 400);
   }
@@ -66,12 +62,7 @@ function validateCreate(book) {
     throw new Err('Some fields are empty: authors', 400);
   }
 
-  let moduleObj = moduleService.getModuleById(book.module_id);
-  if (moduleObj == undefined) {
-    throw new Err(`Module by id: ${book.module_id} not found`, 400);
-  }
-
-  return { ...moduleObj, isbn: isbn13h};
+  return { isbn: isbn13h};
 }
 
 function getBooksByModulesIds(module_ids) {
@@ -91,28 +82,16 @@ function getBookInfoByID(book_id) {
   return db.queryOne(`select * FROM books WHERE id = ?`, book_id);
 }
 
-function create(bookObj) {
+async function create(bookObj) {
   // Below is module fields + isbn with isbn13 normalized formatting.
-  let { id, name, module_code, isbn } = validateCreate(bookObj);
-  const { title, authors} = bookObj;
-
-  const { data } = searchBySingleColumnQuery("isbn", isbn);
-  let book_id;
-  if (data && data.length == 1) {
-    book_id = data[0].id;
-  } else {
-    const bookInsertResult = db.run('INSERT INTO books (isbn, title, authors) VALUES (@isbn, @title, @authors)', {isbn, title, authors});
-    if (!bookInsertResult.changes) {
-      throw new Err('Error in creating book', 400);
-    }
-    book_id = bookInsertResult.lastInsertRowid;
+  let { isbn } = validateCreate(bookObj);
+  const { title, authors, edition, link, cover_picture } = bookObj;
+  const bookInsertResult = db.run('INSERT INTO books (isbn, title, authors, edition, link, cover_picture) VALUES (@isbn, @title, @authors, @edition, @link, @cover_picture)', {isbn, title, authors, edition, link, cover_picture});
+  if (!bookInsertResult.changes) {
+    throw new Err('Error in creating book', 400);
   }
-  const modulesBooksInsertResult = db.run('INSERT INTO modules_books (book_id, module_id) VALUES (@book_id, @id)', {book_id, id});
-  if (!modulesBooksInsertResult.changes) {
-    throw new Err('Error in linking module and book', 400);
-  }
-
-  let message = `The book ${title} is going to be added to module ${name} ${module_code}`;
+  let book_id = bookInsertResult.lastInsertRowid;
+  let message = `The book ${title} is going to be added with id: ${book_id}.`;
   return {message};
 }
 
@@ -154,7 +133,7 @@ async function updateBooksField(id, name, value) {
 async function update(bookObj) {
   // Below is module fields + isbn with isbn13 normalized formatting.
   let { isbn } = validateUpdate(bookObj);
-  const { title, authors, cover_picture } = bookObj;
+  const { title, authors, cover_picture, link, edition } = bookObj;
   const { data } = searchBySingleColumnQuery("isbn", isbn);
   if (!data || data.length != 1) {
     throw new Err(`Book for ISBH: ${isbn} not found`, 404);
@@ -167,6 +146,14 @@ async function update(bookObj) {
 
   if (authors && data[0].authors != authors) {
     updates.push(await updateBooksField(book_id, 'authors', authors));
+  }
+
+  if (link && data[0].link != link) {
+    updates.push(await updateBooksField(book_id, 'link', link));
+  }
+
+  if (edition && data[0].edition != edition) {
+    updates.push(await updateBooksField(book_id, 'edition', edition));
   }
 
   if (cover_picture && data[0].cover_picture != cover_picture) {
@@ -186,7 +173,7 @@ async function update(bookObj) {
 
   logger.info(`${updates.join(',')}`);
 
-  let message = `The book ${data[0].title} has been updated with title: ${title} authors: ${authors} cover_picture: ${cover_picture}`;
+  let message = `The book has been updated.`;
   return {message};
 }
 

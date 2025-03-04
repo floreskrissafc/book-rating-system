@@ -19,13 +19,16 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-/** admin only route to add a new book. */
-router.post('/', function(req, res, next) {
+/** admin only route to add a new book with title, author, cover pictures and other fields */
+router.post('/', upload.single(config.BOOK_UPLOAD_NAME), async function(req, res, next) {
     try {
-        res.json(books.create(req.body));
-    } catch(err) {
+        if (req.file) {
+            req.body.cover_picture = req.file.path;
+        }
+        return res.json(await books.create(req.body));
+    } catch (err) {
         if (err.message.toLowerCase().includes('unique constraint failed')) {
-            next(new Err(`The book ${req.body.title} already exists in the system for module id: ${req.body.module_id}. Do you want to add a different book?`, 400));
+            next(new Err(`The book with isbn: ${req.body.isbn} already exists.`, 400));
         } else {
             logger.error(`Error while adding books  ${err.message}`);
             next(err);

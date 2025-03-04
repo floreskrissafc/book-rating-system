@@ -71,11 +71,31 @@ function deleteModule(moduleObj) {
   return { message };
 }
 
+function addBook(data) {
+  const { book_id, module_id } = data;
+  if (!book_id) {
+    throw new Err(`missing book_id to add to module`, 400);
+  }
+
+  if (!module_id) {
+    throw new Err(`missing module_id to add a book to`, 400);
+  }
+
+  const modulesBooksInsertResult = db.run('INSERT INTO modules_books (book_id, module_id) VALUES (@book_id, @module_id)', {book_id, module_id});
+  if (!modulesBooksInsertResult.changes) {
+    throw new Err('Error in linking module and book', 400);
+  }
+
+  let message = `The book id: ${book_id} is going to be added to module id: ${module_id}`;
+  return {message};
+}
+
 export {
   getMultiple,
   create,
   getAllModuleByName,
   update,
   deleteModule,
-  getModuleById
+  getModuleById,
+  addBook
 };
