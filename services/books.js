@@ -1,5 +1,6 @@
 import * as db from './db.js';
 import * as moduleService from './modules.js';
+import * as reviewService from './reviews.js';
 import * as ISBNValidator from 'isbn3';
 import Err from './customError.js';
 import logger from '../services/logging.js';
@@ -75,7 +76,11 @@ function getBooksByModulesIds(module_ids) {
 
 function getBooksByModule(module_id) {
   const module_book_ids = db.queryAll(`SELECT * from modules_books WHERE module_id = ?`, module_id);
-  return module_book_ids.map(module_book_id => (db.queryOne(`SELECT * FROM books WHERE id = ?`, module_book_id.book_id)));
+  const books = module_book_ids.map(module_book_id => (db.queryOne(`SELECT * FROM books WHERE id = ?`, module_book_id.book_id)));
+  return books.map((book) => ({
+    ...book,
+    rating: reviewService.getAvgRatingForBook(book.id)
+  }));
 }
 
 function getBookInfoByID(book_id) {

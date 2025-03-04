@@ -18,8 +18,8 @@ router.get('/', function(req, res, next) {
 router.get('/books/:moduleId', function(req, res, next) {
   try {
     let moduleId = req.params.moduleId;
-    const allBooks = books.getBooksByModulesIds([moduleId]);
-    return res.json({"data": allBooks[moduleId]});
+    const data = books.getBooksByModule(moduleId);
+    return res.json({data});
   } catch (error) {
     logger.error(`Error while getting books by module id ${error.message}`);
     next(error);

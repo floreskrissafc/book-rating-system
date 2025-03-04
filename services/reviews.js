@@ -161,10 +161,29 @@ async function update(book_id, user_id, reviewBody) {
     return {message};
 }
 
+function getAvgRatingForBook(book_id) {
+    try {
+        let booksForReviews = getReviewsByBookId(book_id);
+        if (booksForReviews.data.length) {
+          return booksForReviews.data.reduce(function (sum, eachReview) {
+            return sum + eachReview.rating;
+          }, 0)/booksForReviews.data.length;
+        }
+      } catch (error) {
+        if (!error.message.includes('no reviews for this book yet')) {
+          logger.error(`error getting reviews ${error.message}`);
+          throw error;
+        } else {
+          return 1;
+        }
+      }
+}
+
 export {
     create,
     update,
     deleteReview,
     getReviewsByBookId,
     getReviewsByUserId,
+    getAvgRatingForBook,
 };
