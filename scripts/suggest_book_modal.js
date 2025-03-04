@@ -60,14 +60,17 @@ function addEventListenerToModalButtons() {
     cancelBtn.onclick = () => hideModal();
 }
 
-async function suggestBookModal() {
+export async function suggestBookModal() {
     const userStatus = window.currentUserStatus;
     const currentUserId = window.currentUserId;
     const courseId = window.currentCourseId;
     const courseName = window.currentCourseName;
     const courseCode = window.currentCourseCode;
     console.log("userStatus = ", userStatus);
-    if (userStatus == 1) {
+    console.log("courseId = ", courseId);
+    console.log("courseName = ", courseName);
+    console.log("courseCode = ", courseCode);
+    if (userStatus == 0) {
         addSuggestBookBtn();
         addSuggestBookModal();
         await addSuggestBookForm();
@@ -76,4 +79,4 @@ async function suggestBookModal() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", suggestBookModal);
+// document.addEventListener("DOMContentLoaded", suggestBookModal);

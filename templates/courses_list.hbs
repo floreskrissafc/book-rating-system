@@ -3,7 +3,13 @@
     <li data-name="{{name}}" data-code="{{module_code}}">
         <div class="course_container">
             <p>{{module_code}} - {{name}}</p>
-            <button class="button button_green" onClick="getBooksForCourse('{{id}}')">See course</button>
+            <div class="container_for_btns">
+                <button class="see_course_btn button button_green" data_module_id="{{id}}" data_module_name="{{name}}" data_module_code="{{module_code}}">See course</button>
+                {{#if ../isAdmin}}
+                    <button class="edit_course_btn button button_blue" data_module_id="{{id}}" data_module_name="{{name}}" data_module_code="{{module_code}}">Edit course</button>
+                {{/if}}
+            </div>
+            
         </div>
     </li>
     {{/each}}

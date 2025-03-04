@@ -7,9 +7,10 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
         <link rel="stylesheet" href="../css/general.css" />
-        <link rel="stylesheet" href="../css/add_course_or_book.css" />
+        <link rel="stylesheet" href="../css/add_course_or_book.css"/>
         <link rel="stylesheet" href="../css/navigation.css" />
-        <link rel="stylesheet" href="../css/confirmation_modal.css" />
+        <link rel="stylesheet" href="../css/confirmation_modal.css"/>
+        <link rel="stylesheet" href="../css/profile_page.css"/>
         <script src="https://cdn.jsdelivr.net/npm/handlebars/dist/handlebars.min.js"></script>
         <script src="../scripts/load_nav_template.js"></script>
     </head>
@@ -42,7 +43,7 @@
                         </div>
 
                         <div class="form_row">
-                            <label for="course_name_input" class="form_label">Course name </label>
+                            <label for="course_name_input" class="form_label">Course name</label>
                             <input
                                 type="text"
                                 required
@@ -62,21 +63,24 @@
                                     <button id="confirm-delete" class="button button_red" type="submit">
                                         Yes, Delete
                                     </button>
-                                    <button id="cancel-delete" class="button button_gray" type="submit">Cancel</button>
+                                    <button id="cancel-delete" class="button button_gray" type="button">Cancel</button>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form_submit">
-                            <button id="submit_btn" onclick="" type="submit" class="button_green button">Save</button>
-                            <button id="cancel_btn" onclick="" type="submit" class="button button_gray">Cancel</button>
-                            <button id="delete_btn" onclick="" type="submit" class="button button_red">Delete</button>
+                            <button id="submit_btn" type="submit" class="button_green button">Update</button>
+                            <button id="delete_btn" type="button" class="button button_red">Delete</button>
                         </div>
+
+                        <div id="message_container" class="form_row message_container">
+                            <p id="message" class="message"></p>
+                        </div>
+
                     </form>
                 </div>
             </div>
         </main>
-        <script src="../scripts/confirmation_modal.js"></script>
         <script src="../scripts/edit_course.js"></script>
         <script src="../scripts/nav_bar_logged_in.js"></script>
     </body>

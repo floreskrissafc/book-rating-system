@@ -45,8 +45,13 @@
     text-align: center;
 }
 
-.review_book_btn {
-    /*display: none;*/
+.container_for_btns {
+    display:flex; 
+    flex-direction: column;
+}
+
+.see_course_btn {
+    margin-bottom: 0.5em;
 }
 
 .delete_book_btn {

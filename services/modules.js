@@ -50,29 +50,20 @@ function update(moduleObj) {
    throw new Err('Error updating module', 400);
   }
 
-  let message = "Your review has been updated successfully";
+  let message = "Your module has been updated successfully";
   return { message };
 }
 
 function deleteModule(moduleObj) {
-  let { module_name } = moduleObj;
-  if (!module_name) {
-    throw new Err("No module is selected", 400);
-  }
-
-  moduleObj = getModuleByName(module_name);
-  if (moduleObj == undefined) {
-    throw new Err(`Module by name: ${module_name} not found`, 400);
-  }
-
-  let { id } = moduleObj;
-
+  let { module_id } = moduleObj;
+  let id = module_id;
+  
   const result = db.run('DELETE FROM modules WHERE id = @id', {id});
   if (!result.changes) {
     throw new Err("Error deleting module", 400);
   }
 
-  let message = "Your review has been deleted successfully";
+  let message = "Your module has been deleted successfully";
   return { message };
 }
 
