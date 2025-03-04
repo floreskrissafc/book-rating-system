@@ -89,7 +89,7 @@ function resetFilter() {
 
 async function addBookToCourse(book_id, module_id) {
     try {
-        const response = await fetch("http://localhost:3000/modules/addbook", { 
+        let response = await fetch("http://localhost:3000/modules/addbook", { 
             method: "POST", // Making a POST request to log in the user
             headers: {
                 "Content-Type": "application/json"
@@ -102,6 +102,11 @@ async function addBookToCourse(book_id, module_id) {
                 top: 0,
                 behavior: "smooth"
             });
+        } else {
+            const data = await response.json();
+            console.log("There was an error trying to add the book to the course, ", data);
+            console.log("data: \n", data);
+            alert(`The book could not be added to the course. Error: ${data.error}`);
         } 
     } catch (error){
         console.log("There was an error trying to add the book to the course, ", error);

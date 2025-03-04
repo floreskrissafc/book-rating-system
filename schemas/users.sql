@@ -8,6 +8,6 @@ CREATE TABLE IF NOT EXISTS users (
 	profile_picture VARCHAR(255) DEFAULT "imgs/user_profiles/default_profile.png" NOT NULL
 );
 
-INSERT OR IGNORE INTO admin_emails (email) VALUES
-						('user1@student.london.ac.uk'),
-						('user2@student.london.ac.uk')
+INSERT OR IGNORE INTO users (email, password_hash, role, first_name, last_name) VALUES
+						('user1@student.london.ac.uk', '$2b$10$0rMDoiQRTGn/oZ1Vx7NwEOeTcXUKVnKDHRcXEGLg5uE6dUP1FQ.H2', 0, 'user1', 'one'),
+						('user2@student.london.ac.uk', '$2b$10$0rMDoiQRTGn/oZ1Vx7NwEOeTcXUKVnKDHRcXEGLg5uE6dUP1FQ.H2', 0, 'user2', 'two')

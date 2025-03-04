@@ -28,3 +28,10 @@ TODOs:
 - [ ] /resetpassword route is used for forgot password, validate the flow with UI.
 - [ ] make it private live in using digital ocean or github etc.
 
+
+
+- [x] chrome issues
+    - [x] disable the weak password detection.
+    - [x] disable chrome://settings/security?search=safe+browsing
+    - [x] https://support.google.com/chrome/thread/23945619/how-to-disable-the-password-checkup-in-chrome?hl=en
+
