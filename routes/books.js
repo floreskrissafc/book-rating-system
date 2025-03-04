@@ -72,6 +72,9 @@ router.get('/search', function(req, res, next) {
 router.get("/:bookId", function(req, res, next) {
   try {
     const bookData = getBookInfoByID(req.params.bookId);
+    if (!bookData) {
+      throw new Error(`No book found for id: ${req.params.bookId}`);
+    }
     const rating = reviews.getAvgRatingForBook(req.params.bookId);
     return res.json({...bookData, rating});
     
