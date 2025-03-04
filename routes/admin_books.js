@@ -25,7 +25,7 @@ router.post('/', function(req, res, next) {
         res.json(books.create(req.body));
     } catch(err) {
         if (err.message.toLowerCase().includes('unique constraint failed')) {
-            next(new Err(`The book ${req.body.title} already exists in the system for module ${req.body.module_name}. Do you want to add a different book?`, 400));
+            next(new Err(`The book ${req.body.title} already exists in the system for module id: ${req.body.module_id}. Do you want to add a different book?`, 400));
         } else {
             logger.error(`Error while adding books  ${err.message}`);
             next(err);

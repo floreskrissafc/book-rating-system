@@ -43,8 +43,8 @@ function validateCreate(book) {
     throw new Err('No object is provided', 400);
   }
 
-  if (!book.module_name) {
-    throw new Err('Module name is not selected', 400);
+  if (!book.module_id) {
+    throw new Err('Module Id is not selected', 400);
   }
 
   if (!book.isbn) {
@@ -66,9 +66,9 @@ function validateCreate(book) {
     throw new Err('Some fields are empty: authors', 400);
   }
 
-  let moduleObj = moduleService.getModuleByName(book.module_name);
+  let moduleObj = moduleService.getModuleById(book.module_id);
   if (moduleObj == undefined) {
-    throw new Err(`Module by name: ${book.module_name} not found`, 400);
+    throw new Err(`Module by id: ${book.module_id} not found`, 400);
   }
 
   return { ...moduleObj, isbn: isbn13h};
@@ -208,13 +208,13 @@ function propose(proposedBookObj) {
   }
   const isbn13h = isbnValidationRes.isbn13h;
 
-  if (!proposedBookObj.module_name) {
-    throw new Err('The module name is not selected', 400);
+  if (!proposedBookObj.module_id) {
+    throw new Err('The module id is not selected', 400);
   }
 
-  const moduleObj = moduleService.getModuleByName(proposedBookObj.module_name);
+  const moduleObj = moduleService.getModuleById(proposedBookObj.module_id);
   if (moduleObj == undefined) {
-    throw new Err(`Module by name: ${proposedBookObj.module_name} not found`, 400);
+    throw new Err(`Module by id: ${proposedBookObj.module_id} not found`, 400);
   }
 
   const module_id = moduleObj.id;

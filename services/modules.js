@@ -13,8 +13,12 @@ function getMultiple(page = 1) {
   };
 }
 
-function getModuleByName(module_name) {
-  return db.queryOne(`SELECT * FROM modules WHERE name = ?`, module_name);
+function getAllModuleByName(module_name) {
+  return db.queryAll(`SELECT * FROM modules WHERE name = ?`, module_name);
+}
+
+function getModuleById(module_id) {
+  return db.queryOne(`SELECT * FROM modules WHERE id = ?`, module_id);
 }
 
 function validateCreate(module) {
@@ -70,7 +74,8 @@ function deleteModule(moduleObj) {
 export {
   getMultiple,
   create,
-  getModuleByName,
+  getAllModuleByName,
   update,
   deleteModule,
+  getModuleById
 };
