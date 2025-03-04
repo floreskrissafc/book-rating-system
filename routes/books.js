@@ -1,6 +1,6 @@
 import { Router } from 'express';
 const router = Router();
-import { getMultiple, propose, searchBySingleColumnQuery } from '../services/books.js';
+import { getMultiple, propose, searchBySingleColumnQuery, getBookInfoByID } from '../services/books.js';
 import logger from '../services/logging.js';
 import Err from '../services/customError.js';
 import * as reviews from '../services/reviews.js';
@@ -68,5 +68,17 @@ router.get('/search', function(req, res, next) {
   }
 });
 
+
+router.get("/:bookId", function(req, res, next) {
+  try {
+    const bookData = getBookInfoByID(req.params.bookId);
+    const rating = reviews.getAvgRatingForBook(req.params.bookId);
+    return res.json({...bookData, rating});
+    
+  } catch (error) {
+    logger.error(`Error while gett book ${error.message}`);
+    next(error);
+  }
+});
 
 export default router;
