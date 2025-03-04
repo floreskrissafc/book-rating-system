@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Courses page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="../css/general.css" />
+        <link rel="stylesheet" href="../css/add_course_or_book.css" />
+        <link rel="stylesheet" href="../css/navigation.css" />
+        <link rel="stylesheet" href="../css/courses_and_books.css" />
+        <script src="https://cdn.jsdelivr.net/npm/handlebars/dist/handlebars.min.js"></script>
+        <script src="../scripts/load_nav_template.js"></script>
+        <style>
+            .form_input {
+                min-width: 350px;
+                padding-right: 1em;
+                padding-left: 1em;
+                padding-bottom: 0.5em;
+                padding-top: 0.5em;
+                border: 1px solid #9a9a9a;
+                border-radius: 0.3em;
+            }
+            #choose_course_box {
+                display: flex; 
+                flex-direction: row;
+                align-items: center;
+            }
+            .content_90 {
+                background-color: pink;
+            }
+
+            .centered_container {
+                background-color: aqua;
+            }
+            #select_title {
+                margin-right: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <nav class="nav_container" id="myTopnav">
+                <!--The navigation section will load here -->
+            </nav>
+        </div>
+
+        <main class="container main_container">
+            <div class="content_90">
+                <div>
+                    <div class="centered_container title_container">
+                        <h2>Add books to courses</h2>
+                    </div>
+                </div>
+                <div style="width: 100%">
+                    <div id="choose_course_box" class="centered_container">
+                        <p id="select_title">Choose a course</p>
+                        <div id="courses_container" name="course">
+                            <!-- Select component will load here-->
+                        </div>
+                    </div>
+                </div>
+
+                <div id="book_list_container" class="filtered_list">
+                    <!--books template will be inserted here-->
+                </div>
+            </div>
+        </main>
+
+        <!-- <script src="/scripts/courses_page_script.js"></script> -->
+        <script type="module" src="../scripts/books_and_courses.js"></script>
+        <script src="/scripts/nav_bar_logged_in.js"></script>
+        <script src="/scripts/add_book_to_course.js"></script>
+    </body>
+</html>
