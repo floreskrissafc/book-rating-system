@@ -3,9 +3,7 @@
     <head>
         <title>Courses page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
         <link rel="stylesheet" href="../css/general.css" />
         <link rel="stylesheet" href="../css/add_course_or_book.css" />
         <link rel="stylesheet" href="../css/navigation.css" />
@@ -22,20 +20,50 @@
                 border: 1px solid #9a9a9a;
                 border-radius: 0.3em;
             }
-            #choose_course_box {
-                display: flex; 
-                flex-direction: row;
-                align-items: center;
-            }
-            .content_90 {
-                background-color: pink;
-            }
-
-            .centered_container {
-                background-color: aqua;
-            }
             #select_title {
                 margin-right: 1em;
+            }
+
+            #search_bar_container {
+                margin-top: 1em;
+            }
+
+            .message_container {
+                width: 100%;
+                display: none;
+            }
+
+            
+            @media screen and (min-width: 701px) {
+                #choose_course_box {
+                    display: flex; 
+                    flex-direction: row;
+                    align-items: center;
+                }
+                #courses_container {
+                    max-width: 100%;
+                }
+            }
+            @media screen and (max-width: 700px) {
+                #choose_course_box {
+                    display: flex; 
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                #choose_course_box p {
+                    text-align: center;
+                    font-size: calc(15px + 1vw);
+                    margin-bottom: 1em;
+                }
+
+                #course {
+                    min-width: 0;
+                }
+
+                #courses_container {
+                    width: 100%;
+                }
             }
         </style>
     </head>
@@ -61,6 +89,18 @@
                         </div>
                     </div>
                 </div>
+                <div style="width: 100%">
+                    <div class="centered_container" id="search_bar_container">
+                        <div class="search_box">
+                            <input type="text" id="search_input" class="search_bar" placeholder="Search for a book..." />
+                            <div class="search_btn_container">
+                                <i class="fa fa-search" style="color: #727274"></i>
+                            </div>
+                        </div>
+
+                        <button id="reset_filter" class="button button_gray">Reset filter</button>
+                    </div>
+                </div>
 
                 <div id="book_list_container" class="filtered_list">
                     <!--books template will be inserted here-->
@@ -68,9 +108,7 @@
             </div>
         </main>
 
-        <!-- <script src="/scripts/courses_page_script.js"></script> -->
-        <script type="module" src="../scripts/books_and_courses.js"></script>
         <script src="/scripts/nav_bar_logged_in.js"></script>
-        <script src="/scripts/add_book_to_course.js"></script>
+        <script type="module" src="/scripts/add_book_to_course.js"></script>
     </body>
 </html>

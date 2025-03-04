@@ -1,11 +1,5 @@
 import { renderStars } from "./render_stars.js";
 
-function getQueryParameter(parameterName) {
-    // Function to get a query parameter from the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(parameterName);
-}
-
 async function fetchBooks() {
     // This function will query the database and get the list of books associated with this module
     try {

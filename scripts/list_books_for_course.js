@@ -58,7 +58,7 @@ async function loadBooksTemplate(books) {
 // Ensure that the books are loaded when the page content is ready
 document.addEventListener("DOMContentLoaded", async function() {
     await fetchGlobalData(); // The data for the user and module must be set before loading the books
-    document.getElementById("book_title_h2").textContent = `Book List for ${currentCourseName} ${currentCourseCode}`;
-    await fetchBooksForModule(currentCourseId);
+    document.getElementById("book_title_h2").textContent = `Book List for ${window.currentCourseName} ${window.currentCourseCode}`;
+    await fetchBooksForModule(window.currentCourseId);
     suggestBookModal();
 });

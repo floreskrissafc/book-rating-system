@@ -98,6 +98,7 @@ figure {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-bottom: 1em;
 }
 
 .margin_right_1 {
