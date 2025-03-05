@@ -23,7 +23,9 @@ async function loadBooksTemplate(books) {
         const templateText = await templateResponse.text();
         const template = Handlebars.compile(templateText);
         // Generating the actual HTML with the books data
-        const html = template({ books });
+        const btnName = "Add Book";
+        const className = "add_book_btn";
+        const html = template({ books, btnName, className });
         // Inserting the generated HTML into the container
         document.getElementById("book_list_container").innerHTML = html;
     } catch (error) {

@@ -36,7 +36,6 @@ figure {
 
 .button_blue {
     background-color: #4a90e2;
-    /*007bff*/
 }
 
 .button_blue:hover {
@@ -103,4 +102,12 @@ figure {
 
 .margin_right_1 {
     margin-right: 5vw;
+}
+
+#message {
+    color: red;
+    margin-top: 1em;
+    text-align: center;
+    width: 100%;
+
 }

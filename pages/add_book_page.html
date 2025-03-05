@@ -23,19 +23,7 @@
             <div class="content_90">
                 <h2 class="page_activity margin_bottom_1">Add a new book</h2>
                 <div class="main_form_container">
-                    <form class="form_box" enctype="multipart/form-data">
-                        <div class="form_row">
-                            <label class="form_label" for="course"
-                                >Choose a course
-                                <span class="tooltip">
-                                    <i class="fa fa-info-circle tooltip_i"></i>
-                                    <span class="tooltip-text"> You can select a course to add this book to.</span>
-                                </span>
-                            </label>
-                            <div id="courses_container" name="course">
-                                <!-- Select component will load here-->
-                            </div>
-                        </div>
+                    <form id="add_book_form" class="form_box" enctype="multipart/form-data">
                         <div class="form_row">
                             <label for="book_title_input" class="form_label">Book title</label>
                             <input
@@ -86,7 +74,7 @@
 
                         <div class="form_row">
                             <label for="edition_input" class="form_label">Edition</label>
-                            <input type="text" class="form_input" id="edition_input" placeholder="1st Edition" />
+                            <input type="text" class="form_input" id="edition_input" placeholder="1st Edition" required/>
                         </div>
 
                         <div class="form_row">
@@ -121,28 +109,18 @@
                             <input class="form_input" type="file" id="book_pic_input" name="book_pic_input" />
                         </div>
 
+                        <div id="message_container" class="form_row">
+                            <p id="message"></p>
+                        </div>
+
                         <div class="form_submit">
-                            <button id="submit_btn" onclick="" type="submit" class="button_green button">Submit</button>
-                            <button id="cancel_btn" onclick="" type="submit" class="button button_red">Cancel</button>
+                            <button id="submit_btn" type="submit" class="button_green button">Save Book</button>
                         </div>
                     </form>
                 </div>
             </div>
         </main>
-
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                document.getElementById("book_pic_input").addEventListener("change", function () {
-                    const file = this.files[0];
-                    if (file && file.size > 5 * 1024 * 1024) {
-                        alert("File size must be under 5MB!");
-                        this.value = ""; // Clearing the file input
-                    }
-                });
-            });
-        </script>
-
         <script src="../scripts/nav_bar_logged_in.js"></script>
-        <script src="../scripts/load_courses.js"></script>
+        <script src="../scripts/add_book.js"></script>
     </body>
 </html>
