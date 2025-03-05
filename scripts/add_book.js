@@ -21,7 +21,7 @@ async function saveBook(){
         formData.append('link', link);
         formData.append('book_pic_input', book_pic_input);
         const response = await fetch("http://localhost:3000/books", { 
-            method: "POST", // Making a POST request to update the user
+            method: "POST", // Making a POST request to save the book
             body: formData,
         });
         if (response.ok) {

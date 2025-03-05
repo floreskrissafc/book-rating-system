@@ -50,6 +50,7 @@ function searchForBook() {
 }
 
 function resetFilter() {
+    // function used in the html for onClick
     document.getElementById("search_input").value = "";
     let books = document.querySelectorAll("#books_list li");
     books.forEach((book) => {
@@ -63,7 +64,6 @@ document.addEventListener("DOMContentLoaded", async function(){
     document.getElementById("search_input").addEventListener("input",searchForBook );
     document.querySelectorAll(".edit_book_btn").forEach( button => {
         button.addEventListener("click", function () {
-            console.log("adding listener to button");
             const book_id = this.getAttribute("data-id");
             if ( book_id ) {
                 // redirectioning with url parameters to later perform a GET request

@@ -105,17 +105,11 @@ function validateUpdate(book) {
     throw new Err('No object is provided', 400);
   }
 
-  if (!book.isbn) {
-    throw new Err('Some fields are empty: isbn', 400);
+  if (!book.id) {
+    throw new Err('Some fields are empty: id', 400);
   }
 
-  let isbnValidationRes = ISBNValidator.parse(book.isbn);
-
-  if (!isbnValidationRes || !isbnValidationRes.isValid || !isbnValidationRes.isbn13h) {
-    throw new Err('ISBN does not match any known format', 400);
-  }
-  let isbn13h = isbnValidationRes.isbn13h;
-  return { isbn: isbn13h};
+  return book;
 }
 
 async function updateBooksField(id, name, value) {
@@ -136,12 +130,11 @@ async function updateBooksField(id, name, value) {
 }
 
 async function update(bookObj) {
-  // Below is module fields + isbn with isbn13 normalized formatting.
-  let { isbn } = validateUpdate(bookObj);
-  const { title, authors, cover_picture, link, edition } = bookObj;
-  const { data } = searchBySingleColumnQuery("isbn", isbn);
+  let { id } = validateUpdate(bookObj);
+  const { title, authors, cover_picture, link, edition, isbn } = bookObj;
+  const { data } = searchBySingleColumnQuery("id", id);
   if (!data || data.length != 1) {
-    throw new Err(`Book for ISBH: ${isbn} not found`, 404);
+    throw new Err(`Book for id: ${id} not found`, 404);
   }
   let book_id = data[0].id;
   let updates = [];
@@ -159,6 +152,18 @@ async function update(bookObj) {
 
   if (edition && data[0].edition != edition) {
     updates.push(await updateBooksField(book_id, 'edition', edition));
+  }
+
+  if (isbn) {
+    let isbnValidationRes = ISBNValidator.parse(isbn);
+
+    if (!isbnValidationRes || !isbnValidationRes.isValid || !isbnValidationRes.isbn13h) {
+      throw new Err('ISBN does not match any known format', 400);
+    }
+    let isbn13h = isbnValidationRes.isbn13h;
+    if (data[0].isbn != isbn13h) {
+      updates.push(await updateBooksField(book_id, 'isbn', isbn13h));
+    }
   }
 
   if (cover_picture && data[0].cover_picture != cover_picture) {
