@@ -6,12 +6,12 @@
                 <div class="review_left_box">
                     <div class="review_top_box">
                         <div class="user_img_container">
-                            <img src="{{profilePic}}" alt="User profile picture" />
+                            <img src="../{{profile_picture}}" alt="User profile picture" />
                         </div>
 
                         <div class="user_name_container">
-                            <p class="user_name">{{name}} {{lastName}}</p>
-                            <p class="review_date">Created on {{creationDate}}</p>
+                            <p class="user_name">{{first_name}} {{last_name}}</p>
+                            <p class="review_date">Created on {{created_at}}</p>
                         </div>
                     </div>
 
@@ -25,7 +25,7 @@
             </div>
 
             <div class="review_text_container">
-                <p>{{reviewText}}</p>
+                <p>{{comment}}</p>
                 <i class="review_arrow fa-solid fa-caret-down"></i>
             </div>
         </div>

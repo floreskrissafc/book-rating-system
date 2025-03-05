@@ -1,33 +1,8 @@
-// Function to get query parameters from the URL
-function getQueryParams() {
-    const params = new URLSearchParams(window.location.search);
-    return {
-        bookId: params.get("bookId"),
-        bookName: params.get("bookName"),
-        userId: params.get("userId"),
-        userStatus: params.get("userStatus") // this should be 1 or 2, 1 for admins
-    };
+function getQueryParameter(parameterName) {
+    // Function to get a query parameter from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(parameterName);
 }
-
-// Extracting the id and name of the book from the url
-//const { id: bookId, name: bookName } = getQueryParams();  // must uncomment this line
-
-// placeholder values for now
-const bookId = 1;
-const bookName = "The Sutle Art of Programming";
-const userId = 2;
-const userStatus = 2;
-
-// Creating a global variable so it can be used later
-window.currentBookId = bookId;
-window.currentUserId = userId;
-window.currentUserStatus = userStatus;
-window.currentBookName = bookName;
-
-// Inserting the book name into the title container
-document.getElementById("book_title_h2").textContent = `${bookName} Reviews`;
-document.querySelector("title").textContent = `Reviews for ${bookName}`; //
-document.getElementById("modal_title").textContent = `${bookName}`;
 
 function addReview() {
     // Function to be called when user clicks the "Add Review" button
@@ -37,6 +12,37 @@ function addReview() {
     //document.getElementById("review_modal").style.display = "block";
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+async function fetchBook(book_id) {
+    // This function will query the database and get all the books 
+    try {
+        const response = await fetch(`http://localhost:3000/books/${book_id}`, { 
+            method: "GET", 
+        });
+        if ( response.ok ){
+            const data = await response.json();
+            window.currentBookId = data.id;
+            window.currentBookName = data.title; 
+            window.isAdmin = response.headers.get("IS-ADMIN") == "1" ? true : false ;
+        }
+    } catch (error) {
+        console.error("Error fetching book list:", error);
+    }
+}
+function renderBookInfo() {
+    // Inserting the book name into the title container
+    document.getElementById("book_title_h2").textContent = `${window.currentBookName} Reviews`;
+    document.querySelector("title").textContent = `Reviews for ${window.currentBookName}`; //
+    document.getElementById("modal_title").textContent = `${window.currentBookName}`;
+
+    if (window.isAdmin) {
+        // TODO: use similar logic as in list_reviews_for_book.js 's setupDeleteModal and setupEditModal.
+        // document.getElementById("add_review_btn").hidden = true;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", async function() {
+    let bookId = getQueryParameter("bookId");
+    await fetchBook(bookId);
+    renderBookInfo();
     document.getElementById("add_review_btn").addEventListener("click", addReview);
 });

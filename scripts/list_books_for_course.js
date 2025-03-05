@@ -16,7 +16,7 @@ async function fetchBooksForModule(courseId) {
         if ( response.ok ){
             const data = await response.json();
             const books = data.data;
-            loadBooksTemplate(books);  
+            await loadBooksTemplate(books);  
         }
     } catch (error) {
         console.error(`Error fetching book list for course ${courseId}: `, error);
@@ -60,5 +60,16 @@ document.addEventListener("DOMContentLoaded", async function() {
     await fetchGlobalData(); // The data for the user and module must be set before loading the books
     document.getElementById("book_title_h2").textContent = `Book List for ${window.currentCourseName} ${window.currentCourseCode}`;
     await fetchBooksForModule(window.currentCourseId);
-    suggestBookModal();
+    await suggestBookModal();
+
+    document.querySelectorAll(".see_reviews_btn").forEach( button => {
+        button.addEventListener("click", function () {
+            const bookId = this.getAttribute("data-id");
+            if (bookId) {
+                window.location.href = `./reviews_page.html?bookId=${bookId}`;
+            }
+        });
+    });
+
+
 });

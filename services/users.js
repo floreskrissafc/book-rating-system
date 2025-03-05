@@ -22,7 +22,7 @@ function getUserByEmail(email) {
 }
 
 function getUserInfoByID(id) {
-    return db.queryOne(`select first_name, last_name, role FROM users WHERE id = ?`, id);
+    return db.queryOne(`select * FROM users WHERE id = ?`, id);
 }
 
 /*Validate if req.body have fields reqiured for function
