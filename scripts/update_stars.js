@@ -1,7 +1,7 @@
-const stars = document.querySelectorAll("#new_review_star_rating i");
 let selectedRating = 1;
 
 export function updateStars(rating) {
+    const stars = document.querySelectorAll("#new_review_star_rating i");
     const ratingDisplay = document.getElementById("selected_rating");
     // Function that updates the stars visually by changing their class
     stars.forEach((star) => {
@@ -12,6 +12,7 @@ export function updateStars(rating) {
 }
 
 export function addEventListenersToStars(){
+    const stars = document.querySelectorAll("#new_review_star_rating i");
     stars.forEach((star) => {
         //on hover call the updateStars function
         star.addEventListener("mouseover", function () {
