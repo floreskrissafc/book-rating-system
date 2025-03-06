@@ -3,28 +3,31 @@ import { fillEditForm, submitEditReview } from "./edit_review_modal.js";
 
 let addEditModal = false;
 
-function showDeleteModal(reviewId, reviewName, reviewLastName) {
-    const modal = document.getElementById("delete-modal");
+function showDeleteModal(review) {
+    const modal = document.getElementById(`delete-modal-${review.user_id}-${review.book_id}`);
     const modalTextContainer = document.getElementById("modal_content_text");
     modal.style.display = "flex";
-    const confirmDeleteText = `Are you sure you want to delete this review by ${reviewName} ${reviewLastName} ? This will delete all the data related
+    const confirmDeleteText = `Are you sure you want to delete this review by ${review.first_name} ${review.last_name} ? This will delete all the data related
                             to the review. This action cannot be undone.`;
     modalTextContainer.innerHTML = confirmDeleteText;
 }
 
-async function showEditModal(reviewId, reviewText, rating, bookName, userId) {
+async function showEditModal(review) {
     // When user clicks on an Edit button, a modal is shown so that
     // the user can edit the particular review
     try {
-        const modal = document.getElementById("edit_review_modal");
-        const formContainer = document.getElementById("edit_review_form_container");
+        const modal = document.getElementById(`edit_review_modal-${review.user_id}-${review.book_id}`);
+        const formContainer = document.getElementById(`edit_review_form_container-${review.user_id}-${review.book_id}`);
         // Fetching the edit review template
         const templateResponse = await fetch("/templates/edit_review_modal.hbs");
         const templateText = await templateResponse.text();
         const template = Handlebars.compile(templateText);
-        const html = template({ reviewId, bookName, rating, reviewText, userId }); // Fill the template with the data for this review
+        const { rating, comment, user_id } = review;
+        const bookName = window.currentBookName;
+        const html = template({ bookName, rating, comment, user_id }); // Fill the template with the data for this review
         formContainer.innerHTML = html;
-        fillEditForm(rating);
+        await fillEditForm(review);
+        loadReviews();
         modal.style.display = "flex";
     } catch (error) {
         console.error("Error showing edit review modal:", error);
@@ -32,16 +35,31 @@ async function showEditModal(reviewId, reviewText, rating, bookName, userId) {
     }
 }
 
-function hideDeleteModal() {
-    const modal = document.getElementById("delete-modal");
+function hideDeleteModal(review) {
+    const modal = document.getElementById(`delete-modal-${review.user_id}-${review.book_id}`);
     modal.style.display = "none";
 }
 
-function deleteReview(reviewId) {
-    const modal = document.getElementById("delete-modal");
+async function deleteReview(review) {
+    const modal = document.getElementById(`delete-modal-${review.user_id}-${review.book_id}`);
     // Sends the POST request to the server to delete this review
     // TODO
-    alert("The review was deleted successfully"); // placeholder for now
+    const { user_id, book_id } = review;
+
+    const response = await fetch("http://localhost:3000/reviews/", {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ user_id, book_id })
+    });
+    const data = response.json();
+    if (response.ok) {
+        alert("The review was deleted successfully"); // placeholder for now
+    } else {
+        alert(`Error: ${data.error}`);
+    }
+
     modal.style.display = "none";
 }
 
@@ -109,7 +127,7 @@ function renderReviews(template, reviews) {
     // that way we know if we should include a modal for editing a review or not
     const currentUserId = window.currentUserId;
     for (let i = 0; i < reviews.length; i++) {
-        const userId = reviews[i].userId;
+        const userId = reviews[i].user_id;
         if (userId == currentUserId) {
             addEditModal = true;
             break;
@@ -117,15 +135,15 @@ function renderReviews(template, reviews) {
     }
 }
 
-function setupDeleteModal() {
+function setupDeleteModal(review) {
     const mainContent = document.getElementById("main_content");
     const modalHTML = `
-        <div id="delete-modal" class="modal">
+        <div id="delete-modal-${review.user_id}-${review.book_id}" class="modal">
             <div class="modal-content">
                 <p id="modal_content_text" class="modal-content-text"></p>
                 <div class="modal_btn_container">
-                    <button id="confirm-delete" class="button button_red">Yes, Delete</button>
-                    <button id="cancel-delete" class="button button_gray">Cancel</button>
+                    <button id="confirm-delete-${review.user_id}-${review.book_id}" class="button button_red">Yes, Delete</button>
+                    <button id="cancel-delete-${review.user_id}-${review.book_id}" class="button button_gray">Cancel</button>
                 </div>
             </div>
         </div>
@@ -133,13 +151,13 @@ function setupDeleteModal() {
     mainContent.insertAdjacentHTML("beforeend", modalHTML);
 }
 
-function setupEditModal() {
+function setupEditModal(review) {
     // If the current user is the owner of at least one of the reviews
     // then create this modal so that they are able to edit their reviews
     const mainContent = document.getElementById("main_content");
     const modalHTML = `
-            <div id="edit_review_modal" class="modal">
-                <div id = "edit_review_form_container" class="modal-content">
+            <div id="edit_review_modal-${review.user_id}-${review.book_id}" class="modal">
+                <div id = "edit_review_form_container-${review.user_id}-${review.book_id}" class="modal-content">
                 </div>
             </div>
     `;
@@ -164,26 +182,26 @@ function addEventListenersToReviews(reviews, userStatus, currentUserId) {
         const review = reviews[index];
         const btn = document.createElement("button");
         if (userStatus == 1) {
-            const confirmDeleteBtn = document.getElementById("confirm-delete");
-            const cancelDeleteBtn = document.getElementById("cancel-delete");
+            const confirmDeleteBtn = document.getElementById(`confirm-delete-${review.user_id}-${review.book_id}`);
+            const cancelDeleteBtn = document.getElementById(`cancel-delete-${review.user_id}-${review.book_id}`);
 
             btn.className = "delete_review_btn button button_red";
             btn.textContent = "Delete";
-            btn.onclick = () => showDeleteModal(review.id, review.name, review.lastName);
+            btn.onclick = () => showDeleteModal(review);
             container.querySelector(".review_right_box").appendChild(btn);
 
             confirmDeleteBtn.addEventListener("click", function () {
-                deleteReview(review.id);
+                deleteReview(review);
             });
 
             cancelDeleteBtn.addEventListener("click", function () {
-                hideDeleteModal();
+                hideDeleteModal(review);
             });
-        } else if (userStatus == 0 && review.userId == currentUserId) {
+        } else if (userStatus == 0 && review.user_id == currentUserId) {
             const bookName = window.currentBookName;
             btn.className = "edit_review_btn button button_blue";
             btn.textContent = "Edit";
-            btn.onclick = () => showEditModal(review.id, review.reviewText, review.rating, bookName, review.userId);
+            btn.onclick = () => showEditModal(review);
             container.querySelector(".review_right_box").appendChild(btn);
         }
     });
@@ -199,11 +217,13 @@ async function loadReviews() {
         const { template, reviews } = data;
         renderReviews(template, reviews);
         attachAccordionListeners();
-        if (userStatus == 1) {
-            setupDeleteModal();
-        } else if (userStatus == 0 && addEditModal) {
-            setupEditModal();
-        }
+        reviews.forEach(review => {
+            if (userStatus == 1) {
+                setupDeleteModal(review);
+            } else if (userStatus == 0 && addEditModal) {
+                setupEditModal(review);
+            }
+        });
         addEventListenersToReviews(reviews, userStatus, currentUserId);
     } catch (error) {
         console.error(`Error fetching reviews for book ${bookId}:`, error);
