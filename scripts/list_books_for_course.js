@@ -1,5 +1,7 @@
 import { renderStars } from "./render_stars.js";
 import { suggestBookModal } from "./suggest_book_modal.js";
+import { addReviewBookModal, showAddReviewModal, addEventListenerToModalButtons } from "./course_page_add_review_modal.js";
+import { updateStars, addEventListenersToStars } from "./update_stars.js";
 
 function getQueryParameter(parameterName) {
     // Function to get a query parameter from the URL
@@ -46,13 +48,42 @@ async function loadBooksTemplate(books) {
         const templateResponse = await fetch("/templates/books_list.hbs");
         const templateText = await templateResponse.text();
         const template = Handlebars.compile(templateText);
+        const isAdminStr = window.currentUserStatus;
+        const isAdmin = isAdminStr == "1" ? true : false;
+        const isStudent = !isAdmin;
         // Generating the actual HTML with the books data
-        const html = template({ books });
+        const html = template({ books, isStudent});
         // Inserting the generated HTML into the container
         document.getElementById("book_list_container").innerHTML = html;
     } catch (error) {
         console.error("Error loading books:", error);
     }
+}
+
+function addEventListenerToSeeReviewsBtns(){
+    document.querySelectorAll(".see_reviews_btn").forEach( button => {
+        button.addEventListener("click", function (event) {
+            event.preventDefault();
+            const bookId = this.getAttribute("data-id");
+            if (bookId) {
+                window.location.href = `./reviews_page.html?bookId=${bookId}`;
+            }
+        });
+    });
+}
+
+function addEventListenerToAddReviewBtns(){
+    document.querySelectorAll(".review_book_btn").forEach( button => {
+        button.addEventListener("click", function (event) {
+            event.preventDefault();
+            const bookId = this.getAttribute("data-id");
+            const bookName = this.getAttribute("data-name");
+            if (bookId && bookName) {
+                console.log("both attributes exist");
+                showAddReviewModal(bookName, bookId);
+            }
+        });
+    });
 }
 
 // Ensure that the books are loaded when the page content is ready
@@ -61,15 +92,14 @@ document.addEventListener("DOMContentLoaded", async function() {
     document.getElementById("book_title_h2").textContent = `Book List for ${window.currentCourseName} ${window.currentCourseCode}`;
     await fetchBooksForModule(window.currentCourseId);
     await suggestBookModal();
+    addEventListenerToSeeReviewsBtns();
+    if (window.currentUserStatus == 0){
+        // if the user is a student
+        await addReviewBookModal();
 
-    document.querySelectorAll(".see_reviews_btn").forEach( button => {
-        button.addEventListener("click", function () {
-            const bookId = this.getAttribute("data-id");
-            if (bookId) {
-                window.location.href = `./reviews_page.html?bookId=${bookId}`;
-            }
-        });
-    });
-
-
+        addEventListenerToModalButtons();
+        addEventListenersToStars();
+        updateStars(1);
+        addEventListenerToAddReviewBtns();
+    }
 });

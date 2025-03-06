@@ -31,13 +31,13 @@ document.addEventListener("DOMContentLoaded", function () {
         addReviewModal.style.display = "flex";
     });
 
-    submitReviewBtn.addEventListener("click", () => {
+    submitReviewBtn.addEventListener("click", (event) => {
         event.preventDefault(); // Preventing the button from submitting the form
         submitReview();
         addReviewModal.style.display = "none";
     });
 
-    cancelReviewBtn.addEventListener("click", () => {
+    cancelReviewBtn.addEventListener("click", (event) => {
         console.log("cancel review was called");
         event.preventDefault(); // Preventing the button from submitting the form
         reviewForm.reset(); // Reset the form fields

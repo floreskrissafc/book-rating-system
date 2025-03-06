@@ -1,0 +1,31 @@
+<div id="add_review_modal" class="modal">
+    <div class="modal_content">
+        <p id="add_review_modal_title">
+            {{!-- Tile will change depending on book --}}
+        </p>
+        <form id="new_review_form" class="form_box">
+            <div class="new_review_container">
+                <p>Overall Rating</p>
+                <div id="new_review_star_rating">
+                    <i class="nr_star fa-solid fa-star" data-value="1"></i>
+                    <i class="nr_star fa-solid fa-star" data-value="2"></i>
+                    <i class="nr_star fa-solid fa-star" data-value="3"></i>
+                    <i class="nr_star fa-solid fa-star" data-value="4"></i>
+                    <i class="nr_star fa-solid fa-star" data-value="5"></i>
+                </div>
+                <p id="selected_rating" style="display: none">1</p>
+            </div>
+            <div class="new_review_container">
+                <label id="review_label" for="new_review_textarea" class="" style="">Review Text</label>
+                <textarea
+                    id="new_review_textarea"
+                    name="new_review"
+                    placeholder="What do you think about this book?"></textarea>
+            </div>
+            <div class="modal_btn_container">
+                <button id="submit_review" class="button button_green" data-id="" type="submit">Submit</button>
+                <button id="cancel_review" class="button button_gray" type="button">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -102,7 +102,7 @@
 }
 
 .modal {
-    z-index: 2000;
+    z-index: 5000;
 }
 
 #star_rating {
@@ -308,6 +308,7 @@
     }
 
     #modal_title,
+    #add_review_modal_title,
     #edit_review_title {
         font-size: calc(15px + 1vw);
         font-weight: 700;

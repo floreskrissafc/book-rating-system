@@ -22,15 +22,13 @@ export function fillEditForm(rating) {
         editRatingDisplay.textContent = new_rating;
     }
 
-    submitEditReviewBtn.addEventListener("click", () => {
-        console.log("submit edited review was clicked");
+    submitEditReviewBtn.addEventListener("click", (event) => {
         event.preventDefault(); // Preventing the button from submitting the form
         submitEditReview();
         editReviewModal.style.display = "none";
     });
 
-    cancelEditReviewBtn.addEventListener("click", () => {
-        console.log("cancel edit review was called");
+    cancelEditReviewBtn.addEventListener("click", (event) => {
         event.preventDefault(); // Preventing the button from submitting the form
         editReviewForm.reset(); // Reset the form fields
         updateEditedStars(rating);

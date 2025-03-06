@@ -18,8 +18,12 @@
             </div>
 
             <div class="book_btns_container">
-                <button type="button" class="review_book_btn button_green button" data-id="{{id}}">Review Book</button>
-                <button type="button" class="see_reviews_btn button button_blue" data-id="{{id}}"> See Reviews</button>
+                <a class="see_reviews_btn button button_blue" data-id="{{id}}">See Reviews</a>
+                {{#if ../isStudent}}
+                    <button type="button" class="review_book_btn button_green button" data-id="{{id}}" data-name="{{title}}">Review Book</button>
+                {{else}}
+                    <button type="button" class="delete_book_btn button button_red" data-id="{{id}}">Delete Book</button>
+                {{/if}} 
             </div>
         </div>
     </li>
