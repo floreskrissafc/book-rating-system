@@ -3,6 +3,7 @@
         <p id="add_review_modal_title">
             {{!-- Tile will change depending on book --}}
         </p>
+        {{!-- in reviews_page the #add_review_modal has a class of "modal" not "form_box" --}}
         <form id="new_review_form" class="form_box">
             <div class="new_review_container">
                 <p>Overall Rating</p>
@@ -16,7 +17,7 @@
                 <p id="selected_rating" style="display: none">1</p>
             </div>
             <div class="new_review_container">
-                <label id="review_label" for="new_review_textarea" class="" style="">Review Text</label>
+                <label id="review_label" for="new_review_textarea">Review Text</label>
                 <textarea
                     id="new_review_textarea"
                     name="new_review"

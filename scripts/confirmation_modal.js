@@ -13,3 +13,8 @@
 // });
 
 
+
+// OJo this is supposed to be used in reviews_page because an user can delete his own reviews
+// and admin can delete all reviews, but then it is working through another part
+
+

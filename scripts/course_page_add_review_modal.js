@@ -1,9 +1,9 @@
 import { updateStars } from "./update_stars.js";
+import { submitNewBookReview } from "./submitReview.js";
 
 export async function addReviewBookModal() {
     try {
         let container = document.getElementById("main_content");
-        // const formContainer = document.getElementById("add_review_form_box");
         const templateResponse = await fetch("/templates/add_review_modal.hbs");
         const templateText = await templateResponse.text();
         const template = Handlebars.compile(templateText);
@@ -14,10 +14,14 @@ export async function addReviewBookModal() {
     }
 }
 
-function submitReview() {
-    alert("Book review was posted");
-    // must get the data-id of the button to actually make the request
-    // TODO: implement server side request to post the book suggestion
+async function submitReview() {
+    let user_id = window.currentUserId;
+    let book_id = window.currentBookId;
+    let book_title = window.currentBookTitle;
+    let rating = document.getElementById("selected_rating").textContent;
+    let comment = document.getElementById("new_review_textarea").value;
+    await submitNewBookReview(rating, user_id, book_id, comment, book_title);
+    hideAddReviewModal();
 }
 
 function hideAddReviewModal() {

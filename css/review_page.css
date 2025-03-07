@@ -72,7 +72,7 @@
     flex: 10;
 }
 
-/* Expand to show full text when user clicks */
+/* This expands to show full text when user clicks */
 .expanded p {
     -webkit-line-clamp: unset;
     text-overflow: clip;
@@ -130,6 +130,27 @@
 #review_label,
 #edit_review_label {
     font-size: calc(12px + 1vw);
+}
+
+.review_right_box {
+   display: flex;
+   flex-direction: column;
+}
+
+.edit_review_btn {
+    margin-bottom: 0.5em;
+}
+
+.modal_content {
+    background-color: white;
+    padding: 1em 1em;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.new_review_form_container {
+    display: flex;
+    padding: 2em 2em;
 }
 
 @media screen and (min-width: 701px) {
@@ -338,5 +359,13 @@
     #new_review_textarea,
     #edit_review_text_area {
         font-size: calc(12px + 1vw);
+    }
+
+    .edit_review_btn {
+        width: 100%;
+    }
+
+    .modal_content {
+        width: 90%;
     }
 }

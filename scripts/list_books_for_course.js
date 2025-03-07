@@ -78,8 +78,9 @@ function addEventListenerToAddReviewBtns(){
             event.preventDefault();
             const bookId = this.getAttribute("data-id");
             const bookName = this.getAttribute("data-name");
+            window.currentBookTitle = bookName;
+            window.currentBookId = bookId;
             if (bookId && bookName) {
-                console.log("both attributes exist");
                 showAddReviewModal(bookName, bookId);
             }
         });
@@ -96,7 +97,6 @@ document.addEventListener("DOMContentLoaded", async function() {
     if (window.currentUserStatus == 0){
         // if the user is a student
         await addReviewBookModal();
-
         addEventListenerToModalButtons();
         addEventListenersToStars();
         updateStars(1);
