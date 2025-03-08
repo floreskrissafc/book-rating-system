@@ -104,6 +104,8 @@ function addEventListenerToAddReviewBtns(){
     });
 }
 
+
+
 // Ensure that the books are loaded when the page content is ready
 document.addEventListener("DOMContentLoaded", async function() {
     await fetchGlobalData(); // The data for the user and module must be set before loading the books
@@ -118,5 +120,8 @@ document.addEventListener("DOMContentLoaded", async function() {
         addEventListenersToStars();
         updateStars(1);
         addEventListenerToAddReviewBtns();
+    } else {
+        // TODO:
+        // must add a modal for removing the book from the course
     }
 });

@@ -28,10 +28,11 @@ function hideRemoveBookModal() {
 export function addEventListenerToRemoveBookModalButtons() {
     let confirmBtn = document.getElementById("confirm_remove");
     let cancelBtn = document.getElementById("cancel_review");
-    confirmBtn.onclick = (event) => {
+    confirmBtn.addEventListener("onclick", async function(event){
         event.preventDefault();
-        removeBookFromCourse();
-    };
+        await removeBookFromCourse();
+        location.reload();
+    });
     cancelBtn.onclick = (event) => {
         event.preventDefault();
         hideRemoveBookModal();
@@ -39,13 +40,24 @@ export function addEventListenerToRemoveBookModalButtons() {
 }
 
 export async function removeBookFromCourse() {
-    //TODO : make the request to the back end to remove the book from the course
-    // let user_id = window.currentUserId;
-    // let book_id = window.currentBookId;
-    // let book_title = window.currentBookTitle;
-    // let rating = document.getElementById("selected_rating").textContent;
-    // let comment = document.getElementById("new_review_textarea").value;
-    // hideRemoveBookModal();
-    // alert("The book was removed from this course");
-    // location.reload();
+    try {
+        let book_id = window.currentBookId;
+        let module_id = window.currentCourseId;
+        let response = await fetch("http://localhost:3000/modules/removebook", { 
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ book_id, module_id }) 
+        });
+        if ( response.ok ){
+            alert("The book was successfully removed from this course");
+        } else {
+            const data = await response.json();
+            console.log("There was an error trying to remove book from course:", data);
+            alert(`This book could not be removed from this course. Error: ${data.error}`);
+        }
+    } catch (error){
+        console.log("The book could not be removed from this course. Error: ", error);
+    }
 }
