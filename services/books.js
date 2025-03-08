@@ -77,10 +77,11 @@ function getBooksByModulesIds(module_ids) {
 function getBooksByModule(module_id) {
   const module_book_ids = db.queryAll(`SELECT * from modules_books WHERE module_id = ?`, module_id);
   const books = module_book_ids.map(module_book_id => (db.queryOne(`SELECT * FROM books WHERE id = ?`, module_book_id.book_id)));
-  return books.map((book) => ({
+  const res = books.map((book) => ({
     ...book,
     rating: reviewService.getAvgRatingForBook(book.id)
   }));
+  return res;
 }
 
 function getBookInfoByID(book_id) {

@@ -56,9 +56,9 @@ function getReviewsByBookId(book_id) {
         throw new Err(`no book_id present`, 404);
     }
     let data = db.queryAll(`SELECT * FROM reviews WHERE book_id = ?`, [book_id]);
-    if (!data || !data.length) {
-        throw new Err(`There are no reviews for this book yet. Be the first to write a review and share your thoughts with other students`, 404);
-    }
+    // if (!data || !data.length) {
+    //     throw new Err(`There are no reviews for this book yet. Be the first to write a review and share your thoughts with other students`, 200);
+    // }
 
     data = data.map((review) => {
         let user = usersService.getUserInfoByID(review.user_id);
@@ -169,6 +169,7 @@ function getAvgRatingForBook(book_id) {
             return sum + eachReview.rating;
           }, 0)/booksForReviews.data.length;
         }
+        return 1;
       } catch (error) {
         if (!error.message.includes('no reviews for this book yet')) {
           logger.error(`error getting reviews ${error.message}`);

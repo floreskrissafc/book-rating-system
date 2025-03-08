@@ -115,7 +115,7 @@ async function deleteReview() {
             modal.style.display = "none";
             alert("The review was deleted successfully"); 
         } else {
-            const data = response.json();
+            const data = await response.json();
             alert(`Error: ${data.error}`);
         }  
     } catch (error ){
@@ -242,7 +242,7 @@ function addEventListenersToReviews(reviews, userStatus, currentUserId) {
         };
         if (userStatus == 1) {
             container.querySelector(".review_right_box").appendChild(deleteBtn);
-            addEventListenersToDeleteModalButtons(container, deleteBtn);
+            addEventListenersToDeleteModalButtons();
         } 
         else if (userStatus == 0 && review.user_id == currentUserId) {
             // Add a button so the user can edit their own review
