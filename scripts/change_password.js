@@ -55,7 +55,7 @@ export async function updatePassword(email) {
         return;
     }
     try {
-        const response = await fetch("http://localhost:3000/users/resetpassword", { 
+        const response = await fetch("http://localhost:3000/users/changepassword", { 
             method: "POST", // Making a POST request to create the user
             headers: {
                 "Content-Type": "application/json"

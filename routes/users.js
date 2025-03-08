@@ -49,14 +49,39 @@ router.get('/logout', async function(req, res) {
 /** used to reset a forgotten password by any user.
  * NOTE: this is not resetting a password by an admin.
 */
-router.post('/resetpassword', async function(req, res, next) {
+router.post('/changepassword', async function(req, res, next) {
   try {
-    let resetRes = await users.resetPassword(req.body);
-    res.json(resetRes);
+    let changeRes = await users.changePassword(req.body);
+    return res.json(changeRes);
   } catch (error) {
     logger.error(`reset password error ${error.message}`);
     next(error);
   }
 });
+
+
+router.post('/forgotpassword', async function(req, res, next) {
+  try {
+    let forgotRes = await users.sendResetEmail(req.body);
+    return res.json(forgotRes);
+  } catch (error) {
+    logger.error(`forgot password error ${error.message}`);
+    next(error);
+  }
+});
+
+
+// Verify Token and Reset Password (Step 2)
+router.post('/resetpassword/:token', async (req, res, next) => {
+  try {
+      const token = req.params.token;
+      const { newPassword } = req.body;
+      return res.json(users.resetPassword(token, newPassword));
+  } catch (error) {
+    logger.error(`reset password error ${error.message}`);
+    next(error);
+  }
+});
+
 
 export default router;
