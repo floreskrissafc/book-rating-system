@@ -70,6 +70,7 @@ figure {
     outline: none;
     border: none;
     min-width: 150px;
+    /* font-size: 18px; */
 }
 .container {
     display: flex;
@@ -110,4 +111,21 @@ figure {
     text-align: center;
     width: 100%;
 
+}
+
+#empty_list__message_container {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    max-width: 800px;
+    margin-bottom: 1em;
+    margin-top: 3em;
+    justify-content: flex-start;
+    align-self: center;
+}
+
+@media screen and (max-width: 700px) {
+    .button {
+        font-size: calc(8px + 2vw)
+    }               
 }

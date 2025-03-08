@@ -9,6 +9,15 @@ function getQueryParameter(parameterName) {
     return urlParams.get(parameterName);
 }
 
+function createEmptyListMessage(){
+    // If there are no books to show for a course, create a message to indicate this to the user
+    const container = document.getElementById("empty_list__message_container");
+    const html = `
+    <p id="no_books_message">There are no books assigned to this course yet. Please add books to this course <a href="./add_book_to_course.html">here</a>.</p>
+    `;
+    container.insertAdjacentHTML("beforeend", html);
+}
+
 async function fetchBooksForModule(courseId) {
     // This function will query the database and get the list of books associated with this module
     try {
@@ -18,11 +27,15 @@ async function fetchBooksForModule(courseId) {
         if ( response.ok ){
             const data = await response.json();
             let books = data.data;
-            books = books.map(book => ({
-                ...book, 
-                rating: parseFloat(book.rating.toFixed(1))
-            }));
-            await loadBooksTemplate(books);  
+            if (books.length == 0 ){
+                createEmptyListMessage();
+            } else {
+                books = books.map(book => ({
+                    ...book, 
+                    rating: parseFloat(book.rating.toFixed(1))
+                }));
+                await loadBooksTemplate(books); 
+            }    
         }
     } catch (error) {
         console.error(`Error fetching book list for course ${courseId}: `, error);

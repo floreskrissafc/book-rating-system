@@ -224,7 +224,7 @@ async function sendResetEmail(userObj) {
 
     // Generate Reset Token (Valid for 15 minutes)
     const token = jwt.sign({ id: user.id }, config.JWT_SECRET, { expiresIn: config.RESET_TIME });
-    const resetLink = `http://localhost:3000/reset-password/${token}`;
+    const resetLink = `http://localhost:3000/users/resetpassword_ui/${token}`;
     const mailOptions = {
         from: config.EMAIL_USER,
         to: email,

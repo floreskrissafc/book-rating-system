@@ -262,6 +262,21 @@ function addEventListenersToReviews(reviews, userStatus, currentUserId) {
     });
 }
 
+function createEmptyListMessage(){
+    // If there are no reviews for this book, let the user know with a message
+    const userStatus = window.currentUserStatus;
+    const messageAdmin = "There are no reviews for this book yet.";
+    const messageStudent = "There are no reviews for this book yet. Be the first to add a review!";
+    const container = document.getElementById("empty_list__message_container");
+    let html = "";
+    if ( userStatus == 1){
+        html = `<p id="no_books_message">${messageAdmin}</p>`;
+    } else {
+        html = `<p id="no_books_message">${messageStudent}</p>`;
+    }
+    container.insertAdjacentHTML("beforeend", html);
+}
+
 export async function loadReviews() {
     const userStatus = window.currentUserStatus;
     const currentUserId = window.currentUserId;
@@ -269,16 +284,20 @@ export async function loadReviews() {
     try {
         const data = await fetchReviews(bookId);
         const { template, reviews } = data;
-        renderReviews(template, reviews);
-        attachAccordionListeners();
-        if (userStatus == 1) {
-            setupDeleteModal();
+        if (reviews.length == 0 ){
+            createEmptyListMessage();
+        } else {
+            renderReviews(template, reviews);
+            attachAccordionListeners();
+            if (userStatus == 1) {
+                setupDeleteModal();
+            } 
+            else if (userStatus == 0 && addEditModal) {
+                setupEditModal();
+                setupDeleteModal();
+            }
+            addEventListenersToReviews(reviews, userStatus, currentUserId);
         } 
-        else if (userStatus == 0 && addEditModal) {
-            setupEditModal();
-            setupDeleteModal();
-        }
-        addEventListenersToReviews(reviews, userStatus, currentUserId);
     } catch (error) {
         console.error(`Error fetching reviews for book ${bookId}:`, error);
         return null;
