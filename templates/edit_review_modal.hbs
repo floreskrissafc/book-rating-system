@@ -12,13 +12,13 @@
         <p id="edit_review_selected_rating" style="display: none">{{rating}}</p>
     </div>
     <div class="new_review_container">
-        <label id="edit_review_label" for="edit_review_textarea" class="" style="">Review Text</label>
+        <label id="edit_review_label" for="edit_review_textarea">Review Text</label>
         <textarea id="edit_review_textarea" name="edit_review" placeholder="What do you think about this book?">
 {{reviewText}}</textarea
         >
     </div>
     <div class="modal_btn_container">
-        <button id="submit_edit_review" class="button button_green" data-userId="{{userId}}" type="submit">Update</button>
+        <button id="submit_edit_review" class="button button_green" data-bookId="{{bookId}}" data-userId="{{userId}}" type="submit">Update</button>
         <button id="cancel_edit_review" class="button button_gray" type="button">Cancel</button>
     </div>
 </form>

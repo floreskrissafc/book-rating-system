@@ -1,6 +1,7 @@
 function showNavigationMenu() {
     document.getElementById("navigation_links_container").style.width = "100vw";
 }
+
 function closeMenu() {
     document.getElementById("navigation_links_container").style.width = "0px";
 }
@@ -20,7 +21,6 @@ function switchContentVisibility(num) {
             openDropdownMenuItemObjs.add(num);
         } else {
             caret.className = "fa fa-caret-down";
-            //content.style.height = "0px";
             content.style = "";
             openDropdownMenuItemObjs.delete(num);
         }
@@ -29,7 +29,7 @@ function switchContentVisibility(num) {
 
 function handleResize() {
     // If the window goes from small to big, the small screen menu should
-    // close by itself and put back to its original state all the menu
+    // close by itself and put back to its original state (closed) all the menu
     // items that could have been expanded
     if (window.matchMedia("(min-width: 701px)").matches) {
         closeMenu();
@@ -37,7 +37,7 @@ function handleResize() {
             var content_id = "dropdown_content_" + num;
             var caret_id = "caret_down_" + num;
             var caret = document.getElementById(caret_id);
-            var content = document.getElementById(content_id);
+            // var content = document.getElementById(content_id);
             caret.className = "fa fa-caret-down";
         }
         openDropdownMenuItemObjs.clear(); // delete all elements

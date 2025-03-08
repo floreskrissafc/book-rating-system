@@ -56,12 +56,12 @@ function addBtnAddReview(){
 
 async function submitReview() {
     let bookId = getQueryParameter("bookId");
-    let userId = await getUserInfo();
+    let userData = await getUserInfo();
+    let userId = userData.id;
     let comment = document.getElementById("new_review_textarea").value;
     let rating = document.getElementById("selected_rating").textContent;
     let bookTitle = window.currentBookName;
     if ( userId && bookId && rating ){
-        console.log("entro a submitReview de add_review.js");
         await submitNewBookReview(rating,userId,bookId,comment,bookTitle );
         location.reload();
     } 
@@ -138,8 +138,8 @@ document.addEventListener("DOMContentLoaded", async function() {
     await fetchGlobalData(); // The data for the user and module must be set before loading the books
     await loadReviews();
     renderBookInfo();
-    if ( !window.isAdmin ){
-        if ( !addEditModal ) { addBtnAddReview(); }
+    if ( !window.isAdmin && !addEditModal ){
+        addBtnAddReview(); 
         await addModalForAddingReview();
         let newReviewForm = document.getElementById("new_review_form");
         newReviewForm.classList.remove("form_box"); 

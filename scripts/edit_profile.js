@@ -1,4 +1,5 @@
 import { updatePassword, validateNewPassword, validatePasswordMatch } from "./change_password.js";
+import { loadNavBar } from "./load_nav_template.js";
 
 let userEmail;
 
@@ -28,8 +29,8 @@ async function updateProfile(){
         if (response.ok) {
             updateMessage.textContent = "Profile information was updated!";
             updateMessageContainer.style.display = "flex";
-            console.log("calling the fetchAndPopulateUser after an update");
             fetchAndPopulateUser();
+            loadNavBar();
         } else {
             console.log("Error while updating the user");
         }

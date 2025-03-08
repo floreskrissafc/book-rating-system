@@ -25,8 +25,8 @@ export async function getUserInfo() {
     try {
         const response = await fetch("http://localhost:3000/user", { method: "GET"}); // get the information for the logged in user
         if (response.ok) {
-            const data = await response.json(); // Converting the response of type ReadableStream into a JSON
-            return data.id;
+            const data = await response.json(); 
+            return data;
         } 
     } catch (error) {
         console.error("Error fetching user details:", error);
