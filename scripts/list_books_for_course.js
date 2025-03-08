@@ -17,7 +17,11 @@ async function fetchBooksForModule(courseId) {
         });
         if ( response.ok ){
             const data = await response.json();
-            const books = data.data;
+            let books = data.data;
+            books = books.map(book => ({
+                ...book, 
+                rating: parseFloat(book.rating.toFixed(1))
+            }));
             await loadBooksTemplate(books);  
         }
     } catch (error) {

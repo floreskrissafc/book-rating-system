@@ -140,6 +140,11 @@ async function fetchReviews(bookId) {
         const data = await response.json();
         if (response.ok) {
             reviews = data.data;
+            reviews = reviews.map(review => ({
+                ...review,
+                created_at: review.created_at.substring(0, 10) // Extracting only the date part "YYYY-MM-DD"
+            }));
+
         } else {
             alert(`Error listing review for book: ${bookId}: ${data.error}`);
             console.log(`Error Fetching review for book ${bookId}`);
