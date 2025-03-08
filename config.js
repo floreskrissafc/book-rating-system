@@ -12,17 +12,21 @@ const config = {
   VALID_EMAIL_DOMAINS: [
     "london.ac.uk",
     "student.london.ac.uk",
+    "mailinator.com",
     "gmail.com",
   ],
   DEFAULT_PROFILE_PICTURE: "imgs/user_profiles/default_profile.png", 
   DEFAULT_BOOK_COVER: "imgs/books_cover/default_book_cover.png",
   PROFILE_UPLOAD_NAME: "profile_pic_input",
   BOOK_UPLOAD_NAME: "book_pic_input",
-  EMAIL_USER: "bookratingsystemuol@demomailtrap.co",
+  EMAIL_USER: "bookratingsystemuol@flomedspa.com",
   EMAIL_PASSWORD: env.EMAIL_PASSWORD,
   JWT_SECRET: '6646d66ed2f14e0b7d908ghjghsadfa3f18f87uhjk8t7qw6ee',
   RESET_TIME: '15m',
-  MAILTRAP_API_KEY: "088ba9680c625544780d73679b9bd0a9"
+  // free domain key with mailtrap
+  // MAILTRAP_API_KEY: "088ba9680c625544780d73679b9bd0a9"
+  // flomedspa.com domain key.
+  MAILTRAP_API_KEY: "344920d123b92eb25ea11dec90327cd9",
 };
 
 export default config;

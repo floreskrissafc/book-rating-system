@@ -52,4 +52,13 @@ router.post('/addbook', function(req, res, next) {
   }
 });
 
+router.delete('/removebook', function(req, res, next) {
+  try {
+    return res.json(modules.removeBook(req.body));
+  } catch (error) {
+    logger.error(`Error while removing books from module ${error.message}`);
+    next(error);
+  }
+});
+
 export default router;
