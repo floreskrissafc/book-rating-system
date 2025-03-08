@@ -70,13 +70,16 @@ router.post('/forgotpassword', async function(req, res, next) {
   }
 });
 
+router.get('/resetpassword_ui/:token', async(req, res) => {
+  res.redirect(`/pages/reset_password.html?token=${req.params.token}`);
+});
 
 // Verify Token and Reset Password (Step 2)
 router.post('/resetpassword/:token', async (req, res, next) => {
   try {
       const token = req.params.token;
       const { newPassword } = req.body;
-      return res.json(users.resetPassword(token, newPassword));
+      return res.json(await users.resetPassword(token, newPassword));
   } catch (error) {
     logger.error(`reset password error ${error.message}`);
     next(error);

@@ -11,7 +11,8 @@ const config = {
   COMMENT_CHAR_MAX_LENGTH: 2048,
   VALID_EMAIL_DOMAINS: [
     "london.ac.uk",
-    "student.london.ac.uk"
+    "student.london.ac.uk",
+    "gmail.com",
   ],
   DEFAULT_PROFILE_PICTURE: "imgs/user_profiles/default_profile.png", 
   DEFAULT_BOOK_COVER: "imgs/books_cover/default_book_cover.png",

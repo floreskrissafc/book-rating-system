@@ -237,24 +237,28 @@ async function sendResetEmail(userObj) {
 };
 
 async function resetPassword(token, newPassword) {
-    const decoded = jwt.verify(token, config.JWT_SECRET);
-    const { id } = decoded;
-
-    if (!newPassword) {
-        throw new Err('Password is empty', 400);
+    try {
+        const decoded = jwt.verify(token, config.JWT_SECRET);
+        const { id } = decoded;
+    
+        if (!newPassword) {
+            throw new Err('Password is empty', 400);
+        }
+    
+        if (newPassword.length < config.PASSWORD_MIN_LENGTH) {
+           throw new Err(`Password must be with length greater than ${config.PASSWORD_MIN_LENGTH} characters`, 400);
+        }
+    
+        let newPasswordhash = await bcrypt.hash(newPassword, config.BCRYPT_SALT);
+        const results = db.run(`UPDATE users SET password_hash = (@newPasswordhash) WHERE id = (@id)`, {newPasswordhash, id});
+        let message = 'Error in resetting password';
+        if (results.changes) {
+          message = 'password reset successfully';
+        }
+        return { message };
+    } catch (error) {
+        throw new Err(`Error resetting password: ${error.message}`, 501);
     }
-
-    if (newPassword.length < config.PASSWORD_MIN_LENGTH) {
-       throw new Err(`Password must be with length greater than ${config.PASSWORD_MIN_LENGTH} characters`, 400);
-    }
-
-    let newPasswordhash = await bcrypt.hash(newPassword, config.BCRYPT_SALT);
-    const results = db.run(`UPDATE users SET password_hash = (@newPasswordhash) WHERE id = (@id)`, {newPasswordhash, id});
-    let message = 'Error in resetting password';
-    if (results.changes) {
-      message = 'password reset successfully';
-    }
-    return { message };
 }
 
 export {
