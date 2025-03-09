@@ -233,13 +233,26 @@ function propose(proposedBookObj) {
 
 function getProposedMultiple(page = 1) {
   const offset = (page - 1) * config.listPerPage;
-  const data = db.queryAll(`SELECT * FROM proposed_books LIMIT ?,?`, [offset, config.listPerPage]);
+  let data = db.queryAll(`SELECT * FROM proposed_books LIMIT ?,?`, [offset, config.listPerPage]);
   const meta = {page};
+
+  data = data.map(each => ({ ...each, ...moduleService.getModuleById(each.module_id)}));
 
   return {
     data,
     meta
   };
+}
+
+function deleteProposedBook(bookObj) {
+  let { id } = bookObj;
+  const result = db.run('DELETE FROM proposed_books WHERE id = @id', {id});
+  if (!result.changes) {
+    throw new Err("Error deleting module", 400);
+  }
+
+  let message = "proposed book has been deleted successfully";
+  return { message };
 }
 
 function deleteBook(bookObj) {
@@ -252,10 +265,10 @@ function deleteBook(bookObj) {
   let { id } = book;
   const result = db.run('DELETE FROM books WHERE id = @id', {id});
   if (!result.changes) {
-    throw new Err("Error deleting module", 400);
+    throw new Err("Error deleting book", 400);
   }
 
-  let message = "Your review has been deleted successfully";
+  let message = "Your book has been deleted successfully";
   return { message };
 }
 
@@ -270,4 +283,5 @@ export {
   getProposedMultiple,
   update,
   deleteBook,
+  deleteProposedBook,
 };
