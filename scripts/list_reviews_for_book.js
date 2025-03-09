@@ -120,8 +120,7 @@ async function deleteReview() {
         }  
     } catch (error ){
         console.log("There was an error trying to delete this review: ", error);
-    }
-    
+    }   
 }
 
 async function fetchReviews(bookId) {
@@ -325,4 +324,3 @@ function getQueryParameter(parameterName) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(parameterName);
 }
-
