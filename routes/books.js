@@ -69,7 +69,7 @@ router.get('/search', function(req, res, next) {
 });
 
 /** Route to get a book by id */
-router.get("byid/:bookId", function(req, res, next) {
+router.get("/byid/:bookId", function(req, res, next) {
   try {
     const bookData = getBookInfoByID(req.params.bookId);
     if (!bookData) {
