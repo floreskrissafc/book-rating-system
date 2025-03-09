@@ -1,4 +1,5 @@
 import { updatePassword, validateNewPassword, validatePasswordMatch } from "./change_password.js";
+import { loadNavBar } from "./load_nav_template.js";
 
 let userEmail;
 
@@ -28,8 +29,8 @@ async function updateProfile(){
         if (response.ok) {
             updateMessage.textContent = "Profile information was updated!";
             updateMessageContainer.style.display = "flex";
-            console.log("calling the fetchAndPopulateUser after an update");
             fetchAndPopulateUser();
+            loadNavBar();
         } else {
             console.log("Error while updating the user");
         }
@@ -44,7 +45,7 @@ async function fetchAndPopulateUser() {
     try {
         const response = await fetch("http://localhost:3000/user", { method: "GET"}); // get the information for the logged in user
         if (response.ok) {
-            const data = await response.json(); // Converting the response of type ReadableStream into a JSON
+            const data = await response.json(); 
             userEmail = data.email;
             populateForm(data);
         } 

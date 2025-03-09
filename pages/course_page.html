@@ -1,10 +1,9 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Course page for BOOK TITLE HERE</title>
+        <title>Course page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-
         <link rel="stylesheet" href="../css/general.css" />
         <link rel="stylesheet" href="../css/add_course_or_book.css" />
         <link rel="stylesheet" href="../css/navigation.css" />
@@ -12,7 +11,7 @@
         <link rel="stylesheet" href="../css/courses_and_books.css" />
         <link rel="stylesheet" href="../css/course_page.css" />
         <script src="https://cdn.jsdelivr.net/npm/handlebars/dist/handlebars.min.js"></script>
-        <script src="../scripts/load_nav_template.js"></script>
+        <script type="module" src="../scripts/load_nav_template.js"></script>
     </head>
     <body>
         <div class="container">
@@ -28,12 +27,14 @@
                         <h2 id="book_title_h2"></h2>
                     </div>
                 </div>
+                <div id="empty_list__message_container">
+                </div>
                 <div id="book_list_container" class="filtered_list">
                     <!--books template will be inserted here-->
                 </div>
             </div>
         </main>
         <script type="module" src="../scripts/list_books_for_course.js"></script>
-        <script src="../scripts/nav_bar_logged_in.js"></script>
+        <script  src="../scripts/nav_bar_logged_in.js"></script>
     </body>
 </html>

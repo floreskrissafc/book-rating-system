@@ -1,4 +1,4 @@
-<a href="#" class="logo">
+<a href="../pages/courses_page.html" class="logo">
     <img id="logo" src="../imgs/logos/uol_logo.svg" alt="University of London logo" />
     <!--<a href="https://www.flaticon.com/free-icons/user" title="user icons">User icons created by kmg design - Flaticon</a>-->
 </a>
@@ -12,32 +12,9 @@
         <a id="close_icon_link" class="" onClick="closeMenu()"><p>&times;</p></a>
     </div>
 
-    <div id="dropdown_1" class="dropdown">
-        <a id="dropbtn_1" class="dropbtn" onClick="switchContentVisibility(1)">
-            <p>Books</p>
-            <i class="fa fa-caret-down" id="caret_down_1"></i>
-        </a>
-        <div id="dropdown_content_1" class="dropdown-content">
-            <a href="../pages/books_page.html">See all books</a>
-            <a href="../pages/add_book_page.html">Add a book</a>
-        </div>
-    </div>
-    <div id="dropdown_2" class="dropdown">
-        <a id="dropbtn_2" class="dropbtn" onClick="switchContentVisibility(2)">
-            <p>Courses</p>
-            <i class="fa fa-caret-down" id="caret_down_2"></i>
-        </a>
-        <div id="dropdown_content_2" class="dropdown-content">
-            <a href="../pages/courses_page.html">See all courses</a>
-            <a href="../pages/add_course_page.html">Add a course</a>
-            <a href="../pages/edit_course_page.html">Edit a course</a>
-            <a href="../pages/add_book_to_course.html">Add book to course</a>
-        </div>
-    </div>
-
     <div class="dropdown" id="dropdown_3">
         <a id="dropbtn_3" class="dropbtn" onClick="switchContentVisibility(3)">
-            <img src="../imgs/user_profiles/default_profile.png" alt="Avatar" class="avatar" />
+            <img src="{{profile_picture}}" alt="Avatar" class="avatar" />
             <p id="profile_name">Profile</p>
             <i class="fa fa-caret-down" id="caret_down_3"></i>
         </a>

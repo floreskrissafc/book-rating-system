@@ -6,6 +6,15 @@ import emailValidator from "email-validator";
 import logger from '../services/logging.js';
 import fs from 'fs/promises';
 import path from 'path';
+import jwt from 'jsonwebtoken';
+import nodemailer from 'nodemailer';
+import { MailtrapTransport } from 'mailtrap';
+
+const transporter = nodemailer.createTransport(
+    MailtrapTransport({
+        token: config.MAILTRAP_API_KEY
+    })
+);
 
 function getAllUsers(page = 1) {
     const offset = (page - 1) * config.USER_LIST_PER_PAGE;
@@ -75,7 +84,7 @@ function isUserAdmin(email) {
 async function register(userBody) {
     validateNewUser(userBody);
     let { email, password, first_name, last_name, profile_picture } = userBody;
-    if (!profile_picture || length(profile_picture) <= 0) {
+    if (!profile_picture || profile_picture.length <= 0) {
         profile_picture = config.DEFAULT_PROFILE_PICTURE;
     }
     let role = isUserAdmin(email);
@@ -159,7 +168,7 @@ async function login(loginBody) {
     return {user};
 }
 
-async function resetPassword(resetBody) {
+async function changePassword(resetBody) {
     const { email, oldPassword, newPassword } = resetBody;
     if (newPassword == oldPassword) {
         throw new Err(`Password must be not equal to previous password.`, 401);
@@ -174,7 +183,7 @@ async function resetPassword(resetBody) {
     
     let newPasswordhash = await bcrypt.hash(newPassword, config.BCRYPT_SALT);
     const results = db.run(`UPDATE users SET password_hash = (@newPasswordhash) WHERE email = (@email)`, {newPasswordhash, email});
-    let message = 'Error in creating user';
+    let message = 'Error in changing password';
     if (results.changes) {
       message = 'password reset successfully';
     }
@@ -205,13 +214,62 @@ function deleteUser(userObj, currentUser) {
     return { message };
 }
 
+async function sendResetEmail(userObj) {
+    const { email } = userObj;
+
+    let user = getUserByEmail(email);
+    if (!user) {
+        throw new Err(`An user with email ${email} is not present in the system, please search for another email or Add a new user here`, 400);
+    }
+
+    // Generate Reset Token (Valid for 15 minutes)
+    const token = jwt.sign({ id: user.id }, config.JWT_SECRET, { expiresIn: config.RESET_TIME });
+    const resetLink = `http://localhost:3000/users/resetpassword_ui/${token}`;
+    const mailOptions = {
+        from: config.EMAIL_USER,
+        to: email,
+        subject: 'Book Rating System - Password Reset Request',
+        html: `<p>Click <a href="${resetLink}">here</a> to reset your password. This link is valid for ${config.RESET_TIME}.</p>`,
+    };
+
+    await transporter.sendMail(mailOptions);
+    return { message: 'Password reset link sent to your email' };
+};
+
+async function resetPassword(token, newPassword) {
+    try {
+        const decoded = jwt.verify(token, config.JWT_SECRET);
+        const { id } = decoded;
+    
+        if (!newPassword) {
+            throw new Err('Password is empty', 400);
+        }
+    
+        if (newPassword.length < config.PASSWORD_MIN_LENGTH) {
+           throw new Err(`Password must be with length greater than ${config.PASSWORD_MIN_LENGTH} characters`, 400);
+        }
+    
+        let newPasswordhash = await bcrypt.hash(newPassword, config.BCRYPT_SALT);
+        const results = db.run(`UPDATE users SET password_hash = (@newPasswordhash) WHERE id = (@id)`, {newPasswordhash, id});
+        let message = 'Error in resetting password';
+        if (results.changes) {
+          message = 'password reset successfully';
+        }
+        return { message };
+    } catch (error) {
+        throw new Err(`Error resetting password: ${error.message}`, 501);
+    }
+}
+
 export {
     getAllUsers,
     register,
     login,
-    resetPassword,
+    changePassword,
     getUserByEmail,
     getUserInfoByID,
     deleteUser,
     update,
+    sendResetEmail,
+    resetPassword,
 };

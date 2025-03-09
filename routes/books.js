@@ -1,6 +1,6 @@
 import { Router } from 'express';
 const router = Router();
-import { getMultiple, propose, searchBySingleColumnQuery, getBookInfoByID } from '../services/books.js';
+import { getMultiple, propose, searchBySingleColumnQuery, getBookInfoByID, deleteProposedBook } from '../services/books.js';
 import logger from '../services/logging.js';
 import Err from '../services/customError.js';
 import * as reviews from '../services/reviews.js';
@@ -33,7 +33,7 @@ router.get('/', function(req, res, next) {
   }
 });
 
-/** get a list of proposed books. */
+/** Route to propose a book. */
 router.post('/propose', function(req, res, next) {
   try {
     res.json(propose(req.body));
@@ -68,8 +68,8 @@ router.get('/search', function(req, res, next) {
   }
 });
 
-
-router.get("/:bookId", function(req, res, next) {
+/** Route to get a book by id */
+router.get("/byid/:bookId", function(req, res, next) {
   try {
     const bookData = getBookInfoByID(req.params.bookId);
     if (!bookData) {

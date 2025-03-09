@@ -23,7 +23,7 @@ router.post('/update', function(req, res, next) {
   try {
     res.json(modules.update(req.body));
   } catch (error) {
-    logger.error('Error while deleting module ${error.message}');
+    logger.error('Error while updating module ${error.message}');
     next(error);
   }
 });
@@ -49,6 +49,15 @@ router.post('/addbook', function(req, res, next) {
         logger.error(`Error while adding books to module ${error.message}`);
         next(error);
     }
+  }
+});
+
+router.delete('/removebook', function(req, res, next) {
+  try {
+    return res.json(modules.removeBook(req.body));
+  } catch (error) {
+    logger.error(`Error while removing books from module ${error.message}`);
+    next(error);
   }
 });
 

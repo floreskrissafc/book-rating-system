@@ -42,9 +42,31 @@ function addEventListenerToSuggestBookButton() {
     btn.onclick = () => showSuggestABookModal();
 }
 
-function submitSuggestBookForm() {
-    alert("Suggestion was posted");
-    // TODO: implement server side request to post the book suggestion
+async function submitSuggestBookForm() {
+    const form = document.getElementById("suggest_a_book_form");
+    const title = document.getElementById("book_title_input").value;
+    const isbn = document.getElementById("ISBN_input").value;
+    const module_id = window.currentCourseId;
+    try {
+        const response = await fetch("http://localhost:3000/books/propose", { 
+            method: "POST", // Making a POST request to propose a new book for a course
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ module_id, title, isbn }) 
+        });
+        if (response.ok) {
+            // If the book was successfully added to the system then alert the user
+            alert("Your suggestion was saved into our system. Our staff will receive and act on your suggestion if it is approved.");
+            form.reset();
+            hideModal();
+        } else {
+            const data = await response.json();
+            alert(`The book could not be added to the course. Error: ${data.error}`);
+        } 
+    } catch (error){
+        console.log(`There was an error when trying to create the module ${name}`, error);
+    }
 }
 
 function hideModal() {
@@ -56,20 +78,15 @@ function hideModal() {
 function addEventListenerToModalButtons() {
     let submitBtn = document.getElementById("submit_btn");
     let cancelBtn = document.getElementById("cancel_btn");
-    submitBtn.onclick = () => submitSuggestBookForm();
+    submitBtn.addEventListener("click", async function(event) {
+        event.preventDefault();
+        await submitSuggestBookForm();
+    }); 
     cancelBtn.onclick = () => hideModal();
 }
 
 export async function suggestBookModal() {
     const userStatus = window.currentUserStatus;
-    const currentUserId = window.currentUserId;
-    const courseId = window.currentCourseId;
-    const courseName = window.currentCourseName;
-    const courseCode = window.currentCourseCode;
-    console.log("userStatus = ", userStatus);
-    console.log("courseId = ", courseId);
-    console.log("courseName = ", courseName);
-    console.log("courseCode = ", courseCode);
     if (userStatus == 0) {
         addSuggestBookBtn();
         addSuggestBookModal();
@@ -78,5 +95,3 @@ export async function suggestBookModal() {
         addEventListenerToModalButtons();
     }
 }
-
-// document.addEventListener("DOMContentLoaded", suggestBookModal);

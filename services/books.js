@@ -77,10 +77,11 @@ function getBooksByModulesIds(module_ids) {
 function getBooksByModule(module_id) {
   const module_book_ids = db.queryAll(`SELECT * from modules_books WHERE module_id = ?`, module_id);
   const books = module_book_ids.map(module_book_id => (db.queryOne(`SELECT * FROM books WHERE id = ?`, module_book_id.book_id)));
-  return books.map((book) => ({
+  const res = books.map((book) => ({
     ...book,
     rating: reviewService.getAvgRatingForBook(book.id)
   }));
+  return res;
 }
 
 function getBookInfoByID(book_id) {
@@ -90,7 +91,10 @@ function getBookInfoByID(book_id) {
 async function create(bookObj) {
   // Below is module fields + isbn with isbn13 normalized formatting.
   let { isbn } = validateCreate(bookObj);
-  const { title, authors, edition, link, cover_picture } = bookObj;
+  let { title, authors, edition, link, cover_picture } = bookObj;
+  if (!cover_picture || cover_picture.length <= 0) {
+    cover_picture = config.DEFAULT_BOOK_COVER;
+  }
   const bookInsertResult = db.run('INSERT INTO books (isbn, title, authors, edition, link, cover_picture) VALUES (@isbn, @title, @authors, @edition, @link, @cover_picture)', {isbn, title, authors, edition, link, cover_picture});
   if (!bookInsertResult.changes) {
     throw new Err('Error in creating book', 400);
@@ -229,13 +233,29 @@ function propose(proposedBookObj) {
 
 function getProposedMultiple(page = 1) {
   const offset = (page - 1) * config.listPerPage;
-  const data = db.queryAll(`SELECT * FROM proposed_books LIMIT ?,?`, [offset, config.listPerPage]);
+  let data = db.queryAll(`SELECT * FROM proposed_books LIMIT ?,?`, [offset, config.listPerPage]);
   const meta = {page};
+
+  data = data.map(each => {
+    let module = moduleService.getModuleById(each.module_id);
+    return { ...each, name: module.name };
+  });
 
   return {
     data,
     meta
   };
+}
+
+function deleteProposedBook(bookObj) {
+  let { id } = bookObj;
+  const result = db.run('DELETE FROM proposed_books WHERE id = @id', {id});
+  if (!result.changes) {
+    throw new Err("Error deleting proposed book", 400);
+  }
+
+  let message = "proposed book has been deleted successfully";
+  return { message };
 }
 
 function deleteBook(bookObj) {
@@ -248,10 +268,10 @@ function deleteBook(bookObj) {
   let { id } = book;
   const result = db.run('DELETE FROM books WHERE id = @id', {id});
   if (!result.changes) {
-    throw new Err("Error deleting module", 400);
+    throw new Err("Error deleting book", 400);
   }
 
-  let message = "Your review has been deleted successfully";
+  let message = "Your book has been deleted successfully";
   return { message };
 }
 
@@ -266,4 +286,5 @@ export {
   getProposedMultiple,
   update,
   deleteBook,
+  deleteProposedBook,
 };

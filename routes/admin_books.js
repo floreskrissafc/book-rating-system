@@ -46,6 +46,15 @@ router.get('/proposed', function(req, res, next){
     }
 });
 
+router.delete('/removeproposed', function(req, res, next) {
+    try {
+        res.json(books.deleteProposedBook(req.body));
+    } catch (error) {
+        logger.error(`Error while deleting proposed book ${error.message}`);
+        next(error);
+    }
+});
+
 /** admin only route to update a book's title title, author and cover pictures. */
 router.post('/update', upload.single(config.BOOK_UPLOAD_NAME), async function(req, res, next) {
     try {

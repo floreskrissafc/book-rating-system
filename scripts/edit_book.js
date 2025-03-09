@@ -22,7 +22,7 @@ function populateForm(data) {
 async function fetchBook(book_id) {
     // This function will query the database and get all the books 
     try {
-        const response = await fetch(`http://localhost:3000/books/${book_id}`, { 
+        const response = await fetch(`http://localhost:3000/books/byid/${book_id}`, { 
             method: "GET", 
         });
         if ( response.ok ){
@@ -81,7 +81,7 @@ async function updateBook(book_id){
         if (response.ok) {
             console.log(`Book ${title} was updated.`);
             alert("The book was updated with new information!");
-            location.reload();
+            window.location.href = `./books_page.html`;
         } else {
             const data = await response.json();
             console.log("There was an error trying to update the book:", data);

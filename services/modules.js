@@ -90,6 +90,25 @@ function addBook(data) {
   return {message};
 }
 
+function removeBook(data) {
+  const { book_id, module_id } = data;
+  if (!book_id) {
+    throw new Err(`missing book_id to add to module`, 400);
+  }
+
+  if (!module_id) {
+    throw new Err(`missing module_id to add a book to`, 400);
+  }
+
+  const modulesBooksDeleteResult = db.run('DELETE FROM modules_books WHERE book_id = @book_id AND module_id = @module_id', {book_id, module_id});
+  if (!modulesBooksDeleteResult.changes) {
+    throw new Err('Error in linking module and book', 400);
+  }
+
+  let message = `The book id: ${book_id} is going to be deleted from module id: ${module_id}`;
+  return {message};
+}
+
 export {
   getMultiple,
   create,
@@ -97,5 +116,6 @@ export {
   update,
   deleteModule,
   getModuleById,
-  addBook
+  addBook,
+  removeBook,
 };

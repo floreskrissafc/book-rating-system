@@ -1,10 +1,22 @@
 import { renderStars } from "./render_stars.js";
 import { suggestBookModal } from "./suggest_book_modal.js";
+import { addReviewBookModal, showAddReviewModal, addEventListenerToModalButtons } from "./course_page_add_review_modal.js";
+import { addRemoveBookModal, addEventListenerToRemoveBookModalButtons, showRemoveBookModal} from "./course_page_remove_book_modal.js";
+import { updateStars, addEventListenersToStars } from "./update_stars.js";
 
 function getQueryParameter(parameterName) {
     // Function to get a query parameter from the URL
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(parameterName);
+}
+
+function createEmptyListMessage(){
+    // If there are no books to show for a course, create a message to indicate this to the user
+    const container = document.getElementById("empty_list__message_container");
+    const html = `
+    <p id="no_books_message">There are no books assigned to this course yet. Please add books to this course <a href="./add_book_to_course.html">here</a>.</p>
+    `;
+    container.insertAdjacentHTML("beforeend", html);
 }
 
 async function fetchBooksForModule(courseId) {
@@ -15,8 +27,16 @@ async function fetchBooksForModule(courseId) {
         });
         if ( response.ok ){
             const data = await response.json();
-            const books = data.data;
-            await loadBooksTemplate(books);  
+            let books = data.data;
+            if (books.length == 0 ){
+                createEmptyListMessage();
+            } else {
+                books = books.map(book => ({
+                    ...book, 
+                    rating: parseFloat(book.rating.toFixed(1))
+                }));
+                await loadBooksTemplate(books); 
+            }    
         }
     } catch (error) {
         console.error(`Error fetching book list for course ${courseId}: `, error);
@@ -46,8 +66,11 @@ async function loadBooksTemplate(books) {
         const templateResponse = await fetch("/templates/books_list.hbs");
         const templateText = await templateResponse.text();
         const template = Handlebars.compile(templateText);
+        const isAdminStr = window.currentUserStatus;
+        const isAdmin = isAdminStr == "1" ? true : false;
+        const isStudent = !isAdmin;
         // Generating the actual HTML with the books data
-        const html = template({ books });
+        const html = template({ books, isStudent});
         // Inserting the generated HTML into the container
         document.getElementById("book_list_container").innerHTML = html;
     } catch (error) {
@@ -55,21 +78,66 @@ async function loadBooksTemplate(books) {
     }
 }
 
-// Ensure that the books are loaded when the page content is ready
-document.addEventListener("DOMContentLoaded", async function() {
-    await fetchGlobalData(); // The data for the user and module must be set before loading the books
-    document.getElementById("book_title_h2").textContent = `Book List for ${window.currentCourseName} ${window.currentCourseCode}`;
-    await fetchBooksForModule(window.currentCourseId);
-    await suggestBookModal();
-
+function addEventListenerToSeeReviewsBtns(){
     document.querySelectorAll(".see_reviews_btn").forEach( button => {
-        button.addEventListener("click", function () {
+        button.addEventListener("click", function (event) {
+            event.preventDefault();
             const bookId = this.getAttribute("data-id");
             if (bookId) {
                 window.location.href = `./reviews_page.html?bookId=${bookId}`;
             }
         });
     });
+}
+
+function addEventListenerToAddReviewBtns(){
+    document.querySelectorAll(".review_book_btn").forEach( button => {
+        button.addEventListener("click", function (event) {
+            event.preventDefault();
+            const bookId = this.getAttribute("data-id");
+            const bookName = this.getAttribute("data-name");
+            window.currentBookTitle = bookName;
+            window.currentBookId = bookId;
+            if (bookId && bookName) {
+                showAddReviewModal(bookName, bookId);
+            }
+        });
+    });
+}
+
+function addEventListenerToRemoveBookBtns() {
+    document.querySelectorAll(".remove_book_btn").forEach( button => {
+        button.addEventListener("click", function (event) {
+            event.preventDefault();
+            const book_id = this.getAttribute("data-id");
+            // const course_id = window.currentCourseId;
+            window.currentBookId = book_id;
+            if (book_id) {
+                showRemoveBookModal();
+            }
+        });
+    });
+}
 
 
+// Ensure that the books are loaded when the page content is ready
+document.addEventListener("DOMContentLoaded", async function() {
+    await fetchGlobalData(); // The data for the user and module must be set before loading the books
+    document.getElementById("book_title_h2").textContent = `Book List for ${window.currentCourseName} ${window.currentCourseCode}`;
+    await fetchBooksForModule(window.currentCourseId);
+    // await suggestBookModal();
+    addEventListenerToSeeReviewsBtns();
+    if (window.currentUserStatus == 0){
+        // if the user is a student
+        await addReviewBookModal();
+        await suggestBookModal();
+        addEventListenerToModalButtons();
+        addEventListenersToStars();
+        updateStars(1);
+        addEventListenerToAddReviewBtns();
+    } else {
+        addRemoveBookModal();
+        addEventListenerToRemoveBookModalButtons();
+        addEventListenerToRemoveBookBtns();
+    }
 });

@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="../css/confirmation_modal.css" />
         <link rel="stylesheet" href="../css/profile_page.css" />
         <script src="https://cdn.jsdelivr.net/npm/handlebars/dist/handlebars.min.js"></script>
-        <script src="../scripts/load_nav_template.js"></script>
+        <script type="module" src="../scripts/load_nav_template.js"></script>
     </head>
     <body>
         <div class="container">
@@ -81,24 +81,23 @@
                         </div>
 
                         <div class="form_row">
-                            <label for="new_password" class="form_label"
-                                >New Password
+                            <label for="new_password" class="form_label">
+                                New Password
                                 <span class="tooltip">
                                     <i class="fa fa-info-circle tooltip_i"></i>
                                     <span class="tooltip-text">
                                         Password must be at least 8 characters, include a number and a special
                                         character.
                                     </span>
-                                </span></label
-                            >
+                                </span>
+                            </label>
                             <input
                                 type="password"
                                 class="form_input"
                                 id="new_password"
                                 name="new_password"
-                                autocomplete="on"
                                 required
-                                placeholder="new password" />
+                                placeholder="Enter new password" />
                         </div>
 
                         <div class="form_row">
@@ -108,9 +107,8 @@
                                 class="form_input"
                                 id="new_password_repeat"
                                 name="new_password_repeat"
-                                autocomplete="on"
                                 required
-                                placeholder="repeat new password" />
+                                placeholder="Repeat new password" />
                         </div>
 
                         <div id="update_password_message_container" class="form_row message_container">

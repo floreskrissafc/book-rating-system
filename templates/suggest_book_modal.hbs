@@ -1,4 +1,4 @@
-<form id="suggest_a_book_form" class="form_box" action="#" method="POST">
+<form id="suggest_a_book_form" class="form_box">
     <div class="form_row">
         <p id="modal_title">Suggest a book</p>
     </div>
@@ -19,25 +19,9 @@
         </label>
         <input type="text" required class="form_input" id="ISBN_input" placeholder="978-3-16-148410-0" />
     </div>
-    <div class="form_row">
-        <label for="author_input" class="form_label"
-            >Author(s)
-            <span class="tooltip">
-                <i class="fa fa-info-circle tooltip_i"></i>
-                <span class="tooltip-text">
-                    List the author(s) of the book. If more than one, separate their names with commas (e.g. John Doe,
-                    Jane Smith)</span
-                >
-            </span>
-        </label>
-        <input type="text" required class="form_input" id="author_input" placeholder="John Doe, Jane Doe" />
-    </div>
-    <div class="form_row">
-        <label for="edition_input" class="form_label">Edition</label>
-        <input type="text" class="form_input" id="edition_input" placeholder="1st Edition" />
-    </div>
+    
     <div class="form_submit">
-        <button id="submit_btn" onclick="" type="submit" class="button_green button">Submit</button>
-        <button id="cancel_btn" onclick="" type="button" class="button button_red">Cancel</button>
+        <button id="submit_btn" type="submit" class="button_green button">Submit</button>
+        <button id="cancel_btn" type="button" class="button button_red">Cancel</button>
     </div>
 </form>

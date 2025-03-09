@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Courses page</title>
+        <title>Proposed books page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
             rel="stylesheet"
@@ -10,6 +10,8 @@
         <link rel="stylesheet" href="../css/add_course_or_book.css" />
         <link rel="stylesheet" href="../css/navigation.css" />
         <link rel="stylesheet" href="../css/courses_and_books.css" />
+        <link rel="stylesheet" href="../css/confirmation_modal.css" />
+        <link rel="stylesheet" href="../css/course_page.css" />
         <script src="https://cdn.jsdelivr.net/npm/handlebars/dist/handlebars.min.js"></script>
         <script type="module" src="../scripts/load_nav_template.js"></script>
     </head>
@@ -24,13 +26,25 @@
             <div class="content_90">
                 <div>
                     <div class="centered_container title_container">
-                        <h2>Course List</h2>
+                        <h2>Proposed Books</h2>
                     </div>
                 </div>
+                <div id="delete-modal" class="modal">
+                    <div id="remove_book_modal_content" class="modal-content">
+                        <p class="remove_book_text">This action will remove the book proposal from the system. This action can not be undone.</p>
+                        <div class="modal_btn_container">
+                            <button id="confirm_remove" class="button button_red" data-id="" type="button">
+                                Yes, remove book
+                            </button>
+                            <button id="cancel_remove" class="button button_gray" type="button">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
                 <div style="width: 100%">
                     <div class="centered_container" id="search_bar_container">
                         <div class="search_box">
-                            <input type="text" id="search_input" class="search_bar" placeholder="Search course..." />
+                            <input type="text" id="search_input" class="search_bar" placeholder="Search course by name or code" />
                             <div class="search_btn_container">
                                 <i class="fa fa-search" style="color: #727274"></i>
                             </div>
@@ -39,14 +53,14 @@
                         <button class="button button_gray" onClick="resetFilter()">Reset filter</button>
                     </div>
                 </div>
-                <div id="courses_list" class="filtered_list">
-                    <!--Template will be included here to add all courses-->
+                <div id="proposed_books_list" class="filtered_list">
+                    <!--Template will be included here to add all proposed books-->
                 </div>
             </div>
         </main>
 
-        <script src="/scripts/courses_page_script.js"></script>
+        <!-- <script src="/scripts/courses_page_script.js"></script> -->
         <script src="/scripts/nav_bar_logged_in.js"></script>
-        <script src="/scripts/query_courses.js"></script>
+        <script src="/scripts/proposed_books.js"></script>
     </body>
 </html>

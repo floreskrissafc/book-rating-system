@@ -16,7 +16,7 @@ document.getElementById("search_input").addEventListener("input", function () {
 });
 
 function resetFilter() {
-    let filter = (document.getElementById("search_input").value = "");
+    document.getElementById("search_input").value = "";
     let courses = document.querySelectorAll("#course_list li");
     courses.forEach((course) => {
         course.style.display = "";

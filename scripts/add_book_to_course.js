@@ -1,5 +1,14 @@
 import { renderStars } from "./render_stars.js";
 
+function createEmptyListMessage(){
+    // If there are no books to show for a course, create a message to indicate this to the user
+    const container = document.getElementById("empty_list__message_container");
+    const html = `
+    <p id="no_books_message">There are no books in the system yet. Please add new books <a href="./add_book_page.html">here</a>.</p>
+    `;
+    container.insertAdjacentHTML("beforeend", html);
+}
+
 async function fetchBooks() {
     // This function will query the database and get all the books 
     try {
@@ -8,8 +17,16 @@ async function fetchBooks() {
         });
         if ( response.ok ){
             const data = await response.json();
-            const books = data.data;
-            await loadBooksTemplate(books);  
+            let books = data.data;
+            if (books.length == 0 ){
+                createEmptyListMessage();
+            } else {
+                books = books.map(book => ({
+                    ...book, 
+                    rating: parseFloat(book.rating.toFixed(1))
+                }));
+                await loadBooksTemplate(books); 
+            }    
         }
     } catch (error) {
         console.error("Error fetching book list:", error);
@@ -107,7 +124,6 @@ async function addBookToCourse(book_id, module_id) {
         } else {
             const data = await response.json();
             console.log("There was an error trying to add the book to the course, ", data);
-            console.log("data: \n", data);
             alert(`The book could not be added to the course. Error: ${data.error}`);
         } 
     } catch (error){

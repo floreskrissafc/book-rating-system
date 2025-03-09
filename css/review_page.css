@@ -12,6 +12,8 @@
 .user_img_container img {
     width: 100%;
     height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .review_container {
@@ -72,7 +74,7 @@
     flex: 10;
 }
 
-/* Expand to show full text when user clicks */
+/* This expands to show full text when user clicks */
 .expanded p {
     -webkit-line-clamp: unset;
     text-overflow: clip;
@@ -102,7 +104,7 @@
 }
 
 .modal {
-    z-index: 2000;
+    z-index: 5000;
 }
 
 #star_rating {
@@ -130,6 +132,32 @@
 #review_label,
 #edit_review_label {
     font-size: calc(12px + 1vw);
+}
+
+.review_right_box {
+   display: flex;
+   flex-direction: column;
+}
+
+.edit_review_btn {
+    margin-bottom: 0.5em;
+}
+
+.modal_content {
+    background-color: white;
+    padding: 1em 1em;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.new_review_form_container {
+    display: flex;
+    padding: 2em 2em;
+}
+
+.visible_empty_list {
+    margin-bottom: 1em;
+    margin-top: 3em;
 }
 
 @media screen and (min-width: 701px) {
@@ -308,6 +336,7 @@
     }
 
     #modal_title,
+    #add_review_modal_title,
     #edit_review_title {
         font-size: calc(15px + 1vw);
         font-weight: 700;
@@ -337,5 +366,13 @@
     #new_review_textarea,
     #edit_review_text_area {
         font-size: calc(12px + 1vw);
+    }
+
+    .edit_review_btn {
+        width: 100%;
+    }
+
+    .modal_content {
+        width: 90%;
     }
 }

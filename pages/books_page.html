@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="../css/navigation.css" />
         <link rel="stylesheet" href="../css/courses_and_books.css" />
         <script src="https://cdn.jsdelivr.net/npm/handlebars/dist/handlebars.min.js"></script>
-        <script src="../scripts/load_nav_template.js"></script>
+        <script type="module" src="../scripts/load_nav_template.js"></script>
     </head>
     <body>
         <div class="container">
@@ -36,6 +36,8 @@
 
                         <button class="button button_gray" onClick="resetFilter()">Reset filter</button>
                     </div>
+                </div>
+                <div id="empty_list__message_container">
                 </div>
                 <div id="book_list_container" class="filtered_list">
                     <!--books template will be inserted here to add all books-->

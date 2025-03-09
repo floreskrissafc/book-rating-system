@@ -1,6 +1,48 @@
 .main_container {
     padding-bottom: 2em;
 }
+
+#new_review_form {
+    display: flex;
+    flex-direction: column;
+}
+
+.new_review_container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1em;
+}
+
+.new_review_container p {
+    margin-bottom: 0.3em;
+}
+
+.nr_star {
+    color: lightgray;
+    transition: color 0.2s;
+}
+
+.nr_star.filled {
+    color: gold;
+}
+
+#review_label {
+    font-size: calc(12px + 1vw);
+}
+
+#new_review_textarea {
+    margin-top: 0.5em;
+    width: 100%;
+    font-family: "Montserrat", sans-serif;
+    height: 150px;
+    padding: 0.5em;
+}
+
+.modal_btn_container {
+    margin-top: 1em;
+}
+
 @media screen and (min-width: 701px) {
     #upper_container {
         display: flex;
@@ -23,6 +65,28 @@
         width: 100%;
         text-align: center;
         margin-bottom: 1em;
+    }
+
+    #submit_review {
+        margin-right: 1em;
+    }
+
+    .remove_book_text {
+        width: 80%;
+    }
+
+    #remove_book_modal_content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #confirm_remove {
+        margin-right: 1em;
+    }
+
+    #book_title_h2 {
+        margin-right: 1em;
     }
 }
 
@@ -57,4 +121,37 @@
         width: 85%;
         font-size: 20px;
     }
+
+    #add_review_modal_title {
+        font-size: calc(15px + 1vw);
+        font-weight: 700;
+        line-height: normal;
+    }
+
+    .new_review_container p,
+    #review_label {
+        font-size: calc(14px + 1vw);
+    }
+
+    #new_review_textarea {
+        font-size: calc(12px + 1vw);
+    }
+
+    .modal_btn_container {
+        margin-top: 0;
+    }
+
+    #submit_review,
+    #cancel_review,
+    #submit_edit_review,
+    #cancel_edit_review {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 0.5em;
+        font-size: calc(12px + 1vw);
+    }
+    #confirm_remove {
+        margin-bottom: 1em;
+    }
+
 }
