@@ -62,10 +62,6 @@ function addEventListenerToModalButtons() {
 
 export async function suggestBookModal() {
     const userStatus = window.currentUserStatus;
-    // const currentUserId = window.currentUserId;
-    // const courseId = window.currentCourseId;
-    // const courseName = window.currentCourseName;
-    // const courseCode = window.currentCourseCode;
     if (userStatus == 0) {
         addSuggestBookBtn();
         addSuggestBookModal();

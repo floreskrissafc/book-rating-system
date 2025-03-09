@@ -1,18 +1,10 @@
-/**
- * The navigation shouldn't include the books and courses if the user is not an admin IS-ADMIN
- * 0) Must create the window.isAdmin parameter for all the pages, needed for navigation
- * 1) The template shouldn't include by default the Courses and Books section, they should be included here
- * 2) Must make sure that there are no document.getElementById set in Courses or Books or 
- *   none of its items because that will cause errors because those elements won't exist for 
- *   students, just for admins
- * */ 
 import { getUserInfo } from "./submitReview.js";
 
 function addCoursesMenu() {
     // When the user is an admin, this function will be called
     // to include the Courses menu so they can add courses, add books
     // to existing courses and see all courses.
-    var container = document.getElementById("navigation_links_container");
+    var sibling = document.getElementById("close_icon_container");
     var coursesMenu = `
         <div id="dropdown_2" class="dropdown">
             <a id="dropbtn_2" class="dropbtn" onClick="switchContentVisibility(2)">
@@ -26,11 +18,11 @@ function addCoursesMenu() {
             </div>
         </div>
     `;
-    container.insertAdjacentHTML("afterbegin", coursesMenu);
+    sibling.insertAdjacentHTML("afterend", coursesMenu);
 }
 
 function addBooksMenu(){
-    var container = document.getElementById("navigation_links_container");
+    var sibling = document.getElementById("close_icon_container");
     var booksMenu = `
         <div id="dropdown_1" class="dropdown">
             <a id="dropbtn_1" class="dropbtn" onClick="switchContentVisibility(1)">
@@ -42,7 +34,7 @@ function addBooksMenu(){
                 <a href="../pages/add_book_page.html">Add a book</a>
             </div>
         </div>`;
-    container.insertAdjacentHTML("afterbegin", booksMenu);
+    sibling.insertAdjacentHTML("afterend", booksMenu);
 }
 
 async function logOut(){

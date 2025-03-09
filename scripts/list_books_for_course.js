@@ -120,23 +120,22 @@ function addEventListenerToRemoveBookBtns() {
 }
 
 
-
 // Ensure that the books are loaded when the page content is ready
 document.addEventListener("DOMContentLoaded", async function() {
     await fetchGlobalData(); // The data for the user and module must be set before loading the books
     document.getElementById("book_title_h2").textContent = `Book List for ${window.currentCourseName} ${window.currentCourseCode}`;
     await fetchBooksForModule(window.currentCourseId);
-    await suggestBookModal();
+    // await suggestBookModal();
     addEventListenerToSeeReviewsBtns();
     if (window.currentUserStatus == 0){
         // if the user is a student
         await addReviewBookModal();
+        await suggestBookModal();
         addEventListenerToModalButtons();
         addEventListenersToStars();
         updateStars(1);
         addEventListenerToAddReviewBtns();
     } else {
-        console.log("The user is an admin");
         addRemoveBookModal();
         addEventListenerToRemoveBookModalButtons();
         addEventListenerToRemoveBookBtns();
