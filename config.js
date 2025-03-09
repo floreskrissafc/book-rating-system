@@ -16,7 +16,7 @@ const config = {
     "gmail.com",
   ],
   DEFAULT_PROFILE_PICTURE: "imgs/user_profiles/default_profile.png", 
-  DEFAULT_BOOK_COVER: "imgs/books_cover/default_book_cover.png",
+  DEFAULT_BOOK_COVER: "imgs/books_cover/default_book_cover.jpg",
   PROFILE_UPLOAD_NAME: "profile_pic_input",
   BOOK_UPLOAD_NAME: "book_pic_input",
   EMAIL_USER: "bookratingsystemuol@flomedspa.com",

@@ -91,7 +91,10 @@ function getBookInfoByID(book_id) {
 async function create(bookObj) {
   // Below is module fields + isbn with isbn13 normalized formatting.
   let { isbn } = validateCreate(bookObj);
-  const { title, authors, edition, link, cover_picture } = bookObj;
+  let { title, authors, edition, link, cover_picture } = bookObj;
+  if (!cover_picture || length(cover_picture) <= 0) {
+    cover_picture = config.DEFAULT_BOOK_COVER;
+  }
   const bookInsertResult = db.run('INSERT INTO books (isbn, title, authors, edition, link, cover_picture) VALUES (@isbn, @title, @authors, @edition, @link, @cover_picture)', {isbn, title, authors, edition, link, cover_picture});
   if (!bookInsertResult.changes) {
     throw new Err('Error in creating book', 400);
