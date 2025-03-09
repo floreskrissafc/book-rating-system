@@ -115,6 +115,7 @@
     .book_info_container {
         display: flex;
         flex-direction: row;
+        margin-right: 1em;
     }
 
     .book_info {
@@ -147,8 +148,8 @@
     }
 
     .book_title {
-        font-size: 25px;
-        font-weight: 800;
+        font-size: 20px;
+        font-weight: 700;
     }
 
     .book_info_text {

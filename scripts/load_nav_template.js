@@ -31,6 +31,7 @@ function addBooksMenu(){
             </a>
             <div id="dropdown_content_1" class="dropdown-content">
                 <a href="../pages/books_page.html">See all books</a>
+                <a href="../pages/proposed_books.html">See all proposed books</a>
                 <a href="../pages/add_book_page.html">Add a book</a>
             </div>
         </div>`;
@@ -38,11 +39,11 @@ function addBooksMenu(){
 }
 
 async function logOut(){
-    // Make a request to log out from the system
+    // Making a request to log out from the system
     try {
         const response = await fetch("http://localhost:3000/users/logout", { method: "GET" });
         if (response.ok) {
-            // The user was successfully logged out, redirect them to the log in page
+            // If user was successfully logged out, then redirect them to the log in page
             window.location.href = "../index.html";
         } 
     } catch (error) {

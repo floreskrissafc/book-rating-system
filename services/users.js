@@ -84,7 +84,7 @@ function isUserAdmin(email) {
 async function register(userBody) {
     validateNewUser(userBody);
     let { email, password, first_name, last_name, profile_picture } = userBody;
-    if (!profile_picture || length(profile_picture) <= 0) {
+    if (!profile_picture || profile_picture.length <= 0) {
         profile_picture = config.DEFAULT_PROFILE_PICTURE;
     }
     let role = isUserAdmin(email);

@@ -23,7 +23,7 @@ router.post('/update', function(req, res, next) {
   try {
     res.json(modules.update(req.body));
   } catch (error) {
-    logger.error('Error while deleting module ${error.message}');
+    logger.error('Error while updating module ${error.message}');
     next(error);
   }
 });

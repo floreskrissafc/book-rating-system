@@ -189,7 +189,6 @@ function setupDeleteModal() {
 }
 
 function setupEditModal() {
-    console.log("setUpEditModal was called");
     // If the current user is the owner of at least one of the reviews
     // then create this modal so that they are able to edit their reviews
     const mainContent = document.getElementById("main_content");

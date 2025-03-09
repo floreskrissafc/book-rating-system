@@ -92,7 +92,7 @@ async function create(bookObj) {
   // Below is module fields + isbn with isbn13 normalized formatting.
   let { isbn } = validateCreate(bookObj);
   let { title, authors, edition, link, cover_picture } = bookObj;
-  if (!cover_picture || length(cover_picture) <= 0) {
+  if (!cover_picture || cover_picture.length <= 0) {
     cover_picture = config.DEFAULT_BOOK_COVER;
   }
   const bookInsertResult = db.run('INSERT INTO books (isbn, title, authors, edition, link, cover_picture) VALUES (@isbn, @title, @authors, @edition, @link, @cover_picture)', {isbn, title, authors, edition, link, cover_picture});
@@ -236,7 +236,10 @@ function getProposedMultiple(page = 1) {
   let data = db.queryAll(`SELECT * FROM proposed_books LIMIT ?,?`, [offset, config.listPerPage]);
   const meta = {page};
 
-  data = data.map(each => ({ ...each, ...moduleService.getModuleById(each.module_id)}));
+  data = data.map(each => {
+    let module = moduleService.getModuleById(each.module_id);
+    return { ...each, name: module.name };
+  });
 
   return {
     data,
@@ -248,7 +251,7 @@ function deleteProposedBook(bookObj) {
   let { id } = bookObj;
   const result = db.run('DELETE FROM proposed_books WHERE id = @id', {id});
   if (!result.changes) {
-    throw new Err("Error deleting module", 400);
+    throw new Err("Error deleting proposed book", 400);
   }
 
   let message = "proposed book has been deleted successfully";

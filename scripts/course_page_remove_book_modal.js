@@ -7,7 +7,7 @@ export function addRemoveBookModal() {
                 <p class="remove_book_text">This action will remove the book from this course. It will not delete the book from the system.</p>
                 <div class="modal_btn_container">
                     <button id="confirm_remove" class="button button_red" data-bookId="" data-courseId="" type="submit">
-                        Yes, remove book.
+                        Yes, remove book
                     </button>
                     <button id="cancel_remove" class="button button_gray" type="button">Cancel</button>
                 </div>
@@ -31,7 +31,6 @@ export function showRemoveBookModal(){
 }
 
 export function addEventListenerToRemoveBookModalButtons() {
-    console.log("setting the listeners for confirm remove book");
     let confirmBtn = document.getElementById("confirm_remove");
     let cancelBtn = document.getElementById("cancel_remove");
     confirmBtn.addEventListener("click", async function(event){

@@ -81,7 +81,7 @@ async function updateBook(book_id){
         if (response.ok) {
             console.log(`Book ${title} was updated.`);
             alert("The book was updated with new information!");
-            location.reload();
+            window.location.href = `./books_page.html`;
         } else {
             const data = await response.json();
             console.log("There was an error trying to update the book:", data);
