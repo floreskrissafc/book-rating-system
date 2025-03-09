@@ -33,7 +33,7 @@ router.get('/', function(req, res, next) {
   }
 });
 
-/** propose a new books. */
+/** propose books. */
 router.post('/propose', function(req, res, next) {
   try {
     res.json(propose(req.body));
@@ -69,7 +69,7 @@ router.get('/search', function(req, res, next) {
 });
 
 
-router.get("/:bookId", function(req, res, next) {
+router.get("byid/:bookId", function(req, res, next) {
   try {
     const bookData = getBookInfoByID(req.params.bookId);
     if (!bookData) {

@@ -22,7 +22,7 @@ function populateForm(data) {
 async function fetchBook(book_id) {
     // This function will query the database and get all the books 
     try {
-        const response = await fetch(`http://localhost:3000/books/${book_id}`, { 
+        const response = await fetch(`http://localhost:3000/books/byid/${book_id}`, { 
             method: "GET", 
         });
         if ( response.ok ){

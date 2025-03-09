@@ -23,7 +23,7 @@ function getQueryParameter(parameterName) {
 async function fetchBook(book_id) {
     // This function will get the information for the current book
     try {
-        const response = await fetch(`http://localhost:3000/books/${book_id}`, { 
+        const response = await fetch(`http://localhost:3000/books/byid/${book_id}`, { 
             method: "GET", 
         });
         if ( response.ok ){
