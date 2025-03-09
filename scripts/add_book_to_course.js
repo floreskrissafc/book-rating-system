@@ -124,7 +124,6 @@ async function addBookToCourse(book_id, module_id) {
         } else {
             const data = await response.json();
             console.log("There was an error trying to add the book to the course, ", data);
-            console.log("data: \n", data);
             alert(`The book could not be added to the course. Error: ${data.error}`);
         } 
     } catch (error){

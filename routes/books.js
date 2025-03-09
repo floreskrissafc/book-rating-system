@@ -33,7 +33,7 @@ router.get('/', function(req, res, next) {
   }
 });
 
-/** get a list of proposed books. */
+/** propose a new books. */
 router.post('/propose', function(req, res, next) {
   try {
     res.json(propose(req.body));
