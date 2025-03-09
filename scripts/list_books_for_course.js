@@ -1,6 +1,7 @@
 import { renderStars } from "./render_stars.js";
 import { suggestBookModal } from "./suggest_book_modal.js";
 import { addReviewBookModal, showAddReviewModal, addEventListenerToModalButtons } from "./course_page_add_review_modal.js";
+import { addRemoveBookModal, addEventListenerToRemoveBookModalButtons, showRemoveBookModal} from "./course_page_remove_book_modal.js";
 import { updateStars, addEventListenersToStars } from "./update_stars.js";
 
 function getQueryParameter(parameterName) {
@@ -104,6 +105,20 @@ function addEventListenerToAddReviewBtns(){
     });
 }
 
+function addEventListenerToRemoveBookBtns() {
+    document.querySelectorAll(".remove_book_btn").forEach( button => {
+        button.addEventListener("click", function (event) {
+            event.preventDefault();
+            const book_id = this.getAttribute("data-id");
+            // const course_id = window.currentCourseId;
+            window.currentBookId = book_id;
+            if (book_id) {
+                showRemoveBookModal();
+            }
+        });
+    });
+}
+
 
 
 // Ensure that the books are loaded when the page content is ready
@@ -121,7 +136,9 @@ document.addEventListener("DOMContentLoaded", async function() {
         updateStars(1);
         addEventListenerToAddReviewBtns();
     } else {
-        // TODO:
-        // must add a modal for removing the book from the course
+        console.log("The user is an admin");
+        addRemoveBookModal();
+        addEventListenerToRemoveBookModalButtons();
+        addEventListenerToRemoveBookBtns();
     }
 });

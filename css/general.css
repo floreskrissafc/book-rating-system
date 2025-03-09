@@ -118,8 +118,8 @@ figure {
     align-items: center;
     width: 90%;
     max-width: 800px;
-    margin-bottom: 1em;
-    margin-top: 3em;
+    /* margin-bottom: 1em; */
+    /* margin-top: 3em; */
     justify-content: flex-start;
     align-self: center;
 }

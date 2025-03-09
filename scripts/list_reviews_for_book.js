@@ -275,6 +275,7 @@ function createEmptyListMessage(){
         html = `<p id="no_books_message">${messageStudent}</p>`;
     }
     container.insertAdjacentHTML("beforeend", html);
+    container.classList.add("visible_empty_list");
 }
 
 export async function loadReviews() {

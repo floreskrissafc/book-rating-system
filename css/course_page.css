@@ -75,6 +75,20 @@
     #submit_review {
         margin-right: 1em;
     }
+
+    .remove_book_text {
+        width: 80%;
+    }
+
+    #remove_book_modal_content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #confirm_remove {
+        margin-right: 1em;
+    }
 }
 
 @media screen and (max-width: 700px) {
@@ -108,7 +122,7 @@
         width: 85%;
         font-size: 20px;
     }
-/* ----------------------------------------- */
+
     #add_review_modal_title {
         font-size: calc(15px + 1vw);
         font-weight: 700;
@@ -136,6 +150,9 @@
         max-width: 300px;
         margin-bottom: 0.5em;
         font-size: calc(12px + 1vw);
+    }
+    #confirm_remove {
+        margin-bottom: 1em;
     }
 
 }

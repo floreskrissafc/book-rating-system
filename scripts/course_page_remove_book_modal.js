@@ -1,10 +1,10 @@
-export async function addRemoveBookModal() {
+export function addRemoveBookModal() {
     try {
         let container = document.getElementById("main_content");
         const html = `
         <div id="delete-modal" class="modal">
-            <div class="modal-content">
-                <p>This action will remove the book from this course. It will not delete the book from the system.</p>
+            <div id="remove_book_modal_content" class="modal-content">
+                <p class="remove_book_text">This action will remove the book from this course. It will not delete the book from the system.</p>
                 <div class="modal_btn_container">
                     <button id="confirm_remove" class="button button_red" data-bookId="" data-courseId="" type="submit">
                         Yes, remove book.
@@ -14,7 +14,6 @@ export async function addRemoveBookModal() {
             </div>
         </div>`;
         container.insertAdjacentHTML("beforeend", html);
-        addEventListenerToRemoveBookModalButtons();
     } catch (error) {
         console.error("Error adding remove book modal:", error);
     }
@@ -25,10 +24,17 @@ function hideRemoveBookModal() {
     modal.style.display = "none";
 }
 
+export function showRemoveBookModal(){
+    console.log("went inside the showRemoveBookModal function");
+    const modal = document.getElementById("delete-modal");
+    modal.style.display = "flex";
+}
+
 export function addEventListenerToRemoveBookModalButtons() {
+    console.log("setting the listeners for confirm remove book");
     let confirmBtn = document.getElementById("confirm_remove");
-    let cancelBtn = document.getElementById("cancel_review");
-    confirmBtn.addEventListener("onclick", async function(event){
+    let cancelBtn = document.getElementById("cancel_remove");
+    confirmBtn.addEventListener("click", async function(event){
         event.preventDefault();
         await removeBookFromCourse();
         location.reload();
@@ -41,10 +47,11 @@ export function addEventListenerToRemoveBookModalButtons() {
 
 export async function removeBookFromCourse() {
     try {
+        console.log("remove book from course was called");
         let book_id = window.currentBookId;
         let module_id = window.currentCourseId;
         let response = await fetch("http://localhost:3000/modules/removebook", { 
-            method: "POST",
+            method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
             },

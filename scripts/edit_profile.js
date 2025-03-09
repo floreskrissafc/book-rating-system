@@ -45,7 +45,7 @@ async function fetchAndPopulateUser() {
     try {
         const response = await fetch("http://localhost:3000/user", { method: "GET"}); // get the information for the logged in user
         if (response.ok) {
-            const data = await response.json(); // Converting the response of type ReadableStream into a JSON
+            const data = await response.json(); 
             userEmail = data.email;
             populateForm(data);
         } 
