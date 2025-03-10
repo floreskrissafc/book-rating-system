@@ -1,0 +1,4796 @@
+{
+	"info": {
+		"_postman_id": "901716f4-b3e1-4183-a44d-3854538c2b67",
+		"name": "book-rating-system-api",
+		"description": "# 🚀 Get started here\n\nThis collection guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this collection**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these request types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT and PATCH requests.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a variable called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Tests\" tab**\n\nTests help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/b5f280a7-4b09-48ec-857f-0a7ed99d7ef8/U2NyZWVuc2hvdCAyMDIzLTAzLTI3IGF0IDkuNDcuMjggUE0ucG5n\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n- Add more scripts in \"Tests\" to verify if the API works as expected and execute flows.\n    \n\n## ℹ️ Resources\n\n[Building requests](https://learning.postman.com/docs/sending-requests/requests/)  \n[Authorizing requests](https://learning.postman.com/docs/sending-requests/authorization/)  \n[Using variables](https://learning.postman.com/docs/sending-requests/variables/)  \n[Managing environments](https://learning.postman.com/docs/sending-requests/managing-environments/)  \n[Writing scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41829459"
+	},
+	"item": [
+		{
+			"name": "User Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"admin1@london.ac.uk\",\n    \"password\": \"admin1password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "error: invalid credentials",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"three@london.ac.uk\",\n    \"password\": \"password1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "37"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"25-z4nja23UasLrsg9PwOpVLVCVyt0\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 04 Feb 2025 04:23:49 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"invalid email or password\"\n}"
+				},
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin1@london.ac.uk\",\n    \"password\": \"admin1password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "159"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"9f-sytWACWYm6dh57zudp8ntivU8x8\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Mar 2025 02:16:24 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user\": {\n        \"id\": 1,\n        \"email\": \"admin1@london.ac.uk\",\n        \"role\": 1,\n        \"first_name\": \"Phoebe\",\n        \"last_name\": \"Buffay\",\n        \"profile_picture\": \"imgs/user_profiles/1-1741515534647.jpeg\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "User Logout",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"logout"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"logout"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "41"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"29-XEmCexpqYTkAbqtggggW/QpDmnY\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 05 Feb 2025 06:19:24 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"user logged out succesfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get logged in User Info",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/user",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "error: not logged in user",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/user",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1e-aEgPRQM+FwegdraFL2Q6KWieo88\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3AraK5TlhXAVAWAtQUNFN9Bd21XwPNcmLH.eifu9TaWikD6c3DLz8dqYPOjBcG99rNzPE8tCAmKvTM; Path=/; HttpOnly"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 02 Mar 2025 17:59:25 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"User not logged-in\"\n}"
+				},
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/user",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "IS-ADMIN",
+							"value": "1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "150"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"96-uojyqIQANazOH1v0UuOrhU0b84M\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Mar 2025 03:06:37 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"email\": \"admin1@london.ac.uk\",\n    \"role\": 1,\n    \"first_name\": \"Phoebe\",\n    \"last_name\": \"Buffay\",\n    \"profile_picture\": \"imgs/user_profiles/1-1741515534647.jpeg\"\n}"
+				}
+			]
+		},
+		{
+			"name": "List all Users",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1717"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"6b5-PZWZUHHYaIWebCMl8vQd4ajqwkE\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Mar 2025 02:09:09 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"email\": \"admin1@london.ac.uk\",\n            \"password_hash\": \"$2b$10$0JbtY9LQ4VfOiX9NbHQMLer1bh.b2KwtxkARNv6HUOsyCUiA6VUwK\",\n            \"role\": 1,\n            \"first_name\": \"Phoebe\",\n            \"last_name\": \"Buffay\",\n            \"profile_picture\": \"imgs/user_profiles/1-1741515534647.jpeg\"\n        },\n        {\n            \"id\": 202,\n            \"email\": \"floreskrissafc@gmail.com\",\n            \"password_hash\": \"$2b$10$H71UuLqP2SK9jHia21lTYeBr3S4m1oLUgfw4aj5sYseF9GZ6p/JS2\",\n            \"role\": 0,\n            \"first_name\": \"kriss\",\n            \"last_name\": \"flores\",\n            \"profile_picture\": \"imgs/user_profiles/202-1741462155600.jpeg\"\n        },\n        {\n            \"id\": 332,\n            \"email\": \"kc164@student.london.ac.uk\",\n            \"password_hash\": \"$2b$10$CYcJ20azQNY./Q6bBtVno.xsINsB0SChkE.6hvy.2iTZOpV3JUxOO\",\n            \"role\": 0,\n            \"first_name\": \"Kriss\",\n            \"last_name\": \"Flores\",\n            \"profile_picture\": \"imgs/user_profiles/default_profile.png\"\n        },\n        {\n            \"id\": 359,\n            \"email\": \"rachelgreen@student.london.ac.uk\",\n            \"password_hash\": \"$2b$10$QpHTXuSNMbjGZyjTnBy6fuRP59y8DepLAUscD/P34ShGJrhviD96y\",\n            \"role\": 0,\n            \"first_name\": \"Rachel\",\n            \"last_name\": \"Green\",\n            \"profile_picture\": \"imgs/user_profiles/359-1741515365284.jpeg\"\n        },\n        {\n            \"id\": 360,\n            \"email\": \"rossgeller@student.london.ac.uk\",\n            \"password_hash\": \"$2b$10$EUY8aRIqYFe7L6aGX5yZo.baZU/u08QSra0mhqUoSEUW74T.7/M.S\",\n            \"role\": 0,\n            \"first_name\": \"Ross\",\n            \"last_name\": \"Geller\",\n            \"profile_picture\": \"imgs/user_profiles/360-1741515441286.jpeg\"\n        },\n        {\n            \"id\": 361,\n            \"email\": \"monicageller@student.london.ac.uk\",\n            \"password_hash\": \"$2b$10$lBNNkzhJcKrnTicm8LIUJOOTY19oXaK3mFAJmvQ4HrWjXatIOT5Te\",\n            \"role\": 0,\n            \"first_name\": \"Monica\",\n            \"last_name\": \"Bing\",\n            \"profile_picture\": \"imgs/user_profiles/361-1741515586564.jpeg\"\n        },\n        {\n            \"id\": 374,\n            \"email\": \"joytribianni@student.london.ac.uk\",\n            \"password_hash\": \"$2b$10$UW5vZ6tIl0lfVohTl77DD./Acp2iQ9uNlnP7.ssooAEyj2UJ3Ptdq\",\n            \"role\": 0,\n            \"first_name\": \"Joseph\",\n            \"last_name\": \"Tribianni\",\n            \"profile_picture\": \"imgs/user_profiles/default_profile.png\"\n        }\n    ],\n    \"meta\": {\n        \"page\": 1\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Create new User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"chandlerbing@student.london.ac.uk\",\n    \"password\": \"asdQWE123!\",\n    \"first_name\": \"Chandler\",\n    \"last_name\": \"Bing\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"chandlerbing@student.london.ac.uk\",\n    \"password\": \"asdQWE123!\",\n    \"first_name\": \"Chandler\",\n    \"last_name\": \"Bing\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "39"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"27-O/zF1M4EsSeqcgZOzAXUbc5OpUA\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Mar 2025 02:15:01 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User created successfully\"\n}"
+				},
+				{
+					"name": "error: existing user",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"chandlerbing@student.london.ac.uk\",\n    \"password\": \"asdQWE123!\",\n    \"first_name\": \"Chandler\",\n    \"last_name\": \"Bing\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "36"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"24-hY5xo7kNiyu11vIQncYyHJnL7A8\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Mar 2025 02:16:09 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"login or reset password.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update an Existing User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "profile_pic_input",
+							"type": "file",
+							"src": "/Users/krissflores/Desktop/woman_face_3.jpeg"
+						},
+						{
+							"key": "first_name",
+							"value": "admin_one",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "flores",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/users/update",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"update"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profile_pic_input",
+									"type": "file",
+									"src": "/Users/krissflores/Desktop/woman_face_3.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/users/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "IS-ADMIN",
+							"value": "1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "229"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"e5-7MjsFMaT+nTIYmiKhz3F5nJKMCU\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Mar 2025 03:22:43 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"email\": \"admin1@london.ac.uk\",\n    \"password_hash\": \"$2b$10$0JbtY9LQ4VfOiX9NbHQMLer1bh.b2KwtxkARNv6HUOsyCUiA6VUwK\",\n    \"role\": 1,\n    \"first_name\": \"Phoebe\",\n    \"last_name\": \"Buffay\",\n    \"profile_picture\": \"imgs/user_profiles/1-1741576963269.jpeg\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete an existing User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"admin2@london.ac.uk\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "error: deleting current users.",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin1@london.ac.uk\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "56"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"38-JAmoudskegp2mGXcknGw19j2TjU\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Feb 2025 02:19:39 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Can't delete currently active logged in user\"\n}"
+				},
+				{
+					"name": "error: error email not found",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin2@london.ac.uk\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "137"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"89-d6670rKEvpUxeJehhiOii7za/t8\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Feb 2025 02:20:26 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"An user with email admin2@london.ac.uk is not present in the system, please search for another email or Add a new user here\"\n}"
+				},
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin2@london.ac.uk\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "81"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"51-PvoKIHEjyfpxOkOq3lcoSWxPmmY\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Feb 2025 02:21:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"You have successfully removed admin2@london.ac.uk from the system\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Change Password",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"chandlerbing@student.london.ac.uk\",\n    \"oldPassword\": \"asdQWE123!\",\n    \"newPassword\": \"123qweASD!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/changepassword",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"changepassword"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"chandlerbing@student.london.ac.uk\",\n    \"oldPassword\": \"asdQWE123!\",\n    \"newPassword\": \"123qweASD!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/changepassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"changepassword"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "41"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"29-Y3SDdaD7zenFofjpHQtfJ4zVZrI\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Mar 2025 02:24:02 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"password reset successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Homepage Data",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"admin1@london.ac.uk\",\n    \"password\": \"admin1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/home",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"home"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin1@london.ac.uk\",\n    \"password\": \"admin1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/home",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"home"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "IS-ADMIN",
+							"value": "1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1821"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"71d-k9rzETdHMqADkw85Y2uA9pS6TcQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Mar 2025 02:29:26 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": 7,\n            \"module_code\": \"CM3005\",\n            \"name\": \"Data Science\",\n            \"books\": [\n                {\n                    \"id\": 8,\n                    \"ISBN\": \"978-7-7432-8068-5\",\n                    \"title\": \"Data Science and Big Data Analytics, Discovering Analyzing, Visualizing and Presenting Data.\",\n                    \"edition\": \"1st Edition\",\n                    \"authors\": \"Education services EMC\",\n                    \"link\": \"\",\n                    \"cover_picture\": \"imgs/books_cover/9787743280685-1741538799426.jpeg\",\n                    \"rating\": 2.75\n                },\n                {\n                    \"id\": 9,\n                    \"ISBN\": \"978-1-0981-2122-8\",\n                    \"title\": \"Python Data Science Handbook: Essential Tools for Working with Data\",\n                    \"edition\": \"2nd Edition\",\n                    \"authors\": \"Jake VanderPlas\",\n                    \"link\": \"\",\n                    \"cover_picture\": \"imgs/books_cover/978-1098121228-1741541982143.jpeg\",\n                    \"rating\": 3.5\n                }\n            ]\n        },\n        {\n            \"id\": 8,\n            \"module_code\": \"CM2020\",\n            \"name\": \"Agile Software Projects\",\n            \"books\": [\n                {\n                    \"id\": 12,\n                    \"ISBN\": \"978-1-119-54725-9\",\n                    \"title\": \"Interaction Design: Beyond Human-Computer Interaction\",\n                    \"edition\": \"5th Edition\",\n                    \"authors\": \"Sharp H., Preece J., Rogers Y.\",\n                    \"link\": \"\",\n                    \"cover_picture\": \"imgs/books_cover/978-1119547259-1741542225199.jpeg\",\n                    \"rating\": 3.5\n                },\n                {\n                    \"id\": 13,\n                    \"ISBN\": \"978-1-292-06356-0\",\n                    \"title\": \"Brilliant Agile Project Management: A Practical Guide to Using Agile, Scrum and Kanban\",\n                    \"edition\": \"1st Edition\",\n                    \"authors\": \"Robe Cole, Edward Scotcher\",\n                    \"link\": \"\",\n                    \"cover_picture\": \"imgs/books_cover/978-1292063560-1741542297113.jpeg\",\n                    \"rating\": 3\n                }\n            ]\n        },\n        {\n            \"id\": 9,\n            \"module_code\": \"CM3010\",\n            \"name\": \"Databases and Advanced Data Techniques\",\n            \"books\": [\n                {\n                    \"id\": 10,\n                    \"ISBN\": \"978-1-4493-2801-6\",\n                    \"title\": \"Database Design and Relational Theory\",\n                    \"edition\": \"1st Edition\",\n                    \"authors\": \"C. J. Date\",\n                    \"link\": \"\",\n                    \"cover_picture\": \"imgs/books_cover/978-1449328016-1741542071895.jpeg\",\n                    \"rating\": 3\n                },\n                {\n                    \"id\": 11,\n                    \"ISBN\": \"978-0-267-91975-8\",\n                    \"title\": \"The Entity-Relationship Model: Towards an Unified View of Data\",\n                    \"edition\": \"1st Edition\",\n                    \"authors\": \"Peter Chen\",\n                    \"link\": \"\",\n                    \"cover_picture\": \"imgs/books_cover/978-0267919758-1741542146541.jpeg\",\n                    \"rating\": 3\n                }\n            ]\n        }\n    ],\n    \"meta\": {\n        \"page\": 1\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Create New Course",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"module_code\": \"mc3\",\n    \"name\": \"module3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/modules",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"modules"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"module_code\": \"mc1\",\n    \"name\": \"module 1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"modules"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "41"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"29-YRxZJpr99kayZjKQf0SjTDFMbqE\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 05 Feb 2025 06:05:23 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Module created successfully\"\n}"
+				},
+				{
+					"name": "error: failures not unique",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"module_code\": \"mc1\",\n    \"name\": \"module 1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"modules"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "57"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"39-0Dzl5xn5mCveEr/rarpcveWclE4\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 05 Feb 2025 06:06:45 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"UNIQUE constraint failed: modules.module_code\"\n}"
+				}
+			]
+		},
+		{
+			"name": "List all Course",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/modules",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"modules"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"modules"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "IS-ADMIN",
+							"value": "1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "227"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"e3-4yCnTAkUns3OZ352O3yQFOpof4s\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Mar 2025 02:28:27 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": 7,\n            \"module_code\": \"CM3005\",\n            \"name\": \"Data Science\"\n        },\n        {\n            \"id\": 8,\n            \"module_code\": \"CM2020\",\n            \"name\": \"Agile Software Projects\"\n        },\n        {\n            \"id\": 9,\n            \"module_code\": \"CM3010\",\n            \"name\": \"Databases and Advanced Data Techniques\"\n        }\n    ],\n    \"meta\": {\n        \"page\": 1\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete a Course",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"module_name\": \"module1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/modules",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"modules"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "error: not logged in",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"module 4\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"modules"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1e-aEgPRQM+FwegdraFL2Q6KWieo88\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3A58Gv6fU2ZBdaE_KatiC6ImGFkytDS_6s.iW%2Bs53UUr%2FTPGC6zHx%2BtVN1mOsb78wodIeyfbPlfUl4; Path=/; HttpOnly"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 19:50:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"User not logged-in\"\n}"
+				},
+				{
+					"name": "error: no module given",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"modules"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"21-yrUZlXyWWNtsEIkhs1V4i7o4fHg\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 20:20:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"No module is selected\"\n}"
+				},
+				{
+					"name": "error: no module for given ID",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"module_name\": \"module 4\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"modules"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "46"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2e-7l73rXj/11UMXwor1l47DDlk9pk\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 20:21:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Module by name: module 4 not found\"\n}"
+				},
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"module_name\": \"module3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"modules"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "55"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"37-NiDwpP7GMv1yH3gGAF9e04lZ1qw\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 20:22:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Your review has been deleted successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update a Course",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"module_id\": 2,\n    \"module_name\": \"module 2\",\n    \"module_code\": \"mc2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/modules/update",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"modules",
+						"update"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "update success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"module_id\": 2,\n    \"module_name\": \"module 2\",\n    \"module_code\": \"mc2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/modules/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"modules",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "55"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"37-QuuXOpJ+/Zca/lR8y6+5Fi/0IlQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 20:34:01 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Your review has been updated successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add a new Book",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "isbn",
+							"value": "978-0-7943-4561-7",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "title1",
+							"type": "text"
+						},
+						{
+							"key": "authors",
+							"value": "author1, author2",
+							"type": "text"
+						},
+						{
+							"key": "book_pic_input",
+							"type": "file",
+							"src": "/Users/krissflores/Desktop/pictures_for_books/714GQjvNZYL._SY522_.jpg"
+						},
+						{
+							"key": "edition",
+							"value": "12",
+							"type": "text"
+						},
+						{
+							"key": "link",
+							"value": "http://example.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/books",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success necessary only",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "isbn",
+									"value": "978-0-2406-7017-1",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "title1",
+									"type": "text"
+								},
+								{
+									"key": "authors",
+									"value": "author1, author2",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "IS-ADMIN",
+							"value": "1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "62"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3e-5ls5nX4dZQtBCd3YLDxUsOYAMiY\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 04 Mar 2025 06:08:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The book title1 is going to be added with id: 2.\"\n}"
+				},
+				{
+					"name": "success all info",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "isbn",
+									"value": "978-0-7943-4561-7",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "title1",
+									"type": "text"
+								},
+								{
+									"key": "authors",
+									"value": "author1, author2",
+									"type": "text"
+								},
+								{
+									"key": "book_pic_input",
+									"type": "file",
+									"src": "/Users/krissflores/Desktop/pictures_for_books/714GQjvNZYL._SY522_.jpg"
+								},
+								{
+									"key": "edition",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "link",
+									"value": "http://example.com",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "IS-ADMIN",
+							"value": "1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "62"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3e-DcsC/EggMEiicw1bb2SKe381nEw\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 04 Mar 2025 06:13:28 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The book title1 is going to be added with id: 5.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "List all Books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books"
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": [
+				{
+					"name": "error - not logged in",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1e-aEgPRQM+FwegdraFL2Q6KWieo88\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3AxhPvVyoizq7tGjVUcF6oIBVTDkyEU6iQ.dT9Q%2ByeknuaRJDYgdKTZFKGUnT1tOaLPE1KKDCk%2B4Rc; Path=/; HttpOnly"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 04 Feb 2025 05:14:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"User not logged-in\"\n}"
+				},
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "IS-ADMIN",
+							"value": "1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1853"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"73d-LAnCQ0U4xPOip2NxOLtwwz2J99I\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Mar 2025 01:45:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": 7,\n            \"ISBN\": \"978-0-245-19746-8\",\n            \"title\": \"Test Book\",\n            \"edition\": \"2nd Edition\",\n            \"authors\": \"Joy Tribianni\",\n            \"link\": \"https://link.springer.com/chapter/10.1007/978-3-319-49487-6_3\",\n            \"cover_picture\": \"imgs/books_cover/default_book_cover.jpg\",\n            \"rating\": 1\n        },\n        {\n            \"id\": 8,\n            \"ISBN\": \"978-7-7432-8068-5\",\n            \"title\": \"Data Science and Big Data Analytics, Discovering Analyzing, Visualizing and Presenting Data.\",\n            \"edition\": \"1st Edition\",\n            \"authors\": \"Education services EMC\",\n            \"link\": \"\",\n            \"cover_picture\": \"imgs/books_cover/9787743280685-1741538799426.jpeg\",\n            \"rating\": 2.75\n        },\n        {\n            \"id\": 9,\n            \"ISBN\": \"978-1-0981-2122-8\",\n            \"title\": \"Python Data Science Handbook: Essential Tools for Working with Data\",\n            \"edition\": \"2nd Edition\",\n            \"authors\": \"Jake VanderPlas\",\n            \"link\": \"\",\n            \"cover_picture\": \"imgs/books_cover/978-1098121228-1741541982143.jpeg\",\n            \"rating\": 3.6666666666666665\n        },\n        {\n            \"id\": 10,\n            \"ISBN\": \"978-1-4493-2801-6\",\n            \"title\": \"Database Design and Relational Theory\",\n            \"edition\": \"1st Edition\",\n            \"authors\": \"C. J. Date\",\n            \"link\": \"\",\n            \"cover_picture\": \"imgs/books_cover/978-1449328016-1741542071895.jpeg\",\n            \"rating\": 3\n        },\n        {\n            \"id\": 11,\n            \"ISBN\": \"978-0-267-91975-8\",\n            \"title\": \"The Entity-Relationship Model: Towards an Unified View of Data\",\n            \"edition\": \"1st Edition\",\n            \"authors\": \"Peter Chen\",\n            \"link\": \"\",\n            \"cover_picture\": \"imgs/books_cover/978-0267919758-1741542146541.jpeg\",\n            \"rating\": 3\n        },\n        {\n            \"id\": 12,\n            \"ISBN\": \"978-1-119-54725-9\",\n            \"title\": \"Interaction Design: Beyond Human-Computer Interaction\",\n            \"edition\": \"5th Edition\",\n            \"authors\": \"Sharp H., Preece J., Rogers Y.\",\n            \"link\": \"\",\n            \"cover_picture\": \"imgs/books_cover/978-1119547259-1741542225199.jpeg\",\n            \"rating\": 3.5\n        },\n        {\n            \"id\": 13,\n            \"ISBN\": \"978-1-292-06356-0\",\n            \"title\": \"Brilliant Agile Project Management: A Practical Guide to Using Agile, Scrum and Kanban\",\n            \"edition\": \"1st Edition\",\n            \"authors\": \"Robe Cole, Edward Scotcher\",\n            \"link\": \"\",\n            \"cover_picture\": \"imgs/books_cover/978-1292063560-1741542297113.jpeg\",\n            \"rating\": 3\n        }\n    ],\n    \"meta\": {\n        \"page\": 1\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Update an existing book without cover photo",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"module_name\": \"module1\",\n    \"isbn\": \"978-0-439-02348-1\",\n    \"title\": \"title one\",\n    \"authors\": \"author one\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/books/update",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books",
+						"update"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "not logged in",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"module_name\": \"module1\",\n    \"isbn\": \"978-0-439-02348-1\",\n    \"title\": \"title1\",\n    \"authors\": \"author1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"update"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1e-aEgPRQM+FwegdraFL2Q6KWieo88\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3AY_0NSwrQGQ4A3_5HJDpJdhFb3oJEBeF7.YVef90w4VZwlQuFiSwm4O%2BsP2xCyjuQwRfEAUQQT2GU; Path=/; HttpOnly"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 22:04:06 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"User not logged-in\"\n}"
+				},
+				{
+					"name": "error: same details as existing",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"module_name\": \"module1\",\n    \"isbn\": \"978-0-439-02348-1\",\n    \"title\": \"title1\",\n    \"authors\": \"author1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"update"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "63"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3f-KSxeHKIq2ziX4Cdqcx6kFME55rw\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 22:04:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"These book details are already stored in the system\"\n}"
+				},
+				{
+					"name": "success: Update book title",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"module_name\": \"module1\",\n    \"isbn\": \"978-0-439-02348-1\",\n    \"title\": \"title 1\",\n    \"authors\": \"author1, author2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "92"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"5c-99gUk2uyV9aLZq38C2qisK5hz/4\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 22:06:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The book title1 has been updated with title: title 1 authors: author1, author2\"\n}"
+				},
+				{
+					"name": "success: Update book authors",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"module_name\": \"module1\",\n    \"isbn\": \"978-0-439-02348-1\",\n    \"title\": \"title 1\",\n    \"authors\": \"author1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "84"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"54-HAsIntqq+/B0TG5uVJQUWt/0SSE\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 22:06:56 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The book title 1 has been updated with title: title 1 authors: author1\"\n}"
+				},
+				{
+					"name": "success: Update book mutiple fiellds",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"module_name\": \"module1\",\n    \"isbn\": \"978-0-439-02348-1\",\n    \"title\": \"title one\",\n    \"authors\": \"author one\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "89"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"59-gMq2pSgXdQNAr31aMSZI74MwNms\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 22:07:17 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The book title 1 has been updated with title: title one authors: author one\"\n}"
+				},
+				{
+					"name": "error: ISBN validation error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"module_name\": \"module1\",\n    \"isbn\": \"978-0-439-02348-2\",\n    \"title\": \"title one\",\n    \"authors\": \"author one\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"update"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "48"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"30-WSZpddf0StbK7Z+193TghLjdHb0\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 22:08:01 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"ISBN does not match any known format\"\n}"
+				},
+				{
+					"name": "error: no module given",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isbn\": \"978-0-439-02348-1\",\n    \"title\": \"title one\",\n    \"authors\": \"author one\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"update"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "39"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"27-ot5uG3Xwm4ip390IbfUW2P6ziwY\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 22:08:19 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Module name is not selected\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update and existing book with cover photo",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "isbn",
+							"value": "978-92-95055-02-5",
+							"type": "text"
+						},
+						{
+							"key": "book_pic_input",
+							"type": "file",
+							"src": "/Users/krissflores/Desktop/pictures_for_books/911Ne+5GetL._SY522_.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/books/update",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books",
+						"update"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update book with cover",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "isbn",
+									"value": "978-92-95055-02-5",
+									"type": "text"
+								},
+								{
+									"key": "book_pic_input",
+									"type": "file",
+									"src": "/Users/krissflores/Desktop/pictures_for_books/911Ne+5GetL._SY522_.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/books/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "IS-ADMIN",
+							"value": "1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "155"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"9b-xUhWyphK7uoy93e1MGn2jpg0a4M\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Mar 2025 05:56:06 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The book title2 has been updated with title: undefined authors: undefined cover_picture: imgs/books_cover/978-92-95055-02-5-1740981366872.svg\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete an existing Book",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"book_id\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/books",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"book_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "55"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"37-NiDwpP7GMv1yH3gGAF9e04lZ1qw\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 22:59:07 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Your review has been deleted successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add Book to Module",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"book_id\": \"1\",\n    \"module_id\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/modules/addbook",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"modules",
+						"addbook"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"book_id\": \"1\",\n    \"module_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/modules/addbook",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"modules",
+								"addbook"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "IS-ADMIN",
+							"value": "1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "65"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"41-ZFSsPn/M1Hn4metafGCdZtyK68Y\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 04 Mar 2025 06:15:39 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The book id: 1 is going to be added to module id: 1\"\n}"
+				},
+				{
+					"name": "failures already exists.",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"book_id\": \"1\",\n    \"module_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/modules/addbook",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"modules",
+								"addbook"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "IS-ADMIN",
+							"value": "1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "106"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"6a-s0ty0U46QryvC0uEZaM8Gfj+QaQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 04 Mar 2025 06:16:07 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"The book 1 already exists in the system for module id: 1. Do you want to add a different book?\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all Books for a Course",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/modules/books/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"modules",
+						"books",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get books for a moduleId",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/modules/books/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"modules",
+								"books",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "IS-ADMIN",
+							"value": "1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "142"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"8e-ao7+TwRwcn0B4jfm6h9cVZXhjIE\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Mar 2025 02:52:36 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"ISBN\": \"978-5-904790-09-7\",\n            \"title\": \"title1\",\n            \"edition\": null,\n            \"authors\": \"author1\",\n            \"link\": null,\n            \"cover_picture\": null,\n            \"rating\": 0\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Create a new review",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"book_id\": 1, \n    \"user_id\": 1, \n    \"comment\": \"comment 3\",\n    \"rating\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/reviews/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"reviews",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"book_id\": 1, \n    \"user_id\": 1, \n    \"comment\": \"comment 1\",\n    \"rating\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/reviews/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reviews",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "57"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"39-26wmD/9RrJB9edtuEWlfc41Hf3E\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 08 Feb 2025 05:37:54 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Your review has been processed successfully\"\n}"
+				},
+				{
+					"name": "error: review fail offensive",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"book_id\": 1, \n    \"user_id\": 1, \n    \"comment\": \"bat shit 1\",\n    \"rating\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/reviews/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reviews",
+								""
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "53"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"35-xlcMcM+hE0O5evoDxppP9pU49tg\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 08 Feb 2025 05:41:03 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"please remove offensive words from review\"\n}"
+				},
+				{
+					"name": "error: review fail rating > 5",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"book_id\": 1, \n    \"user_id\": 1, \n    \"comment\": \"bat 1\",\n    \"rating\": 6\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/reviews/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reviews",
+								""
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "59"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3b-od9adUlzJnxHrBQUTgRaVMA877s\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 08 Feb 2025 05:41:37 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"CHECK constraint failed: rating BETWEEN 1 AND 5\"\n}"
+				},
+				{
+					"name": "error: review create fail rating = 0",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"book_id\": 1, \n    \"user_id\": 1, \n    \"comment\": \"bat 1\",\n    \"rating\": \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/reviews/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reviews",
+								""
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-rnIuxoI1eCR8F23Itm6HZ0Bo2e4\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 08 Feb 2025 05:41:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"no rating present\"\n}"
+				},
+				{
+					"name": "error: create reviews fail rating < 0",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"book_id\": 1, \n    \"user_id\": 1, \n    \"comment\": \"bat 1\",\n    \"rating\": -1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/reviews/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reviews",
+								""
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "59"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3b-od9adUlzJnxHrBQUTgRaVMA877s\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 08 Feb 2025 05:43:03 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"CHECK constraint failed: rating BETWEEN 1 AND 5\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete a Review",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"book_id\": 2, \n    \"user_id\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/reviews/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"reviews",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"book_id\": 2, \n    \"user_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/reviews/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reviews",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "57"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"39-26wmD/9RrJB9edtuEWlfc41Hf3E\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 06:02:49 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Your review has been processed successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "List all reviews by a User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/reviews/byuser/359",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"reviews",
+						"byuser",
+						"359"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/reviews/byuser/359",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reviews",
+								"byuser",
+								"359"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "IS-ADMIN",
+							"value": "1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2981"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"ba5-tQQxEaS/5jB4+Ga8sb0wpZQooe4\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Mar 2025 02:54:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"book_id\": 8,\n            \"user_id\": 359,\n            \"comment\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",\n            \"rating\": 4,\n            \"created_at\": \"2025-03-09 18:20:55\",\n            \"id\": 8,\n            \"ISBN\": \"978-7-7432-8068-5\",\n            \"title\": \"Data Science and Big Data Analytics, Discovering Analyzing, Visualizing and Presenting Data.\",\n            \"edition\": \"1st Edition\",\n            \"authors\": \"Education services EMC\",\n            \"link\": \"\",\n            \"cover_picture\": \"imgs/books_cover/9787743280685-1741538799426.jpeg\"\n        },\n        {\n            \"book_id\": 9,\n            \"user_id\": 359,\n            \"comment\": \"Didn't like this book too much. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.\",\n            \"rating\": 2,\n            \"created_at\": \"2025-03-09 18:21:38\",\n            \"id\": 9,\n            \"ISBN\": \"978-1-0981-2122-8\",\n            \"title\": \"Python Data Science Handbook: Essential Tools for Working with Data\",\n            \"edition\": \"2nd Edition\",\n            \"authors\": \"Jake VanderPlas\",\n            \"link\": \"\",\n            \"cover_picture\": \"imgs/books_cover/978-1098121228-1741541982143.jpeg\"\n        },\n        {\n            \"book_id\": 12,\n            \"user_id\": 359,\n            \"comment\": \"This book is awesome, loved how it explained things. Use it!\",\n            \"rating\": 5,\n            \"created_at\": \"2025-03-09 18:23:32\",\n            \"id\": 12,\n            \"ISBN\": \"978-1-119-54725-9\",\n            \"title\": \"Interaction Design: Beyond Human-Computer Interaction\",\n            \"edition\": \"5th Edition\",\n            \"authors\": \"Sharp H., Preece J., Rogers Y.\",\n            \"link\": \"\",\n            \"cover_picture\": \"imgs/books_cover/978-1119547259-1741542225199.jpeg\"\n        },\n        {\n            \"book_id\": 13,\n            \"user_id\": 359,\n            \"comment\": \"I don't like how they explain the subjects on this book. Wasn't really helpful for me\",\n            \"rating\": 2,\n            \"created_at\": \"2025-03-09 18:28:08\",\n            \"id\": 13,\n            \"ISBN\": \"978-1-292-06356-0\",\n            \"title\": \"Brilliant Agile Project Management: A Practical Guide to Using Agile, Scrum and Kanban\",\n            \"edition\": \"1st Edition\",\n            \"authors\": \"Robe Cole, Edward Scotcher\",\n            \"link\": \"\",\n            \"cover_picture\": \"imgs/books_cover/978-1292063560-1741542297113.jpeg\"\n        },\n        {\n            \"book_id\": 10,\n            \"user_id\": 359,\n            \"comment\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",\n            \"rating\": 3,\n            \"created_at\": \"2025-03-09 18:30:28\",\n            \"id\": 10,\n            \"ISBN\": \"978-1-4493-2801-6\",\n            \"title\": \"Database Design and Relational Theory\",\n            \"edition\": \"1st Edition\",\n            \"authors\": \"C. J. Date\",\n            \"link\": \"\",\n            \"cover_picture\": \"imgs/books_cover/978-1449328016-1741542071895.jpeg\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Update an existing Review",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"book_id\": 1,\n\t\"user_id\": 1,\n\t\"comment\": \"comment modified 2\",\n\t\"rating\": 3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/reviews/update",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"reviews",
+						"update"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success: rating only",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"book_id\": 1,\n\t\"user_id\": 1,\n\t\"rating\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/reviews/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reviews",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "IS-ADMIN",
+							"value": "1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "46"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2e-LwMKVAaYbWsMuWs438W2t2b0fuA\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Mar 2025 04:15:49 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The review 1 1 has been updated.\"\n}"
+				},
+				{
+					"name": "success: comment only",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"book_id\": 1,\n\t\"user_id\": 1,\n\t\"comment\": \"comment modified 2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/reviews/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reviews",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "IS-ADMIN",
+							"value": "1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "46"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2e-LwMKVAaYbWsMuWs438W2t2b0fuA\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Mar 2025 04:16:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The review 1 1 has been updated.\"\n}"
+				},
+				{
+					"name": "success: rating and comment",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"book_id\": 1,\n\t\"user_id\": 1,\n\t\"comment\": \"comment modified 2\",\n\t\"rating\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/reviews/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reviews",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "IS-ADMIN",
+							"value": "1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "46"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2e-LwMKVAaYbWsMuWs438W2t2b0fuA\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Mar 2025 04:17:02 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The review 1 1 has been updated.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "List all Reviews for a Book",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"book_id\": 1, \n    \"user_id\": 1, \n    \"comment\": \"comment 1\",\n    \"rating\": 5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/reviews/bybook/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"reviews",
+						"bybook",
+						"8"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "error: no book_id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/reviews/bybook",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reviews",
+								"bybook"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1e-122iBPZngnc08Fmr7uOL8xXhD8g\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 08 Feb 2025 05:29:10 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"no book_id present\"\n}"
+				},
+				{
+					"name": "error: no reviews",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/reviews/bybook/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reviews",
+								"bybook",
+								"1"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "IS-ADMIN",
+							"value": "1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "126"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"7e-0aYiIXju2bmH67fPvfK7NR7Ve/0\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Mar 2025 03:37:47 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"There are no reviews for this book yet. Be the first to write a review and share your thoughts with other students\"\n}"
+				},
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"book_id\": 1, \n    \"user_id\": 1, \n    \"comment\": \"comment 1\",\n    \"rating\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/reviews/bybook/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reviews",
+								"bybook",
+								"8"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "IS-ADMIN",
+							"value": "1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2327"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"917-UlITqLVzhduYXwHvJYYr6ahYYlk\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Mar 2025 02:30:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"book_id\": 8,\n            \"user_id\": 359,\n            \"comment\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",\n            \"rating\": 4,\n            \"created_at\": \"2025-03-09 18:20:55\",\n            \"id\": 359,\n            \"email\": \"rachelgreen@student.london.ac.uk\",\n            \"password_hash\": \"$2b$10$QpHTXuSNMbjGZyjTnBy6fuRP59y8DepLAUscD/P34ShGJrhviD96y\",\n            \"role\": 0,\n            \"first_name\": \"Rachel\",\n            \"last_name\": \"Green\",\n            \"profile_picture\": \"imgs/user_profiles/359-1741515365284.jpeg\"\n        },\n        {\n            \"book_id\": 8,\n            \"user_id\": 360,\n            \"comment\": \"We were on a break.. when I read this book but didn't find it really helpful\",\n            \"rating\": 2,\n            \"created_at\": \"2025-03-09 18:32:06\",\n            \"id\": 360,\n            \"email\": \"rossgeller@student.london.ac.uk\",\n            \"password_hash\": \"$2b$10$EUY8aRIqYFe7L6aGX5yZo.baZU/u08QSra0mhqUoSEUW74T.7/M.S\",\n            \"role\": 0,\n            \"first_name\": \"Ross\",\n            \"last_name\": \"Geller\",\n            \"profile_picture\": \"imgs/user_profiles/360-1741515441286.jpeg\"\n        },\n        {\n            \"book_id\": 8,\n            \"user_id\": 361,\n            \"comment\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",\n            \"rating\": 3,\n            \"created_at\": \"2025-03-09 19:14:33\",\n            \"id\": 361,\n            \"email\": \"monicageller@student.london.ac.uk\",\n            \"password_hash\": \"$2b$10$lBNNkzhJcKrnTicm8LIUJOOTY19oXaK3mFAJmvQ4HrWjXatIOT5Te\",\n            \"role\": 0,\n            \"first_name\": \"Monica\",\n            \"last_name\": \"Bing\",\n            \"profile_picture\": \"imgs/user_profiles/361-1741515586564.jpeg\"\n        },\n        {\n            \"book_id\": 8,\n            \"user_id\": 374,\n            \"comment\": \"I liked The Shining better \",\n            \"rating\": 2,\n            \"created_at\": \"2025-03-09 19:27:49\",\n            \"id\": 374,\n            \"email\": \"joytribianni@student.london.ac.uk\",\n            \"password_hash\": \"$2b$10$UW5vZ6tIl0lfVohTl77DD./Acp2iQ9uNlnP7.ssooAEyj2UJ3Ptdq\",\n            \"role\": 0,\n            \"first_name\": \"Joseph\",\n            \"last_name\": \"Tribianni\",\n            \"profile_picture\": \"imgs/user_profiles/default_profile.png\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Propose a new Book for a Course",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"isbn\": \"978-0-439-02348-1\",\n    \"title\": \"title1\",\n    \"module_name\": \"module2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/books/propose",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books",
+						"propose"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "error: NO ISBN error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isbn\": \"\",\n    \"title\": \"1\",\n    \"module_name\": \"module1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/propose",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"propose"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "35"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"23-PG0VqTECIRervXqiBPcOFaphV1c\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 17:34:33 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"The ISBN is not correct\"\n}"
+				},
+				{
+					"name": "error: invalid ISBN error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isbn\": \"1234567890\",\n    \"title\": \"title1\",\n    \"module_name\": \"module1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/propose",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"propose"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "35"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"23-PG0VqTECIRervXqiBPcOFaphV1c\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 17:55:31 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"The ISBN is not correct\"\n}"
+				},
+				{
+					"name": "error: user not logged in",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isbn\": \"978-0-439-02348-1\",\n    \"title\": \"title1\",\n    \"module_name\": \"module1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/propose",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"propose"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1e-aEgPRQM+FwegdraFL2Q6KWieo88\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3A4ma0Jk48BjQr9qW5XAFutuQ8Q20XpswH.Ay9eNpa5%2BVBbUjFQPl58UJEsB1xSK2emENXODa4uFqM; Path=/; HttpOnly"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 18:05:50 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"User not logged-in\"\n}"
+				},
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isbn\": \"978-0-439-02348-1\",\n    \"title\": \"title1\",\n    \"module_name\": \"module1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/propose",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"propose"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "41"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"29-Y3JymtFzrtwrkhMvb1KTL4Amr+c\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 18:07:24 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"proposal has been submitted\"\n}"
+				},
+				{
+					"name": "error: no module found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isbn\": \"9780439023481\",\n    \"title\": \"title1\",\n    \"module_name\": \"module2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/propose",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"propose"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "45"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2d-MoLcE8VLiMYrR0coy8mQtTVixsQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 18:28:26 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Module by name: module2 not found\"\n}"
+				},
+				{
+					"name": "error: same book, module error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isbn\": \"978-0-439-02348-1\",\n    \"title\": \"title1\",\n    \"module_name\": \"module1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/propose",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"propose"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "83"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"53-3udAMCX69+yEXaBSgNgOGJ1UlNY\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 18:35:39 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"UNIQUE constraint failed: proposed_books.ISBN, proposed_books.module_id\"\n}"
+				},
+				{
+					"name": "success: same book, diff module",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isbn\": \"978-0-439-02348-1\",\n    \"title\": \"title1\",\n    \"module_name\": \"module2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/propose",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"propose"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "41"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"29-Y3JymtFzrtwrkhMvb1KTL4Amr+c\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 18:36:36 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"proposal has been submitted\"\n}"
+				},
+				{
+					"name": "error: same book, module error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isbn\": \"9780439023481\",\n    \"title\": \"title1\",\n    \"module_name\": \"module2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/propose",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"propose"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "83"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"53-3udAMCX69+yEXaBSgNgOGJ1UlNY\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 19 Feb 2025 18:40:22 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"UNIQUE constraint failed: proposed_books.ISBN, proposed_books.module_id\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all Proposed Books",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/books/proposed",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books",
+						"proposed"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/books/proposed",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"proposed"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "IS-ADMIN",
+							"value": "1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "169"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a9-KVOT5F43AHodC4uew4ZM2armd1E\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Mar 2025 02:55:10 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": 6,\n            \"module_id\": 9,\n            \"ISBN\": \"978-1-337-09342-2\",\n            \"title\": \"Concepts of Database Management \",\n            \"name\": \"Databases and Advanced Data Techniques\"\n        }\n    ],\n    \"meta\": {\n        \"page\": 1\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Remove a Proposed Book",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/books/removeproposed",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books",
+						"removeproposed"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/books/removeproposed",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"removeproposed"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "IS-ADMIN",
+							"value": "1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "57"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"39-0fAvuhHg8as1doC8Ba6ajN4iIzo\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 09 Mar 2025 07:32:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"proposed book has been deleted successfully\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}

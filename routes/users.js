@@ -46,9 +46,7 @@ router.get('/logout', async function(req, res) {
   res.json({message: "user logged out succesfully"});
 });
 
-/** used to reset a forgotten password by any user.
- * NOTE: this is not resetting a password by an admin.
-*/
+/** used to chage a password by any user.*/
 router.post('/changepassword', async function(req, res, next) {
   try {
     let changeRes = await users.changePassword(req.body);

@@ -13,7 +13,7 @@
     "url": "git+https://github.com/geshan/nodejs-sqlite.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Kriss Flores",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/geshan/nodejs-sqlite/issues"
